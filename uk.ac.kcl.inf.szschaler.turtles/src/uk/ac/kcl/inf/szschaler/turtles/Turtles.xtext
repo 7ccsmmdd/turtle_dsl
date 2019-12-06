@@ -2,8 +2,27 @@ grammar uk.ac.kcl.inf.szschaler.turtles.Turtles with org.eclipse.xtext.common.Te
 
 generate turtles "http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles"
 
-Model:
-	greetings+=Greeting*;
+TurtleProgram:
+	statements += Statement*
+;
 	
-Greeting:
-	'Hello' name=ID '!';
+Statement:
+	MoveStatement |
+	TurnStatement
+;
+	
+MoveStatement:
+	command = MoveCommand "(" steps = INT ")"
+;
+
+enum MoveCommand:
+	forward | backward
+;
+
+TurnStatement:
+	"turn" command = TurnCommand "by" degrees = INT "degrees"
+;
+
+enum TurnCommand:
+	left | right
+;

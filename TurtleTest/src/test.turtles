@@ -1,0 +1,4 @@
+forward (9)
+turn left by 90 degrees
+backward (10)
+turn right by 20 degrees

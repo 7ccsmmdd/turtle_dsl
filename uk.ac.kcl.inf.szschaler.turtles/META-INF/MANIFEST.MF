@@ -8,5 +8,23 @@ Bundle-SymbolicName: uk.ac.kcl.inf.szschaler.turtles; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
- org.eclipse.equinox.common;bundle-version="3.5.0"
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: uk.ac.kcl.inf.szschaler.turtles.validation,
+ uk.ac.kcl.inf.szschaler.turtles.services,
+ uk.ac.kcl.inf.szschaler.turtles,
+ uk.ac.kcl.inf.szschaler.turtles.turtles.impl,
+ uk.ac.kcl.inf.szschaler.turtles.parser.antlr.internal,
+ uk.ac.kcl.inf.szschaler.turtles.scoping,
+ uk.ac.kcl.inf.szschaler.turtles.generator,
+ uk.ac.kcl.inf.szschaler.turtles.turtles,
+ uk.ac.kcl.inf.szschaler.turtles.serializer,
+ uk.ac.kcl.inf.szschaler.turtles.turtles.util,
+ uk.ac.kcl.inf.szschaler.turtles.parser.antlr
+Import-Package: org.apache.log4j

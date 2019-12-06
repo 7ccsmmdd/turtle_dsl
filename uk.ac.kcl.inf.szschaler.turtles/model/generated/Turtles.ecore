@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="turtles" nsURI="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles"
+    nsPrefix="turtles">
+  <eClassifiers xsi:type="ecore:EClass" name="TurtleProgram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="command" eType="#//MoveCommand"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="steps" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MoveCommand">
+    <eLiterals name="forward" literal="forward"/>
+    <eLiterals name="backward" value="1" literal="backward"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TurnStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="command" eType="#//TurnCommand"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="degrees" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TurnCommand">
+    <eLiterals name="left" literal="left"/>
+    <eLiterals name="right" value="1" literal="right"/>
+  </eClassifiers>
+</ecore:EPackage>

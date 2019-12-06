@@ -11,5 +11,8 @@ Require-Bundle: uk.ac.kcl.inf.szschaler.turtles.ui,
  org.eclipse.xtext.testing,
  org.eclipse.xtext.xbase.testing,
  org.eclipse.xtext.junit4,
- org.eclipse.xtext.xbase.junit
+ org.eclipse.xtext.xbase.junit,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.workbench;resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: uk.ac.kcl.inf.szschaler.turtles.ui.tests;x-internal=true
