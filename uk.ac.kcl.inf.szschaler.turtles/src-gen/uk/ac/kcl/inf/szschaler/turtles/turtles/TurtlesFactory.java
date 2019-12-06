@@ -42,6 +42,15 @@ public interface TurtlesFactory extends EFactory
   Statement createStatement();
 
   /**
+   * Returns a new object of class '<em>Loop Statement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Loop Statement</em>'.
+   * @generated
+   */
+  LoopStatement createLoopStatement();
+
+  /**
    * Returns a new object of class '<em>Move Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

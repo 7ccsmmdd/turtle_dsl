@@ -130,6 +130,83 @@ ruleStatement returns [EObject current=null]
 			$current = $this_TurnStatement_1.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getStatementAccess().getLoopStatementParserRuleCall_2());
+		}
+		this_LoopStatement_2=ruleLoopStatement
+		{
+			$current = $this_LoopStatement_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleLoopStatement
+entryRuleLoopStatement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLoopStatementRule()); }
+	iv_ruleLoopStatement=ruleLoopStatement
+	{ $current=$iv_ruleLoopStatement.current; }
+	EOF;
+
+// Rule LoopStatement
+ruleLoopStatement returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_count_0_0=RULE_INT
+				{
+					newLeafNode(lv_count_0_0, grammarAccess.getLoopStatementAccess().getCountINTTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getLoopStatementRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"count",
+						lv_count_0_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
+		otherlv_1='times'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getLoopStatementAccess().getTimesKeyword_1());
+		}
+		otherlv_2='do'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getLoopStatementAccess().getDoKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLoopStatementAccess().getStatementsStatementParserRuleCall_3_0());
+				}
+				lv_statements_3_0=ruleStatement
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLoopStatementRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_3_0,
+						"uk.ac.kcl.inf.szschaler.turtles.Turtles.Statement");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
+		otherlv_4='end'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getLoopStatementAccess().getEndKeyword_4());
+		}
 	)
 ;
 

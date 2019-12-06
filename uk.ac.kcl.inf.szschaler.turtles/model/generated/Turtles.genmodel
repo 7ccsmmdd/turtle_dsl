@@ -18,6 +18,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Turtles.ecore#//TurtleProgram/statements"/>
     </genClasses>
     <genClasses ecoreClass="Turtles.ecore#//Statement"/>
+    <genClasses ecoreClass="Turtles.ecore#//LoopStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//LoopStatement/count"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Turtles.ecore#//LoopStatement/statements"/>
+    </genClasses>
     <genClasses ecoreClass="Turtles.ecore#//MoveStatement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//MoveStatement/command"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//MoveStatement/steps"/>

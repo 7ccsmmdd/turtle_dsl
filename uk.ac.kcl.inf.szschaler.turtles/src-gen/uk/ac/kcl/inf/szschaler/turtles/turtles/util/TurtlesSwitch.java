@@ -87,6 +87,14 @@ public class TurtlesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case TurtlesPackage.LOOP_STATEMENT:
+      {
+        LoopStatement loopStatement = (LoopStatement)theEObject;
+        T result = caseLoopStatement(loopStatement);
+        if (result == null) result = caseStatement(loopStatement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case TurtlesPackage.MOVE_STATEMENT:
       {
         MoveStatement moveStatement = (MoveStatement)theEObject;
@@ -135,6 +143,22 @@ public class TurtlesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseStatement(Statement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Loop Statement</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Loop Statement</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLoopStatement(LoopStatement object)
   {
     return null;
   }

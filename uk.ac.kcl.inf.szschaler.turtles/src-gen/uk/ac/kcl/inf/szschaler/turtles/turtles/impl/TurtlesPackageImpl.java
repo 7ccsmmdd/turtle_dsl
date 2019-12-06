@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveCommand;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement;
@@ -41,6 +42,13 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   private EClass statementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass loopStatementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -172,6 +180,39 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   @Override
+  public EClass getLoopStatement()
+  {
+    return loopStatementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLoopStatement_Count()
+  {
+    return (EAttribute)loopStatementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLoopStatement_Statements()
+  {
+    return (EReference)loopStatementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getMoveStatement()
   {
     return moveStatementEClass;
@@ -290,6 +331,10 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
 
     statementEClass = createEClass(STATEMENT);
 
+    loopStatementEClass = createEClass(LOOP_STATEMENT);
+    createEAttribute(loopStatementEClass, LOOP_STATEMENT__COUNT);
+    createEReference(loopStatementEClass, LOOP_STATEMENT__STATEMENTS);
+
     moveStatementEClass = createEClass(MOVE_STATEMENT);
     createEAttribute(moveStatementEClass, MOVE_STATEMENT__COMMAND);
     createEAttribute(moveStatementEClass, MOVE_STATEMENT__STEPS);
@@ -332,6 +377,7 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    loopStatementEClass.getESuperTypes().add(this.getStatement());
     moveStatementEClass.getESuperTypes().add(this.getStatement());
     turnStatementEClass.getESuperTypes().add(this.getStatement());
 
@@ -340,6 +386,10 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
     initEReference(getTurtleProgram_Statements(), this.getStatement(), null, "statements", null, 0, -1, TurtleProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(loopStatementEClass, LoopStatement.class, "LoopStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLoopStatement_Count(), ecorePackage.getEInt(), "count", null, 0, 1, LoopStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoopStatement_Statements(), this.getStatement(), null, "statements", null, 0, -1, LoopStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(moveStatementEClass, MoveStatement.class, "MoveStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMoveStatement_Command(), this.getMoveCommand(), "command", null, 0, 1, MoveStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

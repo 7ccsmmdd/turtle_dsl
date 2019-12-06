@@ -68,6 +68,7 @@ public class TurtlesFactoryImpl extends EFactoryImpl implements TurtlesFactory
     {
       case TurtlesPackage.TURTLE_PROGRAM: return createTurtleProgram();
       case TurtlesPackage.STATEMENT: return createStatement();
+      case TurtlesPackage.LOOP_STATEMENT: return createLoopStatement();
       case TurtlesPackage.MOVE_STATEMENT: return createMoveStatement();
       case TurtlesPackage.TURN_STATEMENT: return createTurnStatement();
       default:
@@ -135,6 +136,18 @@ public class TurtlesFactoryImpl extends EFactoryImpl implements TurtlesFactory
   {
     StatementImpl statement = new StatementImpl();
     return statement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LoopStatement createLoopStatement()
+  {
+    LoopStatementImpl loopStatement = new LoopStatementImpl();
+    return loopStatement;
   }
 
   /**

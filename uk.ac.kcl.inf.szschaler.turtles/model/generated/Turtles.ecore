@@ -7,6 +7,11 @@
         eType="#//Statement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LoopStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MoveStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="command" eType="#//MoveCommand"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="steps" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

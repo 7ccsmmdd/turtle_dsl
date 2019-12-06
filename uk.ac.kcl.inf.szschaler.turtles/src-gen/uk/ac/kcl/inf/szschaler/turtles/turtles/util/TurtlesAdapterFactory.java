@@ -86,6 +86,11 @@ public class TurtlesAdapterFactory extends AdapterFactoryImpl
         return createStatementAdapter();
       }
       @Override
+      public Adapter caseLoopStatement(LoopStatement object)
+      {
+        return createLoopStatementAdapter();
+      }
+      @Override
       public Adapter caseMoveStatement(MoveStatement object)
       {
         return createMoveStatementAdapter();
@@ -143,6 +148,21 @@ public class TurtlesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStatementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement <em>Loop Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
+   * @generated
+   */
+  public Adapter createLoopStatementAdapter()
   {
     return null;
   }

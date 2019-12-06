@@ -106,6 +106,43 @@ public interface TurtlesPackage extends EPackage
   int STATEMENT_FEATURE_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.LoopStatementImpl <em>Loop Statement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.LoopStatementImpl
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getLoopStatement()
+   * @generated
+   */
+  int LOOP_STATEMENT = 2;
+
+  /**
+   * The feature id for the '<em><b>Count</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_STATEMENT__COUNT = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_STATEMENT__STATEMENTS = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Loop Statement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.MoveStatementImpl <em>Move Statement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -113,7 +150,7 @@ public interface TurtlesPackage extends EPackage
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getMoveStatement()
    * @generated
    */
-  int MOVE_STATEMENT = 2;
+  int MOVE_STATEMENT = 3;
 
   /**
    * The feature id for the '<em><b>Command</b></em>' attribute.
@@ -150,7 +187,7 @@ public interface TurtlesPackage extends EPackage
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getTurnStatement()
    * @generated
    */
-  int TURN_STATEMENT = 3;
+  int TURN_STATEMENT = 4;
 
   /**
    * The feature id for the '<em><b>Command</b></em>' attribute.
@@ -187,7 +224,7 @@ public interface TurtlesPackage extends EPackage
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getMoveCommand()
    * @generated
    */
-  int MOVE_COMMAND = 4;
+  int MOVE_COMMAND = 5;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.TurnCommand <em>Turn Command</em>}' enum.
@@ -197,7 +234,7 @@ public interface TurtlesPackage extends EPackage
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getTurnCommand()
    * @generated
    */
-  int TURN_COMMAND = 5;
+  int TURN_COMMAND = 6;
 
 
   /**
@@ -230,6 +267,38 @@ public interface TurtlesPackage extends EPackage
    * @generated
    */
   EClass getStatement();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement <em>Loop Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Loop Statement</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
+   * @generated
+   */
+  EClass getLoopStatement();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement#getCount <em>Count</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Count</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement#getCount()
+   * @see #getLoopStatement()
+   * @generated
+   */
+  EAttribute getLoopStatement_Count();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement#getStatements <em>Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Statements</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement#getStatements()
+   * @see #getLoopStatement()
+   * @generated
+   */
+  EReference getLoopStatement_Statements();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement <em>Move Statement</em>}'.
@@ -365,6 +434,32 @@ public interface TurtlesPackage extends EPackage
      * @generated
      */
     EClass STATEMENT = eINSTANCE.getStatement();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.LoopStatementImpl <em>Loop Statement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.LoopStatementImpl
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getLoopStatement()
+     * @generated
+     */
+    EClass LOOP_STATEMENT = eINSTANCE.getLoopStatement();
+
+    /**
+     * The meta object literal for the '<em><b>Count</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOOP_STATEMENT__COUNT = eINSTANCE.getLoopStatement_Count();
+
+    /**
+     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LOOP_STATEMENT__STATEMENTS = eINSTANCE.getLoopStatement_Statements();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.MoveStatementImpl <em>Move Statement</em>}' class.

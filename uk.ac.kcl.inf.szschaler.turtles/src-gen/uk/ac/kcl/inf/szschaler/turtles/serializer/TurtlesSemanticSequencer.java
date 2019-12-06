@@ -15,6 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import uk.ac.kcl.inf.szschaler.turtles.services.TurtlesGrammarAccess;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram;
@@ -34,6 +35,9 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == TurtlesPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case TurtlesPackage.LOOP_STATEMENT:
+				sequence_LoopStatement(context, (LoopStatement) semanticObject); 
+				return; 
 			case TurtlesPackage.MOVE_STATEMENT:
 				sequence_MoveStatement(context, (MoveStatement) semanticObject); 
 				return; 
@@ -47,6 +51,19 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     Statement returns LoopStatement
+	 *     LoopStatement returns LoopStatement
+	 *
+	 * Constraint:
+	 *     (count=INT statements+=Statement+)
+	 */
+	protected void sequence_LoopStatement(ISerializationContext context, LoopStatement semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:

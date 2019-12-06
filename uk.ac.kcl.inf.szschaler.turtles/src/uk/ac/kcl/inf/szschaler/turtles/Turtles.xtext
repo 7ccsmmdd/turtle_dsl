@@ -8,9 +8,16 @@ TurtleProgram:
 	
 Statement:
 	MoveStatement |
-	TurnStatement
+	TurnStatement |
+	LoopStatement
 ;
-	
+
+LoopStatement:
+	count = INT "times" "do"
+	  statements += Statement+
+	"end"
+;
+
 MoveStatement:
 	command = MoveCommand "(" steps = INT ")"
 ;

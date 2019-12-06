@@ -45,12 +45,13 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cMoveStatementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTurnStatementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cLoopStatementParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Statement:
-		//	MoveStatement | TurnStatement;
+		//	MoveStatement | TurnStatement | LoopStatement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//MoveStatement | TurnStatement
+		//MoveStatement | TurnStatement | LoopStatement
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//MoveStatement
@@ -58,6 +59,50 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TurnStatement
 		public RuleCall getTurnStatementParserRuleCall_1() { return cTurnStatementParserRuleCall_1; }
+		
+		//LoopStatement
+		public RuleCall getLoopStatementParserRuleCall_2() { return cLoopStatementParserRuleCall_2; }
+	}
+	public class LoopStatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.LoopStatement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cCountAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cCountINTTerminalRuleCall_0_0 = (RuleCall)cCountAssignment_0.eContents().get(0);
+		private final Keyword cTimesKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cDoKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cStatementsStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//LoopStatement:
+		//	count=INT "times" "do"
+		//	statements+=Statement+
+		//	"end";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//count=INT "times" "do" statements+=Statement+ "end"
+		public Group getGroup() { return cGroup; }
+		
+		//count=INT
+		public Assignment getCountAssignment_0() { return cCountAssignment_0; }
+		
+		//INT
+		public RuleCall getCountINTTerminalRuleCall_0_0() { return cCountINTTerminalRuleCall_0_0; }
+		
+		//"times"
+		public Keyword getTimesKeyword_1() { return cTimesKeyword_1; }
+		
+		//"do"
+		public Keyword getDoKeyword_2() { return cDoKeyword_2; }
+		
+		//statements+=Statement+
+		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
+		
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_3_0() { return cStatementsStatementParserRuleCall_3_0; }
+		
+		//"end"
+		public Keyword getEndKeyword_4() { return cEndKeyword_4; }
 	}
 	public class MoveStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.MoveStatement");
@@ -191,6 +236,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final TurtleProgramElements pTurtleProgram;
 	private final StatementElements pStatement;
+	private final LoopStatementElements pLoopStatement;
 	private final MoveStatementElements pMoveStatement;
 	private final MoveCommandElements eMoveCommand;
 	private final TurnStatementElements pTurnStatement;
@@ -207,6 +253,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pTurtleProgram = new TurtleProgramElements();
 		this.pStatement = new StatementElements();
+		this.pLoopStatement = new LoopStatementElements();
 		this.pMoveStatement = new MoveStatementElements();
 		this.eMoveCommand = new MoveCommandElements();
 		this.pTurnStatement = new TurnStatementElements();
@@ -251,13 +298,25 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Statement:
-	//	MoveStatement | TurnStatement;
+	//	MoveStatement | TurnStatement | LoopStatement;
 	public StatementElements getStatementAccess() {
 		return pStatement;
 	}
 	
 	public ParserRule getStatementRule() {
 		return getStatementAccess().getRule();
+	}
+	
+	//LoopStatement:
+	//	count=INT "times" "do"
+	//	statements+=Statement+
+	//	"end";
+	public LoopStatementElements getLoopStatementAccess() {
+		return pLoopStatement;
+	}
+	
+	public ParserRule getLoopStatementRule() {
+		return getLoopStatementAccess().getRule();
 	}
 	
 	//MoveStatement:
