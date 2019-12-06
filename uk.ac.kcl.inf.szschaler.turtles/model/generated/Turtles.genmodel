@@ -18,17 +18,25 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Turtles.ecore#//TurtleProgram/statements"/>
     </genClasses>
     <genClasses ecoreClass="Turtles.ecore#//Statement"/>
+    <genClasses ecoreClass="Turtles.ecore#//VariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//VariableDeclaration/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//VariableDeclaration/value"/>
+    </genClasses>
     <genClasses ecoreClass="Turtles.ecore#//LoopStatement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//LoopStatement/count"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Turtles.ecore#//LoopStatement/count"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Turtles.ecore#//LoopStatement/statements"/>
     </genClasses>
     <genClasses ecoreClass="Turtles.ecore#//MoveStatement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//MoveStatement/command"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//MoveStatement/steps"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Turtles.ecore#//MoveStatement/steps"/>
     </genClasses>
     <genClasses ecoreClass="Turtles.ecore#//TurnStatement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//TurnStatement/command"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//TurnStatement/degrees"/>
+    </genClasses>
+    <genClasses ecoreClass="Turtles.ecore#//IntExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Turtles.ecore#//IntExpression/val"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Turtles.ecore#//IntExpression/var"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

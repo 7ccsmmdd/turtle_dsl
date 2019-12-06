@@ -87,6 +87,14 @@ public class TurtlesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case TurtlesPackage.VARIABLE_DECLARATION:
+      {
+        VariableDeclaration variableDeclaration = (VariableDeclaration)theEObject;
+        T result = caseVariableDeclaration(variableDeclaration);
+        if (result == null) result = caseStatement(variableDeclaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case TurtlesPackage.LOOP_STATEMENT:
       {
         LoopStatement loopStatement = (LoopStatement)theEObject;
@@ -108,6 +116,13 @@ public class TurtlesSwitch<T> extends Switch<T>
         TurnStatement turnStatement = (TurnStatement)theEObject;
         T result = caseTurnStatement(turnStatement);
         if (result == null) result = caseStatement(turnStatement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TurtlesPackage.INT_EXPRESSION:
+      {
+        IntExpression intExpression = (IntExpression)theEObject;
+        T result = caseIntExpression(intExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -143,6 +158,22 @@ public class TurtlesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseStatement(Statement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariableDeclaration(VariableDeclaration object)
   {
     return null;
   }
@@ -191,6 +222,22 @@ public class TurtlesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTurnStatement(TurnStatement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntExpression(IntExpression object)
   {
     return null;
   }

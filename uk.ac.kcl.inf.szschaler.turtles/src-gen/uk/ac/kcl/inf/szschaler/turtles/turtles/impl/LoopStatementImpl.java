@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage;
@@ -39,24 +40,14 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage;
 public class LoopStatementImpl extends StatementImpl implements LoopStatement
 {
   /**
-   * The default value of the '{@link #getCount() <em>Count</em>}' attribute.
+   * The cached value of the '{@link #getCount() <em>Count</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getCount()
    * @generated
    * @ordered
    */
-  protected static final int COUNT_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getCount() <em>Count</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCount()
-   * @generated
-   * @ordered
-   */
-  protected int count = COUNT_EDEFAULT;
+  protected IntExpression count;
 
   /**
    * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
@@ -95,7 +86,7 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
    * @generated
    */
   @Override
-  public int getCount()
+  public IntExpression getCount()
   {
     return count;
   }
@@ -105,13 +96,38 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setCount(int newCount)
+  public NotificationChain basicSetCount(IntExpression newCount, NotificationChain msgs)
   {
-    int oldCount = count;
+    IntExpression oldCount = count;
     count = newCount;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.LOOP_STATEMENT__COUNT, oldCount, count));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TurtlesPackage.LOOP_STATEMENT__COUNT, oldCount, newCount);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setCount(IntExpression newCount)
+  {
+    if (newCount != count)
+    {
+      NotificationChain msgs = null;
+      if (count != null)
+        msgs = ((InternalEObject)count).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TurtlesPackage.LOOP_STATEMENT__COUNT, null, msgs);
+      if (newCount != null)
+        msgs = ((InternalEObject)newCount).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TurtlesPackage.LOOP_STATEMENT__COUNT, null, msgs);
+      msgs = basicSetCount(newCount, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.LOOP_STATEMENT__COUNT, newCount, newCount));
   }
 
   /**
@@ -139,6 +155,8 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
   {
     switch (featureID)
     {
+      case TurtlesPackage.LOOP_STATEMENT__COUNT:
+        return basicSetCount(null, msgs);
       case TurtlesPackage.LOOP_STATEMENT__STATEMENTS:
         return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
@@ -175,7 +193,7 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
     switch (featureID)
     {
       case TurtlesPackage.LOOP_STATEMENT__COUNT:
-        setCount((Integer)newValue);
+        setCount((IntExpression)newValue);
         return;
       case TurtlesPackage.LOOP_STATEMENT__STATEMENTS:
         getStatements().clear();
@@ -196,7 +214,7 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
     switch (featureID)
     {
       case TurtlesPackage.LOOP_STATEMENT__COUNT:
-        setCount(COUNT_EDEFAULT);
+        setCount((IntExpression)null);
         return;
       case TurtlesPackage.LOOP_STATEMENT__STATEMENTS:
         getStatements().clear();
@@ -216,28 +234,11 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
     switch (featureID)
     {
       case TurtlesPackage.LOOP_STATEMENT__COUNT:
-        return count != COUNT_EDEFAULT;
+        return count != null;
       case TurtlesPackage.LOOP_STATEMENT__STATEMENTS:
         return statements != null && !statements.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (count: ");
-    result.append(count);
-    result.append(')');
-    return result.toString();
   }
 
 } //LoopStatementImpl

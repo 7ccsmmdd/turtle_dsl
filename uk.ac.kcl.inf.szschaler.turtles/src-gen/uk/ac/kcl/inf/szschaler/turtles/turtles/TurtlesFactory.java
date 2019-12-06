@@ -42,6 +42,15 @@ public interface TurtlesFactory extends EFactory
   Statement createStatement();
 
   /**
+   * Returns a new object of class '<em>Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable Declaration</em>'.
+   * @generated
+   */
+  VariableDeclaration createVariableDeclaration();
+
+  /**
    * Returns a new object of class '<em>Loop Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -67,6 +76,15 @@ public interface TurtlesFactory extends EFactory
    * @generated
    */
   TurnStatement createTurnStatement();
+
+  /**
+   * Returns a new object of class '<em>Int Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Expression</em>'.
+   * @generated
+   */
+  IntExpression createIntExpression();
 
   /**
    * Returns the package supported by this factory.

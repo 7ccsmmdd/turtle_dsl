@@ -9,17 +9,22 @@ TurtleProgram:
 Statement:
 	MoveStatement |
 	TurnStatement |
-	LoopStatement
+	LoopStatement |
+	VariableDeclaration
+;
+
+VariableDeclaration:
+	"var" name=ID "=" value=INT
 ;
 
 LoopStatement:
-	count = INT "times" "do"
+	count = IntExpression "times" "do"
 	  statements += Statement+
 	"end"
 ;
 
 MoveStatement:
-	command = MoveCommand "(" steps = INT ")"
+	command = MoveCommand "(" steps = IntExpression ")"
 ;
 
 enum MoveCommand:
@@ -32,4 +37,9 @@ TurnStatement:
 
 enum TurnCommand:
 	left | right
+;
+
+IntExpression:
+	val = INT |
+	var = [VariableDeclaration]
 ;

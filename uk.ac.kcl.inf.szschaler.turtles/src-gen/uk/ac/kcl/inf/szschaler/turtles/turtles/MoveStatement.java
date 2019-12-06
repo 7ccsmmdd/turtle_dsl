@@ -49,25 +49,25 @@ public interface MoveStatement extends Statement
   void setCommand(MoveCommand value);
 
   /**
-   * Returns the value of the '<em><b>Steps</b></em>' attribute.
+   * Returns the value of the '<em><b>Steps</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Steps</em>' attribute.
-   * @see #setSteps(int)
+   * @return the value of the '<em>Steps</em>' containment reference.
+   * @see #setSteps(IntExpression)
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getMoveStatement_Steps()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getSteps();
+  IntExpression getSteps();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement#getSteps <em>Steps</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement#getSteps <em>Steps</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Steps</em>' attribute.
+   * @param value the new value of the '<em>Steps</em>' containment reference.
    * @see #getSteps()
    * @generated
    */
-  void setSteps(int value);
+  void setSteps(IntExpression value);
 
 } // MoveStatement

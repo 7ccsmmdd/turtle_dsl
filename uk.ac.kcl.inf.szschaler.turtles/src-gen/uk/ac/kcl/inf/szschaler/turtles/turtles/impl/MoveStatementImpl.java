@@ -4,11 +4,14 @@
 package uk.ac.kcl.inf.szschaler.turtles.turtles.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveCommand;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage;
@@ -50,24 +53,14 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement
   protected MoveCommand command = COMMAND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getSteps() <em>Steps</em>}' attribute.
+   * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSteps()
    * @generated
    * @ordered
    */
-  protected static final int STEPS_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getSteps() <em>Steps</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSteps()
-   * @generated
-   * @ordered
-   */
-  protected int steps = STEPS_EDEFAULT;
+  protected IntExpression steps;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,7 +114,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement
    * @generated
    */
   @Override
-  public int getSteps()
+  public IntExpression getSteps()
   {
     return steps;
   }
@@ -131,13 +124,54 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setSteps(int newSteps)
+  public NotificationChain basicSetSteps(IntExpression newSteps, NotificationChain msgs)
   {
-    int oldSteps = steps;
+    IntExpression oldSteps = steps;
     steps = newSteps;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.MOVE_STATEMENT__STEPS, oldSteps, steps));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TurtlesPackage.MOVE_STATEMENT__STEPS, oldSteps, newSteps);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setSteps(IntExpression newSteps)
+  {
+    if (newSteps != steps)
+    {
+      NotificationChain msgs = null;
+      if (steps != null)
+        msgs = ((InternalEObject)steps).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TurtlesPackage.MOVE_STATEMENT__STEPS, null, msgs);
+      if (newSteps != null)
+        msgs = ((InternalEObject)newSteps).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TurtlesPackage.MOVE_STATEMENT__STEPS, null, msgs);
+      msgs = basicSetSteps(newSteps, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.MOVE_STATEMENT__STEPS, newSteps, newSteps));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TurtlesPackage.MOVE_STATEMENT__STEPS:
+        return basicSetSteps(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -172,7 +206,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement
         setCommand((MoveCommand)newValue);
         return;
       case TurtlesPackage.MOVE_STATEMENT__STEPS:
-        setSteps((Integer)newValue);
+        setSteps((IntExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -192,7 +226,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement
         setCommand(COMMAND_EDEFAULT);
         return;
       case TurtlesPackage.MOVE_STATEMENT__STEPS:
-        setSteps(STEPS_EDEFAULT);
+        setSteps((IntExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -211,7 +245,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement
       case TurtlesPackage.MOVE_STATEMENT__COMMAND:
         return command != COMMAND_EDEFAULT;
       case TurtlesPackage.MOVE_STATEMENT__STEPS:
-        return steps != STEPS_EDEFAULT;
+        return steps != null;
     }
     return super.eIsSet(featureID);
   }
@@ -229,8 +263,6 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (command: ");
     result.append(command);
-    result.append(", steps: ");
-    result.append(steps);
     result.append(')');
     return result.toString();
   }

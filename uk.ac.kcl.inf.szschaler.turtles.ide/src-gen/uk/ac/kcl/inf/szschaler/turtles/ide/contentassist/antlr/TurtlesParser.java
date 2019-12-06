@@ -32,18 +32,24 @@ public class TurtlesParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, TurtlesGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
+			builder.put(grammarAccess.getIntExpressionAccess().getAlternatives(), "rule__IntExpression__Alternatives");
 			builder.put(grammarAccess.getMoveCommandAccess().getAlternatives(), "rule__MoveCommand__Alternatives");
 			builder.put(grammarAccess.getTurnCommandAccess().getAlternatives(), "rule__TurnCommand__Alternatives");
+			builder.put(grammarAccess.getVariableDeclarationAccess().getGroup(), "rule__VariableDeclaration__Group__0");
 			builder.put(grammarAccess.getLoopStatementAccess().getGroup(), "rule__LoopStatement__Group__0");
 			builder.put(grammarAccess.getMoveStatementAccess().getGroup(), "rule__MoveStatement__Group__0");
 			builder.put(grammarAccess.getTurnStatementAccess().getGroup(), "rule__TurnStatement__Group__0");
 			builder.put(grammarAccess.getTurtleProgramAccess().getStatementsAssignment(), "rule__TurtleProgram__StatementsAssignment");
+			builder.put(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1(), "rule__VariableDeclaration__NameAssignment_1");
+			builder.put(grammarAccess.getVariableDeclarationAccess().getValueAssignment_3(), "rule__VariableDeclaration__ValueAssignment_3");
 			builder.put(grammarAccess.getLoopStatementAccess().getCountAssignment_0(), "rule__LoopStatement__CountAssignment_0");
 			builder.put(grammarAccess.getLoopStatementAccess().getStatementsAssignment_3(), "rule__LoopStatement__StatementsAssignment_3");
 			builder.put(grammarAccess.getMoveStatementAccess().getCommandAssignment_0(), "rule__MoveStatement__CommandAssignment_0");
 			builder.put(grammarAccess.getMoveStatementAccess().getStepsAssignment_2(), "rule__MoveStatement__StepsAssignment_2");
 			builder.put(grammarAccess.getTurnStatementAccess().getCommandAssignment_1(), "rule__TurnStatement__CommandAssignment_1");
 			builder.put(grammarAccess.getTurnStatementAccess().getDegreesAssignment_3(), "rule__TurnStatement__DegreesAssignment_3");
+			builder.put(grammarAccess.getIntExpressionAccess().getValAssignment_0(), "rule__IntExpression__ValAssignment_0");
+			builder.put(grammarAccess.getIntExpressionAccess().getVarAssignment_1(), "rule__IntExpression__VarAssignment_1");
 		}
 	}
 	

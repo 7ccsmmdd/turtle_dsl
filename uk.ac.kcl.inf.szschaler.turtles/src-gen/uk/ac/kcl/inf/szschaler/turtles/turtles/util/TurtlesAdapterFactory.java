@@ -86,6 +86,11 @@ public class TurtlesAdapterFactory extends AdapterFactoryImpl
         return createStatementAdapter();
       }
       @Override
+      public Adapter caseVariableDeclaration(VariableDeclaration object)
+      {
+        return createVariableDeclarationAdapter();
+      }
+      @Override
       public Adapter caseLoopStatement(LoopStatement object)
       {
         return createLoopStatementAdapter();
@@ -99,6 +104,11 @@ public class TurtlesAdapterFactory extends AdapterFactoryImpl
       public Adapter caseTurnStatement(TurnStatement object)
       {
         return createTurnStatementAdapter();
+      }
+      @Override
+      public Adapter caseIntExpression(IntExpression object)
+      {
+        return createIntExpressionAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -153,6 +163,21 @@ public class TurtlesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration <em>Variable Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
+   * @generated
+   */
+  public Adapter createVariableDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement <em>Loop Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -193,6 +218,21 @@ public class TurtlesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTurnStatementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression <em>Int Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression
+   * @generated
+   */
+  public Adapter createIntExpressionAdapter()
   {
     return null;
   }

@@ -25,26 +25,26 @@ import org.eclipse.emf.common.util.EList;
 public interface LoopStatement extends Statement
 {
   /**
-   * Returns the value of the '<em><b>Count</b></em>' attribute.
+   * Returns the value of the '<em><b>Count</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Count</em>' attribute.
-   * @see #setCount(int)
+   * @return the value of the '<em>Count</em>' containment reference.
+   * @see #setCount(IntExpression)
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getLoopStatement_Count()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getCount();
+  IntExpression getCount();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement#getCount <em>Count</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement#getCount <em>Count</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Count</em>' attribute.
+   * @param value the new value of the '<em>Count</em>' containment reference.
    * @see #getCount()
    * @generated
    */
-  void setCount(int value);
+  void setCount(IntExpression value);
 
   /**
    * Returns the value of the '<em><b>Statements</b></em>' containment reference list.

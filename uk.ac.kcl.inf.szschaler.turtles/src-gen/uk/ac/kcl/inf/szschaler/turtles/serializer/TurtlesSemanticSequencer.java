@@ -15,11 +15,13 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import uk.ac.kcl.inf.szschaler.turtles.services.TurtlesGrammarAccess;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration;
 
 @SuppressWarnings("all")
 public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -35,6 +37,9 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == TurtlesPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case TurtlesPackage.INT_EXPRESSION:
+				sequence_IntExpression(context, (IntExpression) semanticObject); 
+				return; 
 			case TurtlesPackage.LOOP_STATEMENT:
 				sequence_LoopStatement(context, (LoopStatement) semanticObject); 
 				return; 
@@ -47,6 +52,9 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 			case TurtlesPackage.TURTLE_PROGRAM:
 				sequence_TurtleProgram(context, (TurtleProgram) semanticObject); 
 				return; 
+			case TurtlesPackage.VARIABLE_DECLARATION:
+				sequence_VariableDeclaration(context, (VariableDeclaration) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -54,11 +62,23 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
+	 *     IntExpression returns IntExpression
+	 *
+	 * Constraint:
+	 *     (val=INT | var=[VariableDeclaration|ID])
+	 */
+	protected void sequence_IntExpression(ISerializationContext context, IntExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Statement returns LoopStatement
 	 *     LoopStatement returns LoopStatement
 	 *
 	 * Constraint:
-	 *     (count=INT statements+=Statement+)
+	 *     (count=IntExpression statements+=Statement+)
 	 */
 	protected void sequence_LoopStatement(ISerializationContext context, LoopStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -71,7 +91,7 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     MoveStatement returns MoveStatement
 	 *
 	 * Constraint:
-	 *     (command=MoveCommand steps=INT)
+	 *     (command=MoveCommand steps=IntExpression)
 	 */
 	protected void sequence_MoveStatement(ISerializationContext context, MoveStatement semanticObject) {
 		if (errorAcceptor != null) {
@@ -82,7 +102,7 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMoveStatementAccess().getCommandMoveCommandEnumRuleCall_0_0(), semanticObject.getCommand());
-		feeder.accept(grammarAccess.getMoveStatementAccess().getStepsINTTerminalRuleCall_2_0(), semanticObject.getSteps());
+		feeder.accept(grammarAccess.getMoveStatementAccess().getStepsIntExpressionParserRuleCall_2_0(), semanticObject.getSteps());
 		feeder.finish();
 	}
 	
@@ -118,6 +138,28 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 */
 	protected void sequence_TurtleProgram(ISerializationContext context, TurtleProgram semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Statement returns VariableDeclaration
+	 *     VariableDeclaration returns VariableDeclaration
+	 *
+	 * Constraint:
+	 *     (name=ID value=INT)
+	 */
+	protected void sequence_VariableDeclaration(ISerializationContext context, VariableDeclaration semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TurtlesPackage.Literals.VARIABLE_DECLARATION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TurtlesPackage.Literals.VARIABLE_DECLARATION__NAME));
+			if (transientValues.isValueTransient(semanticObject, TurtlesPackage.Literals.VARIABLE_DECLARATION__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TurtlesPackage.Literals.VARIABLE_DECLARATION__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getVariableDeclarationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getVariableDeclarationAccess().getValueINTTerminalRuleCall_3_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	

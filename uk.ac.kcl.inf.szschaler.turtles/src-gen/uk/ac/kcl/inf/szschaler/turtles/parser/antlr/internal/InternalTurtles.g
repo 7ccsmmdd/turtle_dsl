@@ -139,6 +139,78 @@ ruleStatement returns [EObject current=null]
 			$current = $this_LoopStatement_2.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getStatementAccess().getVariableDeclarationParserRuleCall_3());
+		}
+		this_VariableDeclaration_3=ruleVariableDeclaration
+		{
+			$current = $this_VariableDeclaration_3.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleVariableDeclaration
+entryRuleVariableDeclaration returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getVariableDeclarationRule()); }
+	iv_ruleVariableDeclaration=ruleVariableDeclaration
+	{ $current=$iv_ruleVariableDeclaration.current; }
+	EOF;
+
+// Rule VariableDeclaration
+ruleVariableDeclaration returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='var'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getVariableDeclarationAccess().getVarKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getVariableDeclarationAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getVariableDeclarationRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='='
+		{
+			newLeafNode(otherlv_2, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2());
+		}
+		(
+			(
+				lv_value_3_0=RULE_INT
+				{
+					newLeafNode(lv_value_3_0, grammarAccess.getVariableDeclarationAccess().getValueINTTerminalRuleCall_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getVariableDeclarationRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"value",
+						lv_value_3_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
 	)
 ;
 
@@ -160,19 +232,20 @@ ruleLoopStatement returns [EObject current=null]
 	(
 		(
 			(
-				lv_count_0_0=RULE_INT
 				{
-					newLeafNode(lv_count_0_0, grammarAccess.getLoopStatementAccess().getCountINTTerminalRuleCall_0_0());
+					newCompositeNode(grammarAccess.getLoopStatementAccess().getCountIntExpressionParserRuleCall_0_0());
 				}
+				lv_count_0_0=ruleIntExpression
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getLoopStatementRule());
+						$current = createModelElementForParent(grammarAccess.getLoopStatementRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
 						"count",
 						lv_count_0_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"uk.ac.kcl.inf.szschaler.turtles.Turtles.IntExpression");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -251,19 +324,20 @@ ruleMoveStatement returns [EObject current=null]
 		}
 		(
 			(
-				lv_steps_2_0=RULE_INT
 				{
-					newLeafNode(lv_steps_2_0, grammarAccess.getMoveStatementAccess().getStepsINTTerminalRuleCall_2_0());
+					newCompositeNode(grammarAccess.getMoveStatementAccess().getStepsIntExpressionParserRuleCall_2_0());
 				}
+				lv_steps_2_0=ruleIntExpression
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getMoveStatementRule());
+						$current = createModelElementForParent(grammarAccess.getMoveStatementRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
 						"steps",
 						lv_steps_2_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"uk.ac.kcl.inf.szschaler.turtles.Turtles.IntExpression");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -339,6 +413,57 @@ ruleTurnStatement returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getTurnStatementAccess().getDegreesKeyword_4());
 		}
+	)
+;
+
+// Entry rule entryRuleIntExpression
+entryRuleIntExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIntExpressionRule()); }
+	iv_ruleIntExpression=ruleIntExpression
+	{ $current=$iv_ruleIntExpression.current; }
+	EOF;
+
+// Rule IntExpression
+ruleIntExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_val_0_0=RULE_INT
+				{
+					newLeafNode(lv_val_0_0, grammarAccess.getIntExpressionAccess().getValINTTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getIntExpressionRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"val",
+						lv_val_0_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getIntExpressionRule());
+					}
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getIntExpressionAccess().getVarVariableDeclarationCrossReference_1_0());
+				}
+			)
+		)
 	)
 ;
 

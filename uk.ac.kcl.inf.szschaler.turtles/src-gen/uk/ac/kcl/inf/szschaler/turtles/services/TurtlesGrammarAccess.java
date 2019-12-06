@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 import java.util.List;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.EnumLiteralDeclaration;
 import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
@@ -46,12 +47,13 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMoveStatementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTurnStatementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cLoopStatementParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cVariableDeclarationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Statement:
-		//	MoveStatement | TurnStatement | LoopStatement;
+		//	MoveStatement | TurnStatement | LoopStatement | VariableDeclaration;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//MoveStatement | TurnStatement | LoopStatement
+		//MoveStatement | TurnStatement | LoopStatement | VariableDeclaration
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//MoveStatement
@@ -62,12 +64,50 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//LoopStatement
 		public RuleCall getLoopStatementParserRuleCall_2() { return cLoopStatementParserRuleCall_2; }
+		
+		//VariableDeclaration
+		public RuleCall getVariableDeclarationParserRuleCall_3() { return cVariableDeclarationParserRuleCall_3; }
+	}
+	public class VariableDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.VariableDeclaration");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cVarKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cValueINTTerminalRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
+		
+		//VariableDeclaration:
+		//	"var" name=ID "=" value=INT;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//"var" name=ID "=" value=INT
+		public Group getGroup() { return cGroup; }
+		
+		//"var"
+		public Keyword getVarKeyword_0() { return cVarKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//"="
+		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		
+		//value=INT
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+		
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_3_0() { return cValueINTTerminalRuleCall_3_0; }
 	}
 	public class LoopStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.LoopStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cCountAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cCountINTTerminalRuleCall_0_0 = (RuleCall)cCountAssignment_0.eContents().get(0);
+		private final RuleCall cCountIntExpressionParserRuleCall_0_0 = (RuleCall)cCountAssignment_0.eContents().get(0);
 		private final Keyword cTimesKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cDoKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -75,19 +115,19 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//LoopStatement:
-		//	count=INT "times" "do"
+		//	count=IntExpression "times" "do"
 		//	statements+=Statement+
 		//	"end";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//count=INT "times" "do" statements+=Statement+ "end"
+		//count=IntExpression "times" "do" statements+=Statement+ "end"
 		public Group getGroup() { return cGroup; }
 		
-		//count=INT
+		//count=IntExpression
 		public Assignment getCountAssignment_0() { return cCountAssignment_0; }
 		
-		//INT
-		public RuleCall getCountINTTerminalRuleCall_0_0() { return cCountINTTerminalRuleCall_0_0; }
+		//IntExpression
+		public RuleCall getCountIntExpressionParserRuleCall_0_0() { return cCountIntExpressionParserRuleCall_0_0; }
 		
 		//"times"
 		public Keyword getTimesKeyword_1() { return cTimesKeyword_1; }
@@ -111,14 +151,14 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCommandMoveCommandEnumRuleCall_0_0 = (RuleCall)cCommandAssignment_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cStepsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cStepsINTTerminalRuleCall_2_0 = (RuleCall)cStepsAssignment_2.eContents().get(0);
+		private final RuleCall cStepsIntExpressionParserRuleCall_2_0 = (RuleCall)cStepsAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//MoveStatement:
-		//	command=MoveCommand "(" steps=INT ")";
+		//	command=MoveCommand "(" steps=IntExpression ")";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//command=MoveCommand "(" steps=INT ")"
+		//command=MoveCommand "(" steps=IntExpression ")"
 		public Group getGroup() { return cGroup; }
 		
 		//command=MoveCommand
@@ -130,11 +170,11 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//steps=INT
+		//steps=IntExpression
 		public Assignment getStepsAssignment_2() { return cStepsAssignment_2; }
 		
-		//INT
-		public RuleCall getStepsINTTerminalRuleCall_2_0() { return cStepsINTTerminalRuleCall_2_0; }
+		//IntExpression
+		public RuleCall getStepsIntExpressionParserRuleCall_2_0() { return cStepsIntExpressionParserRuleCall_2_0; }
 		
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -177,6 +217,37 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//"degrees"
 		public Keyword getDegreesKeyword_4() { return cDegreesKeyword_4; }
+	}
+	public class IntExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.IntExpression");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cValAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cValINTTerminalRuleCall_0_0 = (RuleCall)cValAssignment_0.eContents().get(0);
+		private final Assignment cVarAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final CrossReference cVarVariableDeclarationCrossReference_1_0 = (CrossReference)cVarAssignment_1.eContents().get(0);
+		private final RuleCall cVarVariableDeclarationIDTerminalRuleCall_1_0_1 = (RuleCall)cVarVariableDeclarationCrossReference_1_0.eContents().get(1);
+		
+		//IntExpression:
+		//	val=INT | var=[VariableDeclaration];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//val=INT | var=[VariableDeclaration]
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//val=INT
+		public Assignment getValAssignment_0() { return cValAssignment_0; }
+		
+		//INT
+		public RuleCall getValINTTerminalRuleCall_0_0() { return cValINTTerminalRuleCall_0_0; }
+		
+		//var=[VariableDeclaration]
+		public Assignment getVarAssignment_1() { return cVarAssignment_1; }
+		
+		//[VariableDeclaration]
+		public CrossReference getVarVariableDeclarationCrossReference_1_0() { return cVarVariableDeclarationCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getVarVariableDeclarationIDTerminalRuleCall_1_0_1() { return cVarVariableDeclarationIDTerminalRuleCall_1_0_1; }
 	}
 	
 	public class MoveCommandElements extends AbstractEnumRuleElementFinder {
@@ -236,11 +307,13 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final TurtleProgramElements pTurtleProgram;
 	private final StatementElements pStatement;
+	private final VariableDeclarationElements pVariableDeclaration;
 	private final LoopStatementElements pLoopStatement;
 	private final MoveStatementElements pMoveStatement;
 	private final MoveCommandElements eMoveCommand;
 	private final TurnStatementElements pTurnStatement;
 	private final TurnCommandElements eTurnCommand;
+	private final IntExpressionElements pIntExpression;
 	
 	private final Grammar grammar;
 	
@@ -253,11 +326,13 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pTurtleProgram = new TurtleProgramElements();
 		this.pStatement = new StatementElements();
+		this.pVariableDeclaration = new VariableDeclarationElements();
 		this.pLoopStatement = new LoopStatementElements();
 		this.pMoveStatement = new MoveStatementElements();
 		this.eMoveCommand = new MoveCommandElements();
 		this.pTurnStatement = new TurnStatementElements();
 		this.eTurnCommand = new TurnCommandElements();
+		this.pIntExpression = new IntExpressionElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -298,7 +373,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Statement:
-	//	MoveStatement | TurnStatement | LoopStatement;
+	//	MoveStatement | TurnStatement | LoopStatement | VariableDeclaration;
 	public StatementElements getStatementAccess() {
 		return pStatement;
 	}
@@ -307,8 +382,18 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		return getStatementAccess().getRule();
 	}
 	
+	//VariableDeclaration:
+	//	"var" name=ID "=" value=INT;
+	public VariableDeclarationElements getVariableDeclarationAccess() {
+		return pVariableDeclaration;
+	}
+	
+	public ParserRule getVariableDeclarationRule() {
+		return getVariableDeclarationAccess().getRule();
+	}
+	
 	//LoopStatement:
-	//	count=INT "times" "do"
+	//	count=IntExpression "times" "do"
 	//	statements+=Statement+
 	//	"end";
 	public LoopStatementElements getLoopStatementAccess() {
@@ -320,7 +405,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MoveStatement:
-	//	command=MoveCommand "(" steps=INT ")";
+	//	command=MoveCommand "(" steps=IntExpression ")";
 	public MoveStatementElements getMoveStatementAccess() {
 		return pMoveStatement;
 	}
@@ -357,6 +442,16 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getTurnCommandRule() {
 		return getTurnCommandAccess().getRule();
+	}
+	
+	//IntExpression:
+	//	val=INT | var=[VariableDeclaration];
+	public IntExpressionElements getIntExpressionAccess() {
+		return pIntExpression;
+	}
+	
+	public ParserRule getIntExpressionRule() {
+		return getIntExpressionAccess().getRule();
 	}
 	
 	//terminal ID:

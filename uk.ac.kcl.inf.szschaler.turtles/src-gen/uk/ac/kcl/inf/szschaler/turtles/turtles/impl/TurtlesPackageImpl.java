@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveCommand;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement;
@@ -20,6 +21,7 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesFactory;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,6 +50,13 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass variableDeclarationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass loopStatementEClass = null;
 
   /**
@@ -63,6 +72,13 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   private EClass turnStatementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -180,6 +196,39 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   @Override
+  public EClass getVariableDeclaration()
+  {
+    return variableDeclarationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getVariableDeclaration_Name()
+  {
+    return (EAttribute)variableDeclarationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getVariableDeclaration_Value()
+  {
+    return (EAttribute)variableDeclarationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getLoopStatement()
   {
     return loopStatementEClass;
@@ -191,9 +240,9 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   @Override
-  public EAttribute getLoopStatement_Count()
+  public EReference getLoopStatement_Count()
   {
-    return (EAttribute)loopStatementEClass.getEStructuralFeatures().get(0);
+    return (EReference)loopStatementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -235,9 +284,9 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   @Override
-  public EAttribute getMoveStatement_Steps()
+  public EReference getMoveStatement_Steps()
   {
-    return (EAttribute)moveStatementEClass.getEStructuralFeatures().get(1);
+    return (EReference)moveStatementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -271,6 +320,39 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
   public EAttribute getTurnStatement_Degrees()
   {
     return (EAttribute)turnStatementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIntExpression()
+  {
+    return intExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getIntExpression_Val()
+  {
+    return (EAttribute)intExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getIntExpression_Var()
+  {
+    return (EReference)intExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -331,17 +413,25 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
 
     statementEClass = createEClass(STATEMENT);
 
+    variableDeclarationEClass = createEClass(VARIABLE_DECLARATION);
+    createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__NAME);
+    createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__VALUE);
+
     loopStatementEClass = createEClass(LOOP_STATEMENT);
-    createEAttribute(loopStatementEClass, LOOP_STATEMENT__COUNT);
+    createEReference(loopStatementEClass, LOOP_STATEMENT__COUNT);
     createEReference(loopStatementEClass, LOOP_STATEMENT__STATEMENTS);
 
     moveStatementEClass = createEClass(MOVE_STATEMENT);
     createEAttribute(moveStatementEClass, MOVE_STATEMENT__COMMAND);
-    createEAttribute(moveStatementEClass, MOVE_STATEMENT__STEPS);
+    createEReference(moveStatementEClass, MOVE_STATEMENT__STEPS);
 
     turnStatementEClass = createEClass(TURN_STATEMENT);
     createEAttribute(turnStatementEClass, TURN_STATEMENT__COMMAND);
     createEAttribute(turnStatementEClass, TURN_STATEMENT__DEGREES);
+
+    intExpressionEClass = createEClass(INT_EXPRESSION);
+    createEAttribute(intExpressionEClass, INT_EXPRESSION__VAL);
+    createEReference(intExpressionEClass, INT_EXPRESSION__VAR);
 
     // Create enums
     moveCommandEEnum = createEEnum(MOVE_COMMAND);
@@ -377,6 +467,7 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    variableDeclarationEClass.getESuperTypes().add(this.getStatement());
     loopStatementEClass.getESuperTypes().add(this.getStatement());
     moveStatementEClass.getESuperTypes().add(this.getStatement());
     turnStatementEClass.getESuperTypes().add(this.getStatement());
@@ -387,17 +478,25 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
 
     initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(variableDeclarationEClass, VariableDeclaration.class, "VariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVariableDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVariableDeclaration_Value(), ecorePackage.getEInt(), "value", null, 0, 1, VariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(loopStatementEClass, LoopStatement.class, "LoopStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLoopStatement_Count(), ecorePackage.getEInt(), "count", null, 0, 1, LoopStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoopStatement_Count(), this.getIntExpression(), null, "count", null, 0, 1, LoopStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLoopStatement_Statements(), this.getStatement(), null, "statements", null, 0, -1, LoopStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(moveStatementEClass, MoveStatement.class, "MoveStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMoveStatement_Command(), this.getMoveCommand(), "command", null, 0, 1, MoveStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMoveStatement_Steps(), ecorePackage.getEInt(), "steps", null, 0, 1, MoveStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMoveStatement_Steps(), this.getIntExpression(), null, "steps", null, 0, 1, MoveStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(turnStatementEClass, TurnStatement.class, "TurnStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTurnStatement_Command(), this.getTurnCommand(), "command", null, 0, 1, TurnStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTurnStatement_Degrees(), ecorePackage.getEInt(), "degrees", null, 0, 1, TurnStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(intExpressionEClass, IntExpression.class, "IntExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIntExpression_Val(), ecorePackage.getEInt(), "val", null, 0, 1, IntExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIntExpression_Var(), this.getVariableDeclaration(), null, "var", null, 0, 1, IntExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(moveCommandEEnum, MoveCommand.class, "MoveCommand");

@@ -68,9 +68,11 @@ public class TurtlesFactoryImpl extends EFactoryImpl implements TurtlesFactory
     {
       case TurtlesPackage.TURTLE_PROGRAM: return createTurtleProgram();
       case TurtlesPackage.STATEMENT: return createStatement();
+      case TurtlesPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
       case TurtlesPackage.LOOP_STATEMENT: return createLoopStatement();
       case TurtlesPackage.MOVE_STATEMENT: return createMoveStatement();
       case TurtlesPackage.TURN_STATEMENT: return createTurnStatement();
+      case TurtlesPackage.INT_EXPRESSION: return createIntExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -144,6 +146,18 @@ public class TurtlesFactoryImpl extends EFactoryImpl implements TurtlesFactory
    * @generated
    */
   @Override
+  public VariableDeclaration createVariableDeclaration()
+  {
+    VariableDeclarationImpl variableDeclaration = new VariableDeclarationImpl();
+    return variableDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public LoopStatement createLoopStatement()
   {
     LoopStatementImpl loopStatement = new LoopStatementImpl();
@@ -172,6 +186,18 @@ public class TurtlesFactoryImpl extends EFactoryImpl implements TurtlesFactory
   {
     TurnStatementImpl turnStatement = new TurnStatementImpl();
     return turnStatement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntExpression createIntExpression()
+  {
+    IntExpressionImpl intExpression = new IntExpressionImpl();
+    return intExpression;
   }
 
   /**
