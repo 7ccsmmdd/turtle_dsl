@@ -15,9 +15,12 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import uk.ac.kcl.inf.szschaler.turtles.services.TurtlesGrammarAccess;
-import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Addition;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage;
@@ -37,14 +40,23 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == TurtlesPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case TurtlesPackage.INT_EXPRESSION:
-				sequence_IntExpression(context, (IntExpression) semanticObject); 
+			case TurtlesPackage.ADDITION:
+				sequence_Addition(context, (Addition) semanticObject); 
+				return; 
+			case TurtlesPackage.INT_LITERAL:
+				sequence_IntLiteral(context, (IntLiteral) semanticObject); 
+				return; 
+			case TurtlesPackage.INT_VAR_EXPRESSION:
+				sequence_IntVarExpression(context, (IntVarExpression) semanticObject); 
 				return; 
 			case TurtlesPackage.LOOP_STATEMENT:
 				sequence_LoopStatement(context, (LoopStatement) semanticObject); 
 				return; 
 			case TurtlesPackage.MOVE_STATEMENT:
 				sequence_MoveStatement(context, (MoveStatement) semanticObject); 
+				return; 
+			case TurtlesPackage.MULTIPLICATION:
+				sequence_Multiplication(context, (Multiplication) semanticObject); 
 				return; 
 			case TurtlesPackage.TURN_STATEMENT:
 				sequence_TurnStatement(context, (TurnStatement) semanticObject); 
@@ -62,13 +74,63 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
-	 *     IntExpression returns IntExpression
+	 *     Addition returns Addition
+	 *     Addition.Addition_1_0 returns Addition
+	 *     Multiplication returns Addition
+	 *     Multiplication.Multiplication_1_0 returns Addition
+	 *     Primary returns Addition
 	 *
 	 * Constraint:
-	 *     (val=INT | var=[VariableDeclaration|ID])
+	 *     (left=Addition_Addition_1_0 (operator+='+' | operator+='-') right+=Multiplication)
 	 */
-	protected void sequence_IntExpression(ISerializationContext context, IntExpression semanticObject) {
+	protected void sequence_Addition(ISerializationContext context, Addition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Addition returns IntLiteral
+	 *     Addition.Addition_1_0 returns IntLiteral
+	 *     Multiplication returns IntLiteral
+	 *     Multiplication.Multiplication_1_0 returns IntLiteral
+	 *     Primary returns IntLiteral
+	 *     IntLiteral returns IntLiteral
+	 *
+	 * Constraint:
+	 *     val=INT
+	 */
+	protected void sequence_IntLiteral(ISerializationContext context, IntLiteral semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TurtlesPackage.Literals.INT_LITERAL__VAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TurtlesPackage.Literals.INT_LITERAL__VAL));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIntLiteralAccess().getValINTTerminalRuleCall_0(), semanticObject.getVal());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Addition returns IntVarExpression
+	 *     Addition.Addition_1_0 returns IntVarExpression
+	 *     Multiplication returns IntVarExpression
+	 *     Multiplication.Multiplication_1_0 returns IntVarExpression
+	 *     Primary returns IntVarExpression
+	 *     IntVarExpression returns IntVarExpression
+	 *
+	 * Constraint:
+	 *     var=[VariableDeclaration|ID]
+	 */
+	protected void sequence_IntVarExpression(ISerializationContext context, IntVarExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TurtlesPackage.Literals.INT_VAR_EXPRESSION__VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TurtlesPackage.Literals.INT_VAR_EXPRESSION__VAR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIntVarExpressionAccess().getVarVariableDeclarationIDTerminalRuleCall_0_1(), semanticObject.eGet(TurtlesPackage.Literals.INT_VAR_EXPRESSION__VAR, false));
+		feeder.finish();
 	}
 	
 	
@@ -78,7 +140,7 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     LoopStatement returns LoopStatement
 	 *
 	 * Constraint:
-	 *     (count=IntExpression statements+=Statement+)
+	 *     (count=Addition statements+=Statement+)
 	 */
 	protected void sequence_LoopStatement(ISerializationContext context, LoopStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -91,7 +153,7 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     MoveStatement returns MoveStatement
 	 *
 	 * Constraint:
-	 *     (command=MoveCommand steps=IntExpression)
+	 *     (command=MoveCommand steps=Addition)
 	 */
 	protected void sequence_MoveStatement(ISerializationContext context, MoveStatement semanticObject) {
 		if (errorAcceptor != null) {
@@ -102,8 +164,24 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMoveStatementAccess().getCommandMoveCommandEnumRuleCall_0_0(), semanticObject.getCommand());
-		feeder.accept(grammarAccess.getMoveStatementAccess().getStepsIntExpressionParserRuleCall_2_0(), semanticObject.getSteps());
+		feeder.accept(grammarAccess.getMoveStatementAccess().getStepsAdditionParserRuleCall_2_0(), semanticObject.getSteps());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Addition returns Multiplication
+	 *     Addition.Addition_1_0 returns Multiplication
+	 *     Multiplication returns Multiplication
+	 *     Multiplication.Multiplication_1_0 returns Multiplication
+	 *     Primary returns Multiplication
+	 *
+	 * Constraint:
+	 *     (left=Multiplication_Multiplication_1_0 (operator+='*' | operator+='/') right+=Primary)
+	 */
+	protected void sequence_Multiplication(ISerializationContext context, Multiplication semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

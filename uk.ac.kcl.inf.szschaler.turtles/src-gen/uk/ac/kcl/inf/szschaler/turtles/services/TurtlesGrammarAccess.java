@@ -6,6 +6,7 @@ package uk.ac.kcl.inf.szschaler.turtles.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
@@ -107,7 +108,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.LoopStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cCountAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cCountIntExpressionParserRuleCall_0_0 = (RuleCall)cCountAssignment_0.eContents().get(0);
+		private final RuleCall cCountAdditionParserRuleCall_0_0 = (RuleCall)cCountAssignment_0.eContents().get(0);
 		private final Keyword cTimesKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cDoKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -115,19 +116,19 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//LoopStatement:
-		//	count=IntExpression "times" "do"
+		//	count=Addition "times" "do"
 		//	statements+=Statement+
 		//	"end";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//count=IntExpression "times" "do" statements+=Statement+ "end"
+		//count=Addition "times" "do" statements+=Statement+ "end"
 		public Group getGroup() { return cGroup; }
 		
-		//count=IntExpression
+		//count=Addition
 		public Assignment getCountAssignment_0() { return cCountAssignment_0; }
 		
-		//IntExpression
-		public RuleCall getCountIntExpressionParserRuleCall_0_0() { return cCountIntExpressionParserRuleCall_0_0; }
+		//Addition
+		public RuleCall getCountAdditionParserRuleCall_0_0() { return cCountAdditionParserRuleCall_0_0; }
 		
 		//"times"
 		public Keyword getTimesKeyword_1() { return cTimesKeyword_1; }
@@ -151,14 +152,14 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCommandMoveCommandEnumRuleCall_0_0 = (RuleCall)cCommandAssignment_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cStepsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cStepsIntExpressionParserRuleCall_2_0 = (RuleCall)cStepsAssignment_2.eContents().get(0);
+		private final RuleCall cStepsAdditionParserRuleCall_2_0 = (RuleCall)cStepsAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//MoveStatement:
-		//	command=MoveCommand "(" steps=IntExpression ")";
+		//	command=MoveCommand "(" steps=Addition ")";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//command=MoveCommand "(" steps=IntExpression ")"
+		//command=MoveCommand "(" steps=Addition ")"
 		public Group getGroup() { return cGroup; }
 		
 		//command=MoveCommand
@@ -170,11 +171,11 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//steps=IntExpression
+		//steps=Addition
 		public Assignment getStepsAssignment_2() { return cStepsAssignment_2; }
 		
-		//IntExpression
-		public RuleCall getStepsIntExpressionParserRuleCall_2_0() { return cStepsIntExpressionParserRuleCall_2_0; }
+		//Addition
+		public RuleCall getStepsAdditionParserRuleCall_2_0() { return cStepsAdditionParserRuleCall_2_0; }
 		
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -218,36 +219,169 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		//"degrees"
 		public Keyword getDegreesKeyword_4() { return cDegreesKeyword_4; }
 	}
-	public class IntExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.IntExpression");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cValAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cValINTTerminalRuleCall_0_0 = (RuleCall)cValAssignment_0.eContents().get(0);
-		private final Assignment cVarAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final CrossReference cVarVariableDeclarationCrossReference_1_0 = (CrossReference)cVarAssignment_1.eContents().get(0);
-		private final RuleCall cVarVariableDeclarationIDTerminalRuleCall_1_0_1 = (RuleCall)cVarVariableDeclarationCrossReference_1_0.eContents().get(1);
+	public class AdditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.Addition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cMultiplicationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cAdditionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final Alternatives cOperatorAlternatives_1_1_0 = (Alternatives)cOperatorAssignment_1_1.eContents().get(0);
+		private final Keyword cOperatorPlusSignKeyword_1_1_0_0 = (Keyword)cOperatorAlternatives_1_1_0.eContents().get(0);
+		private final Keyword cOperatorHyphenMinusKeyword_1_1_0_1 = (Keyword)cOperatorAlternatives_1_1_0.eContents().get(1);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightMultiplicationParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		//IntExpression:
-		//	val=INT | var=[VariableDeclaration];
+		//Addition IntExpression:
+		//	Multiplication ({Addition.left=current} operator+=("+" | "-") right+=Multiplication)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//val=INT | var=[VariableDeclaration]
+		//Multiplication ({Addition.left=current} operator+=("+" | "-") right+=Multiplication)*
+		public Group getGroup() { return cGroup; }
+		
+		//Multiplication
+		public RuleCall getMultiplicationParserRuleCall_0() { return cMultiplicationParserRuleCall_0; }
+		
+		//({Addition.left=current} operator+=("+" | "-") right+=Multiplication)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{Addition.left=current}
+		public Action getAdditionLeftAction_1_0() { return cAdditionLeftAction_1_0; }
+		
+		//operator+=("+" | "-")
+		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
+		
+		//("+" | "-")
+		public Alternatives getOperatorAlternatives_1_1_0() { return cOperatorAlternatives_1_1_0; }
+		
+		//"+"
+		public Keyword getOperatorPlusSignKeyword_1_1_0_0() { return cOperatorPlusSignKeyword_1_1_0_0; }
+		
+		//"-"
+		public Keyword getOperatorHyphenMinusKeyword_1_1_0_1() { return cOperatorHyphenMinusKeyword_1_1_0_1; }
+		
+		//right+=Multiplication
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//Multiplication
+		public RuleCall getRightMultiplicationParserRuleCall_1_2_0() { return cRightMultiplicationParserRuleCall_1_2_0; }
+	}
+	public class MultiplicationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.Multiplication");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cPrimaryParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cMultiplicationLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final Alternatives cOperatorAlternatives_1_1_0 = (Alternatives)cOperatorAssignment_1_1.eContents().get(0);
+		private final Keyword cOperatorAsteriskKeyword_1_1_0_0 = (Keyword)cOperatorAlternatives_1_1_0.eContents().get(0);
+		private final Keyword cOperatorSolidusKeyword_1_1_0_1 = (Keyword)cOperatorAlternatives_1_1_0.eContents().get(1);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightPrimaryParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//Multiplication IntExpression:
+		//	Primary ({Multiplication.left=current} operator+=("*" | "/") right+=Primary)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Primary ({Multiplication.left=current} operator+=("*" | "/") right+=Primary)*
+		public Group getGroup() { return cGroup; }
+		
+		//Primary
+		public RuleCall getPrimaryParserRuleCall_0() { return cPrimaryParserRuleCall_0; }
+		
+		//({Multiplication.left=current} operator+=("*" | "/") right+=Primary)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{Multiplication.left=current}
+		public Action getMultiplicationLeftAction_1_0() { return cMultiplicationLeftAction_1_0; }
+		
+		//operator+=("*" | "/")
+		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
+		
+		//("*" | "/")
+		public Alternatives getOperatorAlternatives_1_1_0() { return cOperatorAlternatives_1_1_0; }
+		
+		//"*"
+		public Keyword getOperatorAsteriskKeyword_1_1_0_0() { return cOperatorAsteriskKeyword_1_1_0_0; }
+		
+		//"/"
+		public Keyword getOperatorSolidusKeyword_1_1_0_1() { return cOperatorSolidusKeyword_1_1_0_1; }
+		
+		//right+=Primary
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//Primary
+		public RuleCall getRightPrimaryParserRuleCall_1_2_0() { return cRightPrimaryParserRuleCall_1_2_0; }
+	}
+	public class PrimaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.Primary");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cIntLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cIntVarExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final RuleCall cAdditionParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		
+		//Primary IntExpression:
+		//	IntLiteral | IntVarExpression |
+		//	"(" Addition ")";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//IntLiteral | IntVarExpression | "(" Addition ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//IntLiteral
+		public RuleCall getIntLiteralParserRuleCall_0() { return cIntLiteralParserRuleCall_0; }
+		
+		//IntVarExpression
+		public RuleCall getIntVarExpressionParserRuleCall_1() { return cIntVarExpressionParserRuleCall_1; }
+		
+		//"(" Addition ")"
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//"("
+		public Keyword getLeftParenthesisKeyword_2_0() { return cLeftParenthesisKeyword_2_0; }
+		
+		//Addition
+		public RuleCall getAdditionParserRuleCall_2_1() { return cAdditionParserRuleCall_2_1; }
+		
+		//")"
+		public Keyword getRightParenthesisKeyword_2_2() { return cRightParenthesisKeyword_2_2; }
+	}
+	public class IntLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.IntLiteral");
+		private final Assignment cValAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValINTTerminalRuleCall_0 = (RuleCall)cValAssignment.eContents().get(0);
+		
+		//IntLiteral:
+		//	val=INT;
+		@Override public ParserRule getRule() { return rule; }
+		
 		//val=INT
-		public Assignment getValAssignment_0() { return cValAssignment_0; }
+		public Assignment getValAssignment() { return cValAssignment; }
 		
 		//INT
-		public RuleCall getValINTTerminalRuleCall_0_0() { return cValINTTerminalRuleCall_0_0; }
+		public RuleCall getValINTTerminalRuleCall_0() { return cValINTTerminalRuleCall_0; }
+	}
+	public class IntVarExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.IntVarExpression");
+		private final Assignment cVarAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cVarVariableDeclarationCrossReference_0 = (CrossReference)cVarAssignment.eContents().get(0);
+		private final RuleCall cVarVariableDeclarationIDTerminalRuleCall_0_1 = (RuleCall)cVarVariableDeclarationCrossReference_0.eContents().get(1);
+		
+		//IntVarExpression:
+		//	var=[VariableDeclaration];
+		@Override public ParserRule getRule() { return rule; }
 		
 		//var=[VariableDeclaration]
-		public Assignment getVarAssignment_1() { return cVarAssignment_1; }
+		public Assignment getVarAssignment() { return cVarAssignment; }
 		
 		//[VariableDeclaration]
-		public CrossReference getVarVariableDeclarationCrossReference_1_0() { return cVarVariableDeclarationCrossReference_1_0; }
+		public CrossReference getVarVariableDeclarationCrossReference_0() { return cVarVariableDeclarationCrossReference_0; }
 		
 		//ID
-		public RuleCall getVarVariableDeclarationIDTerminalRuleCall_1_0_1() { return cVarVariableDeclarationIDTerminalRuleCall_1_0_1; }
+		public RuleCall getVarVariableDeclarationIDTerminalRuleCall_0_1() { return cVarVariableDeclarationIDTerminalRuleCall_0_1; }
 	}
 	public class REALElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.REAL");
@@ -336,7 +470,11 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	private final MoveCommandElements eMoveCommand;
 	private final TurnStatementElements pTurnStatement;
 	private final TurnCommandElements eTurnCommand;
-	private final IntExpressionElements pIntExpression;
+	private final AdditionElements pAddition;
+	private final MultiplicationElements pMultiplication;
+	private final PrimaryElements pPrimary;
+	private final IntLiteralElements pIntLiteral;
+	private final IntVarExpressionElements pIntVarExpression;
 	private final REALElements pREAL;
 	
 	private final Grammar grammar;
@@ -356,7 +494,11 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		this.eMoveCommand = new MoveCommandElements();
 		this.pTurnStatement = new TurnStatementElements();
 		this.eTurnCommand = new TurnCommandElements();
-		this.pIntExpression = new IntExpressionElements();
+		this.pAddition = new AdditionElements();
+		this.pMultiplication = new MultiplicationElements();
+		this.pPrimary = new PrimaryElements();
+		this.pIntLiteral = new IntLiteralElements();
+		this.pIntVarExpression = new IntVarExpressionElements();
 		this.pREAL = new REALElements();
 	}
 	
@@ -418,7 +560,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//LoopStatement:
-	//	count=IntExpression "times" "do"
+	//	count=Addition "times" "do"
 	//	statements+=Statement+
 	//	"end";
 	public LoopStatementElements getLoopStatementAccess() {
@@ -430,7 +572,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MoveStatement:
-	//	command=MoveCommand "(" steps=IntExpression ")";
+	//	command=MoveCommand "(" steps=Addition ")";
 	public MoveStatementElements getMoveStatementAccess() {
 		return pMoveStatement;
 	}
@@ -469,14 +611,55 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		return getTurnCommandAccess().getRule();
 	}
 	
-	//IntExpression:
-	//	val=INT | var=[VariableDeclaration];
-	public IntExpressionElements getIntExpressionAccess() {
-		return pIntExpression;
+	//Addition IntExpression:
+	//	Multiplication ({Addition.left=current} operator+=("+" | "-") right+=Multiplication)*;
+	public AdditionElements getAdditionAccess() {
+		return pAddition;
 	}
 	
-	public ParserRule getIntExpressionRule() {
-		return getIntExpressionAccess().getRule();
+	public ParserRule getAdditionRule() {
+		return getAdditionAccess().getRule();
+	}
+	
+	//Multiplication IntExpression:
+	//	Primary ({Multiplication.left=current} operator+=("*" | "/") right+=Primary)*;
+	public MultiplicationElements getMultiplicationAccess() {
+		return pMultiplication;
+	}
+	
+	public ParserRule getMultiplicationRule() {
+		return getMultiplicationAccess().getRule();
+	}
+	
+	//Primary IntExpression:
+	//	IntLiteral | IntVarExpression |
+	//	"(" Addition ")";
+	public PrimaryElements getPrimaryAccess() {
+		return pPrimary;
+	}
+	
+	public ParserRule getPrimaryRule() {
+		return getPrimaryAccess().getRule();
+	}
+	
+	//IntLiteral:
+	//	val=INT;
+	public IntLiteralElements getIntLiteralAccess() {
+		return pIntLiteral;
+	}
+	
+	public ParserRule getIntLiteralRule() {
+		return getIntLiteralAccess().getRule();
+	}
+	
+	//IntVarExpression:
+	//	var=[VariableDeclaration];
+	public IntVarExpressionElements getIntVarExpressionAccess() {
+		return pIntVarExpression;
+	}
+	
+	public ParserRule getIntVarExpressionRule() {
+		return getIntVarExpressionAccess().getRule();
 	}
 	
 	//REAL ecore::EFloat hidden():

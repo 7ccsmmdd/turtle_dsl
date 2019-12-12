@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalTurtlesParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'var'", "'='", "'times'", "'do'", "'end'", "'('", "')'", "'turn'", "'by'", "'degrees'", "'.'", "'forward'", "'backward'", "'left'", "'right'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'var'", "'='", "'times'", "'do'", "'end'", "'('", "')'", "'turn'", "'by'", "'degrees'", "'+'", "'-'", "'*'", "'/'", "'.'", "'forward'", "'backward'", "'left'", "'right'"
     };
     public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=8;
@@ -39,7 +39,11 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
     public static final int RULE_ID=4;
     public static final int RULE_WS=9;
     public static final int RULE_ANY_OTHER=10;
+    public static final int T__26=26;
+    public static final int T__27=27;
+    public static final int T__28=28;
     public static final int RULE_INT=5;
+    public static final int T__29=29;
     public static final int T__22=22;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__23=23;
@@ -144,7 +148,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( ((LA1_0>=RULE_ID && LA1_0<=RULE_INT)||LA1_0==11||LA1_0==18||(LA1_0>=22 && LA1_0<=23)) ) {
+                if ( ((LA1_0>=RULE_ID && LA1_0<=RULE_INT)||LA1_0==11||LA1_0==16||LA1_0==18||(LA1_0>=26 && LA1_0<=27)) ) {
                     alt1=1;
                 }
 
@@ -266,8 +270,8 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
             // InternalTurtles.g:115:2: (this_MoveStatement_0= ruleMoveStatement | this_TurnStatement_1= ruleTurnStatement | this_LoopStatement_2= ruleLoopStatement | this_VariableDeclaration_3= ruleVariableDeclaration )
             int alt2=4;
             switch ( input.LA(1) ) {
-            case 22:
-            case 23:
+            case 26:
+            case 27:
                 {
                 alt2=1;
                 }
@@ -279,6 +283,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_ID:
             case RULE_INT:
+            case 16:
                 {
                 alt2=3;
                 }
@@ -565,7 +570,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLoopStatement"
-    // InternalTurtles.g:225:1: ruleLoopStatement returns [EObject current=null] : ( ( (lv_count_0_0= ruleIntExpression ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end' ) ;
+    // InternalTurtles.g:225:1: ruleLoopStatement returns [EObject current=null] : ( ( (lv_count_0_0= ruleAddition ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end' ) ;
     public final EObject ruleLoopStatement() throws RecognitionException {
         EObject current = null;
 
@@ -581,23 +586,23 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalTurtles.g:231:2: ( ( ( (lv_count_0_0= ruleIntExpression ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end' ) )
-            // InternalTurtles.g:232:2: ( ( (lv_count_0_0= ruleIntExpression ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end' )
+            // InternalTurtles.g:231:2: ( ( ( (lv_count_0_0= ruleAddition ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end' ) )
+            // InternalTurtles.g:232:2: ( ( (lv_count_0_0= ruleAddition ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end' )
             {
-            // InternalTurtles.g:232:2: ( ( (lv_count_0_0= ruleIntExpression ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end' )
-            // InternalTurtles.g:233:3: ( (lv_count_0_0= ruleIntExpression ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end'
+            // InternalTurtles.g:232:2: ( ( (lv_count_0_0= ruleAddition ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end' )
+            // InternalTurtles.g:233:3: ( (lv_count_0_0= ruleAddition ) ) otherlv_1= 'times' otherlv_2= 'do' ( (lv_statements_3_0= ruleStatement ) )+ otherlv_4= 'end'
             {
-            // InternalTurtles.g:233:3: ( (lv_count_0_0= ruleIntExpression ) )
-            // InternalTurtles.g:234:4: (lv_count_0_0= ruleIntExpression )
+            // InternalTurtles.g:233:3: ( (lv_count_0_0= ruleAddition ) )
+            // InternalTurtles.g:234:4: (lv_count_0_0= ruleAddition )
             {
-            // InternalTurtles.g:234:4: (lv_count_0_0= ruleIntExpression )
-            // InternalTurtles.g:235:5: lv_count_0_0= ruleIntExpression
+            // InternalTurtles.g:234:4: (lv_count_0_0= ruleAddition )
+            // InternalTurtles.g:235:5: lv_count_0_0= ruleAddition
             {
 
-            					newCompositeNode(grammarAccess.getLoopStatementAccess().getCountIntExpressionParserRuleCall_0_0());
+            					newCompositeNode(grammarAccess.getLoopStatementAccess().getCountAdditionParserRuleCall_0_0());
             				
             pushFollow(FOLLOW_7);
-            lv_count_0_0=ruleIntExpression();
+            lv_count_0_0=ruleAddition();
 
             state._fsp--;
 
@@ -609,7 +614,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
             						current,
             						"count",
             						lv_count_0_0,
-            						"uk.ac.kcl.inf.szschaler.turtles.Turtles.IntExpression");
+            						"uk.ac.kcl.inf.szschaler.turtles.Turtles.Addition");
             					afterParserOrEnumRuleCall();
             				
 
@@ -633,7 +638,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
                 int alt3=2;
                 int LA3_0 = input.LA(1);
 
-                if ( ((LA3_0>=RULE_ID && LA3_0<=RULE_INT)||LA3_0==11||LA3_0==18||(LA3_0>=22 && LA3_0<=23)) ) {
+                if ( ((LA3_0>=RULE_ID && LA3_0<=RULE_INT)||LA3_0==11||LA3_0==16||LA3_0==18||(LA3_0>=26 && LA3_0<=27)) ) {
                     alt3=1;
                 }
 
@@ -743,7 +748,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMoveStatement"
-    // InternalTurtles.g:294:1: ruleMoveStatement returns [EObject current=null] : ( ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleIntExpression ) ) otherlv_3= ')' ) ;
+    // InternalTurtles.g:294:1: ruleMoveStatement returns [EObject current=null] : ( ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleAddition ) ) otherlv_3= ')' ) ;
     public final EObject ruleMoveStatement() throws RecognitionException {
         EObject current = null;
 
@@ -758,11 +763,11 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalTurtles.g:300:2: ( ( ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleIntExpression ) ) otherlv_3= ')' ) )
-            // InternalTurtles.g:301:2: ( ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleIntExpression ) ) otherlv_3= ')' )
+            // InternalTurtles.g:300:2: ( ( ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleAddition ) ) otherlv_3= ')' ) )
+            // InternalTurtles.g:301:2: ( ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleAddition ) ) otherlv_3= ')' )
             {
-            // InternalTurtles.g:301:2: ( ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleIntExpression ) ) otherlv_3= ')' )
-            // InternalTurtles.g:302:3: ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleIntExpression ) ) otherlv_3= ')'
+            // InternalTurtles.g:301:2: ( ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleAddition ) ) otherlv_3= ')' )
+            // InternalTurtles.g:302:3: ( (lv_command_0_0= ruleMoveCommand ) ) otherlv_1= '(' ( (lv_steps_2_0= ruleAddition ) ) otherlv_3= ')'
             {
             // InternalTurtles.g:302:3: ( (lv_command_0_0= ruleMoveCommand ) )
             // InternalTurtles.g:303:4: (lv_command_0_0= ruleMoveCommand )
@@ -799,17 +804,17 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getMoveStatementAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalTurtles.g:325:3: ( (lv_steps_2_0= ruleIntExpression ) )
-            // InternalTurtles.g:326:4: (lv_steps_2_0= ruleIntExpression )
+            // InternalTurtles.g:325:3: ( (lv_steps_2_0= ruleAddition ) )
+            // InternalTurtles.g:326:4: (lv_steps_2_0= ruleAddition )
             {
-            // InternalTurtles.g:326:4: (lv_steps_2_0= ruleIntExpression )
-            // InternalTurtles.g:327:5: lv_steps_2_0= ruleIntExpression
+            // InternalTurtles.g:326:4: (lv_steps_2_0= ruleAddition )
+            // InternalTurtles.g:327:5: lv_steps_2_0= ruleAddition
             {
 
-            					newCompositeNode(grammarAccess.getMoveStatementAccess().getStepsIntExpressionParserRuleCall_2_0());
+            					newCompositeNode(grammarAccess.getMoveStatementAccess().getStepsAdditionParserRuleCall_2_0());
             				
             pushFollow(FOLLOW_12);
-            lv_steps_2_0=ruleIntExpression();
+            lv_steps_2_0=ruleAddition();
 
             state._fsp--;
 
@@ -821,7 +826,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
             						current,
             						"steps",
             						lv_steps_2_0,
-            						"uk.ac.kcl.inf.szschaler.turtles.Turtles.IntExpression");
+            						"uk.ac.kcl.inf.szschaler.turtles.Turtles.Addition");
             					afterParserOrEnumRuleCall();
             				
 
@@ -1011,25 +1016,25 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleTurnStatement"
 
 
-    // $ANTLR start "entryRuleIntExpression"
-    // InternalTurtles.g:421:1: entryRuleIntExpression returns [EObject current=null] : iv_ruleIntExpression= ruleIntExpression EOF ;
-    public final EObject entryRuleIntExpression() throws RecognitionException {
+    // $ANTLR start "entryRuleAddition"
+    // InternalTurtles.g:421:1: entryRuleAddition returns [EObject current=null] : iv_ruleAddition= ruleAddition EOF ;
+    public final EObject entryRuleAddition() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleIntExpression = null;
+        EObject iv_ruleAddition = null;
 
 
         try {
-            // InternalTurtles.g:421:54: (iv_ruleIntExpression= ruleIntExpression EOF )
-            // InternalTurtles.g:422:2: iv_ruleIntExpression= ruleIntExpression EOF
+            // InternalTurtles.g:421:49: (iv_ruleAddition= ruleAddition EOF )
+            // InternalTurtles.g:422:2: iv_ruleAddition= ruleAddition EOF
             {
-             newCompositeNode(grammarAccess.getIntExpressionRule()); 
+             newCompositeNode(grammarAccess.getAdditionRule()); 
             pushFollow(FOLLOW_1);
-            iv_ruleIntExpression=ruleIntExpression();
+            iv_ruleAddition=ruleAddition();
 
             state._fsp--;
 
-             current =iv_ruleIntExpression; 
+             current =iv_ruleAddition; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1044,94 +1049,562 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleIntExpression"
+    // $ANTLR end "entryRuleAddition"
 
 
-    // $ANTLR start "ruleIntExpression"
-    // InternalTurtles.g:428:1: ruleIntExpression returns [EObject current=null] : ( ( (lv_val_0_0= RULE_INT ) ) | ( (otherlv_1= RULE_ID ) ) ) ;
-    public final EObject ruleIntExpression() throws RecognitionException {
+    // $ANTLR start "ruleAddition"
+    // InternalTurtles.g:428:1: ruleAddition returns [EObject current=null] : (this_Multiplication_0= ruleMultiplication ( () ( ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) ) ) ( (lv_right_3_0= ruleMultiplication ) ) )* ) ;
+    public final EObject ruleAddition() throws RecognitionException {
         EObject current = null;
 
-        Token lv_val_0_0=null;
-        Token otherlv_1=null;
+        Token lv_operator_2_1=null;
+        Token lv_operator_2_2=null;
+        EObject this_Multiplication_0 = null;
+
+        EObject lv_right_3_0 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalTurtles.g:434:2: ( ( ( (lv_val_0_0= RULE_INT ) ) | ( (otherlv_1= RULE_ID ) ) ) )
-            // InternalTurtles.g:435:2: ( ( (lv_val_0_0= RULE_INT ) ) | ( (otherlv_1= RULE_ID ) ) )
+            // InternalTurtles.g:434:2: ( (this_Multiplication_0= ruleMultiplication ( () ( ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) ) ) ( (lv_right_3_0= ruleMultiplication ) ) )* ) )
+            // InternalTurtles.g:435:2: (this_Multiplication_0= ruleMultiplication ( () ( ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) ) ) ( (lv_right_3_0= ruleMultiplication ) ) )* )
             {
-            // InternalTurtles.g:435:2: ( ( (lv_val_0_0= RULE_INT ) ) | ( (otherlv_1= RULE_ID ) ) )
-            int alt4=2;
-            int LA4_0 = input.LA(1);
+            // InternalTurtles.g:435:2: (this_Multiplication_0= ruleMultiplication ( () ( ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) ) ) ( (lv_right_3_0= ruleMultiplication ) ) )* )
+            // InternalTurtles.g:436:3: this_Multiplication_0= ruleMultiplication ( () ( ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) ) ) ( (lv_right_3_0= ruleMultiplication ) ) )*
+            {
 
-            if ( (LA4_0==RULE_INT) ) {
-                alt4=1;
+            			newCompositeNode(grammarAccess.getAdditionAccess().getMultiplicationParserRuleCall_0());
+            		
+            pushFollow(FOLLOW_17);
+            this_Multiplication_0=ruleMultiplication();
+
+            state._fsp--;
+
+
+            			current = this_Multiplication_0;
+            			afterParserOrEnumRuleCall();
+            		
+            // InternalTurtles.g:444:3: ( () ( ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) ) ) ( (lv_right_3_0= ruleMultiplication ) ) )*
+            loop5:
+            do {
+                int alt5=2;
+                int LA5_0 = input.LA(1);
+
+                if ( ((LA5_0>=21 && LA5_0<=22)) ) {
+                    alt5=1;
+                }
+
+
+                switch (alt5) {
+            	case 1 :
+            	    // InternalTurtles.g:445:4: () ( ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) ) ) ( (lv_right_3_0= ruleMultiplication ) )
+            	    {
+            	    // InternalTurtles.g:445:4: ()
+            	    // InternalTurtles.g:446:5: 
+            	    {
+
+            	    					current = forceCreateModelElementAndSet(
+            	    						grammarAccess.getAdditionAccess().getAdditionLeftAction_1_0(),
+            	    						current);
+            	    				
+
+            	    }
+
+            	    // InternalTurtles.g:452:4: ( ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) ) )
+            	    // InternalTurtles.g:453:5: ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) )
+            	    {
+            	    // InternalTurtles.g:453:5: ( (lv_operator_2_1= '+' | lv_operator_2_2= '-' ) )
+            	    // InternalTurtles.g:454:6: (lv_operator_2_1= '+' | lv_operator_2_2= '-' )
+            	    {
+            	    // InternalTurtles.g:454:6: (lv_operator_2_1= '+' | lv_operator_2_2= '-' )
+            	    int alt4=2;
+            	    int LA4_0 = input.LA(1);
+
+            	    if ( (LA4_0==21) ) {
+            	        alt4=1;
+            	    }
+            	    else if ( (LA4_0==22) ) {
+            	        alt4=2;
+            	    }
+            	    else {
+            	        NoViableAltException nvae =
+            	            new NoViableAltException("", 4, 0, input);
+
+            	        throw nvae;
+            	    }
+            	    switch (alt4) {
+            	        case 1 :
+            	            // InternalTurtles.g:455:7: lv_operator_2_1= '+'
+            	            {
+            	            lv_operator_2_1=(Token)match(input,21,FOLLOW_11); 
+
+            	            							newLeafNode(lv_operator_2_1, grammarAccess.getAdditionAccess().getOperatorPlusSignKeyword_1_1_0_0());
+            	            						
+
+            	            							if (current==null) {
+            	            								current = createModelElement(grammarAccess.getAdditionRule());
+            	            							}
+            	            							addWithLastConsumed(current, "operator", lv_operator_2_1, null);
+            	            						
+
+            	            }
+            	            break;
+            	        case 2 :
+            	            // InternalTurtles.g:466:7: lv_operator_2_2= '-'
+            	            {
+            	            lv_operator_2_2=(Token)match(input,22,FOLLOW_11); 
+
+            	            							newLeafNode(lv_operator_2_2, grammarAccess.getAdditionAccess().getOperatorHyphenMinusKeyword_1_1_0_1());
+            	            						
+
+            	            							if (current==null) {
+            	            								current = createModelElement(grammarAccess.getAdditionRule());
+            	            							}
+            	            							addWithLastConsumed(current, "operator", lv_operator_2_2, null);
+            	            						
+
+            	            }
+            	            break;
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+
+            	    // InternalTurtles.g:479:4: ( (lv_right_3_0= ruleMultiplication ) )
+            	    // InternalTurtles.g:480:5: (lv_right_3_0= ruleMultiplication )
+            	    {
+            	    // InternalTurtles.g:480:5: (lv_right_3_0= ruleMultiplication )
+            	    // InternalTurtles.g:481:6: lv_right_3_0= ruleMultiplication
+            	    {
+
+            	    						newCompositeNode(grammarAccess.getAdditionAccess().getRightMultiplicationParserRuleCall_1_2_0());
+            	    					
+            	    pushFollow(FOLLOW_17);
+            	    lv_right_3_0=ruleMultiplication();
+
+            	    state._fsp--;
+
+
+            	    						if (current==null) {
+            	    							current = createModelElementForParent(grammarAccess.getAdditionRule());
+            	    						}
+            	    						add(
+            	    							current,
+            	    							"right",
+            	    							lv_right_3_0,
+            	    							"uk.ac.kcl.inf.szschaler.turtles.Turtles.Multiplication");
+            	    						afterParserOrEnumRuleCall();
+            	    					
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop5;
+                }
+            } while (true);
+
+
             }
-            else if ( (LA4_0==RULE_ID) ) {
-                alt4=2;
+
+
             }
-            else {
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleAddition"
+
+
+    // $ANTLR start "entryRuleMultiplication"
+    // InternalTurtles.g:503:1: entryRuleMultiplication returns [EObject current=null] : iv_ruleMultiplication= ruleMultiplication EOF ;
+    public final EObject entryRuleMultiplication() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleMultiplication = null;
+
+
+        try {
+            // InternalTurtles.g:503:55: (iv_ruleMultiplication= ruleMultiplication EOF )
+            // InternalTurtles.g:504:2: iv_ruleMultiplication= ruleMultiplication EOF
+            {
+             newCompositeNode(grammarAccess.getMultiplicationRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleMultiplication=ruleMultiplication();
+
+            state._fsp--;
+
+             current =iv_ruleMultiplication; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleMultiplication"
+
+
+    // $ANTLR start "ruleMultiplication"
+    // InternalTurtles.g:510:1: ruleMultiplication returns [EObject current=null] : (this_Primary_0= rulePrimary ( () ( ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) ) ) ( (lv_right_3_0= rulePrimary ) ) )* ) ;
+    public final EObject ruleMultiplication() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_operator_2_1=null;
+        Token lv_operator_2_2=null;
+        EObject this_Primary_0 = null;
+
+        EObject lv_right_3_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalTurtles.g:516:2: ( (this_Primary_0= rulePrimary ( () ( ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) ) ) ( (lv_right_3_0= rulePrimary ) ) )* ) )
+            // InternalTurtles.g:517:2: (this_Primary_0= rulePrimary ( () ( ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) ) ) ( (lv_right_3_0= rulePrimary ) ) )* )
+            {
+            // InternalTurtles.g:517:2: (this_Primary_0= rulePrimary ( () ( ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) ) ) ( (lv_right_3_0= rulePrimary ) ) )* )
+            // InternalTurtles.g:518:3: this_Primary_0= rulePrimary ( () ( ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) ) ) ( (lv_right_3_0= rulePrimary ) ) )*
+            {
+
+            			newCompositeNode(grammarAccess.getMultiplicationAccess().getPrimaryParserRuleCall_0());
+            		
+            pushFollow(FOLLOW_18);
+            this_Primary_0=rulePrimary();
+
+            state._fsp--;
+
+
+            			current = this_Primary_0;
+            			afterParserOrEnumRuleCall();
+            		
+            // InternalTurtles.g:526:3: ( () ( ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) ) ) ( (lv_right_3_0= rulePrimary ) ) )*
+            loop7:
+            do {
+                int alt7=2;
+                int LA7_0 = input.LA(1);
+
+                if ( ((LA7_0>=23 && LA7_0<=24)) ) {
+                    alt7=1;
+                }
+
+
+                switch (alt7) {
+            	case 1 :
+            	    // InternalTurtles.g:527:4: () ( ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) ) ) ( (lv_right_3_0= rulePrimary ) )
+            	    {
+            	    // InternalTurtles.g:527:4: ()
+            	    // InternalTurtles.g:528:5: 
+            	    {
+
+            	    					current = forceCreateModelElementAndSet(
+            	    						grammarAccess.getMultiplicationAccess().getMultiplicationLeftAction_1_0(),
+            	    						current);
+            	    				
+
+            	    }
+
+            	    // InternalTurtles.g:534:4: ( ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) ) )
+            	    // InternalTurtles.g:535:5: ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) )
+            	    {
+            	    // InternalTurtles.g:535:5: ( (lv_operator_2_1= '*' | lv_operator_2_2= '/' ) )
+            	    // InternalTurtles.g:536:6: (lv_operator_2_1= '*' | lv_operator_2_2= '/' )
+            	    {
+            	    // InternalTurtles.g:536:6: (lv_operator_2_1= '*' | lv_operator_2_2= '/' )
+            	    int alt6=2;
+            	    int LA6_0 = input.LA(1);
+
+            	    if ( (LA6_0==23) ) {
+            	        alt6=1;
+            	    }
+            	    else if ( (LA6_0==24) ) {
+            	        alt6=2;
+            	    }
+            	    else {
+            	        NoViableAltException nvae =
+            	            new NoViableAltException("", 6, 0, input);
+
+            	        throw nvae;
+            	    }
+            	    switch (alt6) {
+            	        case 1 :
+            	            // InternalTurtles.g:537:7: lv_operator_2_1= '*'
+            	            {
+            	            lv_operator_2_1=(Token)match(input,23,FOLLOW_11); 
+
+            	            							newLeafNode(lv_operator_2_1, grammarAccess.getMultiplicationAccess().getOperatorAsteriskKeyword_1_1_0_0());
+            	            						
+
+            	            							if (current==null) {
+            	            								current = createModelElement(grammarAccess.getMultiplicationRule());
+            	            							}
+            	            							addWithLastConsumed(current, "operator", lv_operator_2_1, null);
+            	            						
+
+            	            }
+            	            break;
+            	        case 2 :
+            	            // InternalTurtles.g:548:7: lv_operator_2_2= '/'
+            	            {
+            	            lv_operator_2_2=(Token)match(input,24,FOLLOW_11); 
+
+            	            							newLeafNode(lv_operator_2_2, grammarAccess.getMultiplicationAccess().getOperatorSolidusKeyword_1_1_0_1());
+            	            						
+
+            	            							if (current==null) {
+            	            								current = createModelElement(grammarAccess.getMultiplicationRule());
+            	            							}
+            	            							addWithLastConsumed(current, "operator", lv_operator_2_2, null);
+            	            						
+
+            	            }
+            	            break;
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+
+            	    // InternalTurtles.g:561:4: ( (lv_right_3_0= rulePrimary ) )
+            	    // InternalTurtles.g:562:5: (lv_right_3_0= rulePrimary )
+            	    {
+            	    // InternalTurtles.g:562:5: (lv_right_3_0= rulePrimary )
+            	    // InternalTurtles.g:563:6: lv_right_3_0= rulePrimary
+            	    {
+
+            	    						newCompositeNode(grammarAccess.getMultiplicationAccess().getRightPrimaryParserRuleCall_1_2_0());
+            	    					
+            	    pushFollow(FOLLOW_18);
+            	    lv_right_3_0=rulePrimary();
+
+            	    state._fsp--;
+
+
+            	    						if (current==null) {
+            	    							current = createModelElementForParent(grammarAccess.getMultiplicationRule());
+            	    						}
+            	    						add(
+            	    							current,
+            	    							"right",
+            	    							lv_right_3_0,
+            	    							"uk.ac.kcl.inf.szschaler.turtles.Turtles.Primary");
+            	    						afterParserOrEnumRuleCall();
+            	    					
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop7;
+                }
+            } while (true);
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleMultiplication"
+
+
+    // $ANTLR start "entryRulePrimary"
+    // InternalTurtles.g:585:1: entryRulePrimary returns [EObject current=null] : iv_rulePrimary= rulePrimary EOF ;
+    public final EObject entryRulePrimary() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_rulePrimary = null;
+
+
+        try {
+            // InternalTurtles.g:585:48: (iv_rulePrimary= rulePrimary EOF )
+            // InternalTurtles.g:586:2: iv_rulePrimary= rulePrimary EOF
+            {
+             newCompositeNode(grammarAccess.getPrimaryRule()); 
+            pushFollow(FOLLOW_1);
+            iv_rulePrimary=rulePrimary();
+
+            state._fsp--;
+
+             current =iv_rulePrimary; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRulePrimary"
+
+
+    // $ANTLR start "rulePrimary"
+    // InternalTurtles.g:592:1: rulePrimary returns [EObject current=null] : (this_IntLiteral_0= ruleIntLiteral | this_IntVarExpression_1= ruleIntVarExpression | (otherlv_2= '(' this_Addition_3= ruleAddition otherlv_4= ')' ) ) ;
+    public final EObject rulePrimary() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        EObject this_IntLiteral_0 = null;
+
+        EObject this_IntVarExpression_1 = null;
+
+        EObject this_Addition_3 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalTurtles.g:598:2: ( (this_IntLiteral_0= ruleIntLiteral | this_IntVarExpression_1= ruleIntVarExpression | (otherlv_2= '(' this_Addition_3= ruleAddition otherlv_4= ')' ) ) )
+            // InternalTurtles.g:599:2: (this_IntLiteral_0= ruleIntLiteral | this_IntVarExpression_1= ruleIntVarExpression | (otherlv_2= '(' this_Addition_3= ruleAddition otherlv_4= ')' ) )
+            {
+            // InternalTurtles.g:599:2: (this_IntLiteral_0= ruleIntLiteral | this_IntVarExpression_1= ruleIntVarExpression | (otherlv_2= '(' this_Addition_3= ruleAddition otherlv_4= ')' ) )
+            int alt8=3;
+            switch ( input.LA(1) ) {
+            case RULE_INT:
+                {
+                alt8=1;
+                }
+                break;
+            case RULE_ID:
+                {
+                alt8=2;
+                }
+                break;
+            case 16:
+                {
+                alt8=3;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 4, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
-            switch (alt4) {
+
+            switch (alt8) {
                 case 1 :
-                    // InternalTurtles.g:436:3: ( (lv_val_0_0= RULE_INT ) )
+                    // InternalTurtles.g:600:3: this_IntLiteral_0= ruleIntLiteral
                     {
-                    // InternalTurtles.g:436:3: ( (lv_val_0_0= RULE_INT ) )
-                    // InternalTurtles.g:437:4: (lv_val_0_0= RULE_INT )
-                    {
-                    // InternalTurtles.g:437:4: (lv_val_0_0= RULE_INT )
-                    // InternalTurtles.g:438:5: lv_val_0_0= RULE_INT
-                    {
-                    lv_val_0_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
-                    					newLeafNode(lv_val_0_0, grammarAccess.getIntExpressionAccess().getValINTTerminalRuleCall_0_0());
-                    				
+                    			newCompositeNode(grammarAccess.getPrimaryAccess().getIntLiteralParserRuleCall_0());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_IntLiteral_0=ruleIntLiteral();
 
-                    					if (current==null) {
-                    						current = createModelElement(grammarAccess.getIntExpressionRule());
-                    					}
-                    					setWithLastConsumed(
-                    						current,
-                    						"val",
-                    						lv_val_0_0,
-                    						"org.eclipse.xtext.common.Terminals.INT");
-                    				
-
-                    }
+                    state._fsp--;
 
 
-                    }
-
+                    			current = this_IntLiteral_0;
+                    			afterParserOrEnumRuleCall();
+                    		
 
                     }
                     break;
                 case 2 :
-                    // InternalTurtles.g:455:3: ( (otherlv_1= RULE_ID ) )
-                    {
-                    // InternalTurtles.g:455:3: ( (otherlv_1= RULE_ID ) )
-                    // InternalTurtles.g:456:4: (otherlv_1= RULE_ID )
-                    {
-                    // InternalTurtles.g:456:4: (otherlv_1= RULE_ID )
-                    // InternalTurtles.g:457:5: otherlv_1= RULE_ID
+                    // InternalTurtles.g:609:3: this_IntVarExpression_1= ruleIntVarExpression
                     {
 
-                    					if (current==null) {
-                    						current = createModelElement(grammarAccess.getIntExpressionRule());
-                    					}
-                    				
-                    otherlv_1=(Token)match(input,RULE_ID,FOLLOW_2); 
+                    			newCompositeNode(grammarAccess.getPrimaryAccess().getIntVarExpressionParserRuleCall_1());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_IntVarExpression_1=ruleIntVarExpression();
 
-                    					newLeafNode(otherlv_1, grammarAccess.getIntExpressionAccess().getVarVariableDeclarationCrossReference_1_0());
-                    				
+                    state._fsp--;
+
+
+                    			current = this_IntVarExpression_1;
+                    			afterParserOrEnumRuleCall();
+                    		
 
                     }
+                    break;
+                case 3 :
+                    // InternalTurtles.g:618:3: (otherlv_2= '(' this_Addition_3= ruleAddition otherlv_4= ')' )
+                    {
+                    // InternalTurtles.g:618:3: (otherlv_2= '(' this_Addition_3= ruleAddition otherlv_4= ')' )
+                    // InternalTurtles.g:619:4: otherlv_2= '(' this_Addition_3= ruleAddition otherlv_4= ')'
+                    {
+                    otherlv_2=(Token)match(input,16,FOLLOW_11); 
 
+                    				newLeafNode(otherlv_2, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_2_0());
+                    			
+
+                    				newCompositeNode(grammarAccess.getPrimaryAccess().getAdditionParserRuleCall_2_1());
+                    			
+                    pushFollow(FOLLOW_12);
+                    this_Addition_3=ruleAddition();
+
+                    state._fsp--;
+
+
+                    				current = this_Addition_3;
+                    				afterParserOrEnumRuleCall();
+                    			
+                    otherlv_4=(Token)match(input,17,FOLLOW_2); 
+
+                    				newLeafNode(otherlv_4, grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_2_2());
+                    			
 
                     }
 
@@ -1157,11 +1630,196 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleIntExpression"
+    // $ANTLR end "rulePrimary"
+
+
+    // $ANTLR start "entryRuleIntLiteral"
+    // InternalTurtles.g:640:1: entryRuleIntLiteral returns [EObject current=null] : iv_ruleIntLiteral= ruleIntLiteral EOF ;
+    public final EObject entryRuleIntLiteral() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleIntLiteral = null;
+
+
+        try {
+            // InternalTurtles.g:640:51: (iv_ruleIntLiteral= ruleIntLiteral EOF )
+            // InternalTurtles.g:641:2: iv_ruleIntLiteral= ruleIntLiteral EOF
+            {
+             newCompositeNode(grammarAccess.getIntLiteralRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleIntLiteral=ruleIntLiteral();
+
+            state._fsp--;
+
+             current =iv_ruleIntLiteral; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleIntLiteral"
+
+
+    // $ANTLR start "ruleIntLiteral"
+    // InternalTurtles.g:647:1: ruleIntLiteral returns [EObject current=null] : ( (lv_val_0_0= RULE_INT ) ) ;
+    public final EObject ruleIntLiteral() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_val_0_0=null;
+
+
+        	enterRule();
+
+        try {
+            // InternalTurtles.g:653:2: ( ( (lv_val_0_0= RULE_INT ) ) )
+            // InternalTurtles.g:654:2: ( (lv_val_0_0= RULE_INT ) )
+            {
+            // InternalTurtles.g:654:2: ( (lv_val_0_0= RULE_INT ) )
+            // InternalTurtles.g:655:3: (lv_val_0_0= RULE_INT )
+            {
+            // InternalTurtles.g:655:3: (lv_val_0_0= RULE_INT )
+            // InternalTurtles.g:656:4: lv_val_0_0= RULE_INT
+            {
+            lv_val_0_0=(Token)match(input,RULE_INT,FOLLOW_2); 
+
+            				newLeafNode(lv_val_0_0, grammarAccess.getIntLiteralAccess().getValINTTerminalRuleCall_0());
+            			
+
+            				if (current==null) {
+            					current = createModelElement(grammarAccess.getIntLiteralRule());
+            				}
+            				setWithLastConsumed(
+            					current,
+            					"val",
+            					lv_val_0_0,
+            					"org.eclipse.xtext.common.Terminals.INT");
+            			
+
+            }
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleIntLiteral"
+
+
+    // $ANTLR start "entryRuleIntVarExpression"
+    // InternalTurtles.g:675:1: entryRuleIntVarExpression returns [EObject current=null] : iv_ruleIntVarExpression= ruleIntVarExpression EOF ;
+    public final EObject entryRuleIntVarExpression() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleIntVarExpression = null;
+
+
+        try {
+            // InternalTurtles.g:675:57: (iv_ruleIntVarExpression= ruleIntVarExpression EOF )
+            // InternalTurtles.g:676:2: iv_ruleIntVarExpression= ruleIntVarExpression EOF
+            {
+             newCompositeNode(grammarAccess.getIntVarExpressionRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleIntVarExpression=ruleIntVarExpression();
+
+            state._fsp--;
+
+             current =iv_ruleIntVarExpression; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleIntVarExpression"
+
+
+    // $ANTLR start "ruleIntVarExpression"
+    // InternalTurtles.g:682:1: ruleIntVarExpression returns [EObject current=null] : ( (otherlv_0= RULE_ID ) ) ;
+    public final EObject ruleIntVarExpression() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
+
+
+        	enterRule();
+
+        try {
+            // InternalTurtles.g:688:2: ( ( (otherlv_0= RULE_ID ) ) )
+            // InternalTurtles.g:689:2: ( (otherlv_0= RULE_ID ) )
+            {
+            // InternalTurtles.g:689:2: ( (otherlv_0= RULE_ID ) )
+            // InternalTurtles.g:690:3: (otherlv_0= RULE_ID )
+            {
+            // InternalTurtles.g:690:3: (otherlv_0= RULE_ID )
+            // InternalTurtles.g:691:4: otherlv_0= RULE_ID
+            {
+
+            				if (current==null) {
+            					current = createModelElement(grammarAccess.getIntVarExpressionRule());
+            				}
+            			
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_2); 
+
+            				newLeafNode(otherlv_0, grammarAccess.getIntVarExpressionAccess().getVarVariableDeclarationCrossReference_0());
+            			
+
+            }
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleIntVarExpression"
 
 
     // $ANTLR start "entryRuleREAL"
-    // InternalTurtles.g:472:1: entryRuleREAL returns [String current=null] : iv_ruleREAL= ruleREAL EOF ;
+    // InternalTurtles.g:705:1: entryRuleREAL returns [String current=null] : iv_ruleREAL= ruleREAL EOF ;
     public final String entryRuleREAL() throws RecognitionException {
         String current = null;
 
@@ -1172,8 +1830,8 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
         	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 
         try {
-            // InternalTurtles.g:474:2: (iv_ruleREAL= ruleREAL EOF )
-            // InternalTurtles.g:475:2: iv_ruleREAL= ruleREAL EOF
+            // InternalTurtles.g:707:2: (iv_ruleREAL= ruleREAL EOF )
+            // InternalTurtles.g:708:2: iv_ruleREAL= ruleREAL EOF
             {
              newCompositeNode(grammarAccess.getREALRule()); 
             pushFollow(FOLLOW_1);
@@ -1203,7 +1861,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleREAL"
-    // InternalTurtles.g:484:1: ruleREAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT ) ;
+    // InternalTurtles.g:717:1: ruleREAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT ) ;
     public final AntlrDatatypeRuleToken ruleREAL() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1216,24 +1874,24 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
         	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 
         try {
-            // InternalTurtles.g:491:2: ( ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT ) )
-            // InternalTurtles.g:492:2: ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT )
+            // InternalTurtles.g:724:2: ( ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT ) )
+            // InternalTurtles.g:725:2: ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT )
             {
-            // InternalTurtles.g:492:2: ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT )
-            // InternalTurtles.g:493:3: (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT
+            // InternalTurtles.g:725:2: ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT )
+            // InternalTurtles.g:726:3: (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT
             {
-            // InternalTurtles.g:493:3: (this_INT_0= RULE_INT )?
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            // InternalTurtles.g:726:3: (this_INT_0= RULE_INT )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA5_0==RULE_INT) ) {
-                alt5=1;
+            if ( (LA9_0==RULE_INT) ) {
+                alt9=1;
             }
-            switch (alt5) {
+            switch (alt9) {
                 case 1 :
-                    // InternalTurtles.g:494:4: this_INT_0= RULE_INT
+                    // InternalTurtles.g:727:4: this_INT_0= RULE_INT
                     {
-                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_17); 
+                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_19); 
 
                     				current.merge(this_INT_0);
                     			
@@ -1246,7 +1904,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
 
             }
 
-            kw=(Token)match(input,21,FOLLOW_6); 
+            kw=(Token)match(input,25,FOLLOW_6); 
 
             			current.merge(kw);
             			newLeafNode(kw, grammarAccess.getREALAccess().getFullStopKeyword_1());
@@ -1284,7 +1942,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMoveCommand"
-    // InternalTurtles.g:521:1: ruleMoveCommand returns [Enumerator current=null] : ( (enumLiteral_0= 'forward' ) | (enumLiteral_1= 'backward' ) ) ;
+    // InternalTurtles.g:754:1: ruleMoveCommand returns [Enumerator current=null] : ( (enumLiteral_0= 'forward' ) | (enumLiteral_1= 'backward' ) ) ;
     public final Enumerator ruleMoveCommand() throws RecognitionException {
         Enumerator current = null;
 
@@ -1295,33 +1953,33 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalTurtles.g:527:2: ( ( (enumLiteral_0= 'forward' ) | (enumLiteral_1= 'backward' ) ) )
-            // InternalTurtles.g:528:2: ( (enumLiteral_0= 'forward' ) | (enumLiteral_1= 'backward' ) )
+            // InternalTurtles.g:760:2: ( ( (enumLiteral_0= 'forward' ) | (enumLiteral_1= 'backward' ) ) )
+            // InternalTurtles.g:761:2: ( (enumLiteral_0= 'forward' ) | (enumLiteral_1= 'backward' ) )
             {
-            // InternalTurtles.g:528:2: ( (enumLiteral_0= 'forward' ) | (enumLiteral_1= 'backward' ) )
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            // InternalTurtles.g:761:2: ( (enumLiteral_0= 'forward' ) | (enumLiteral_1= 'backward' ) )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA6_0==22) ) {
-                alt6=1;
+            if ( (LA10_0==26) ) {
+                alt10=1;
             }
-            else if ( (LA6_0==23) ) {
-                alt6=2;
+            else if ( (LA10_0==27) ) {
+                alt10=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
-            switch (alt6) {
+            switch (alt10) {
                 case 1 :
-                    // InternalTurtles.g:529:3: (enumLiteral_0= 'forward' )
+                    // InternalTurtles.g:762:3: (enumLiteral_0= 'forward' )
                     {
-                    // InternalTurtles.g:529:3: (enumLiteral_0= 'forward' )
-                    // InternalTurtles.g:530:4: enumLiteral_0= 'forward'
+                    // InternalTurtles.g:762:3: (enumLiteral_0= 'forward' )
+                    // InternalTurtles.g:763:4: enumLiteral_0= 'forward'
                     {
-                    enumLiteral_0=(Token)match(input,22,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,26,FOLLOW_2); 
 
                     				current = grammarAccess.getMoveCommandAccess().getForwardEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getMoveCommandAccess().getForwardEnumLiteralDeclaration_0());
@@ -1333,12 +1991,12 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalTurtles.g:537:3: (enumLiteral_1= 'backward' )
+                    // InternalTurtles.g:770:3: (enumLiteral_1= 'backward' )
                     {
-                    // InternalTurtles.g:537:3: (enumLiteral_1= 'backward' )
-                    // InternalTurtles.g:538:4: enumLiteral_1= 'backward'
+                    // InternalTurtles.g:770:3: (enumLiteral_1= 'backward' )
+                    // InternalTurtles.g:771:4: enumLiteral_1= 'backward'
                     {
-                    enumLiteral_1=(Token)match(input,23,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,27,FOLLOW_2); 
 
                     				current = grammarAccess.getMoveCommandAccess().getBackwardEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getMoveCommandAccess().getBackwardEnumLiteralDeclaration_1());
@@ -1372,7 +2030,7 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTurnCommand"
-    // InternalTurtles.g:548:1: ruleTurnCommand returns [Enumerator current=null] : ( (enumLiteral_0= 'left' ) | (enumLiteral_1= 'right' ) ) ;
+    // InternalTurtles.g:781:1: ruleTurnCommand returns [Enumerator current=null] : ( (enumLiteral_0= 'left' ) | (enumLiteral_1= 'right' ) ) ;
     public final Enumerator ruleTurnCommand() throws RecognitionException {
         Enumerator current = null;
 
@@ -1383,33 +2041,33 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalTurtles.g:554:2: ( ( (enumLiteral_0= 'left' ) | (enumLiteral_1= 'right' ) ) )
-            // InternalTurtles.g:555:2: ( (enumLiteral_0= 'left' ) | (enumLiteral_1= 'right' ) )
+            // InternalTurtles.g:787:2: ( ( (enumLiteral_0= 'left' ) | (enumLiteral_1= 'right' ) ) )
+            // InternalTurtles.g:788:2: ( (enumLiteral_0= 'left' ) | (enumLiteral_1= 'right' ) )
             {
-            // InternalTurtles.g:555:2: ( (enumLiteral_0= 'left' ) | (enumLiteral_1= 'right' ) )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            // InternalTurtles.g:788:2: ( (enumLiteral_0= 'left' ) | (enumLiteral_1= 'right' ) )
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA7_0==24) ) {
-                alt7=1;
+            if ( (LA11_0==28) ) {
+                alt11=1;
             }
-            else if ( (LA7_0==25) ) {
-                alt7=2;
+            else if ( (LA11_0==29) ) {
+                alt11=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+            switch (alt11) {
                 case 1 :
-                    // InternalTurtles.g:556:3: (enumLiteral_0= 'left' )
+                    // InternalTurtles.g:789:3: (enumLiteral_0= 'left' )
                     {
-                    // InternalTurtles.g:556:3: (enumLiteral_0= 'left' )
-                    // InternalTurtles.g:557:4: enumLiteral_0= 'left'
+                    // InternalTurtles.g:789:3: (enumLiteral_0= 'left' )
+                    // InternalTurtles.g:790:4: enumLiteral_0= 'left'
                     {
-                    enumLiteral_0=(Token)match(input,24,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,28,FOLLOW_2); 
 
                     				current = grammarAccess.getTurnCommandAccess().getLeftEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getTurnCommandAccess().getLeftEnumLiteralDeclaration_0());
@@ -1421,12 +2079,12 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalTurtles.g:564:3: (enumLiteral_1= 'right' )
+                    // InternalTurtles.g:797:3: (enumLiteral_1= 'right' )
                     {
-                    // InternalTurtles.g:564:3: (enumLiteral_1= 'right' )
-                    // InternalTurtles.g:565:4: enumLiteral_1= 'right'
+                    // InternalTurtles.g:797:3: (enumLiteral_1= 'right' )
+                    // InternalTurtles.g:798:4: enumLiteral_1= 'right'
                     {
-                    enumLiteral_1=(Token)match(input,25,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,29,FOLLOW_2); 
 
                     				current = grammarAccess.getTurnCommandAccess().getRightEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getTurnCommandAccess().getRightEnumLiteralDeclaration_1());
@@ -1465,20 +2123,22 @@ public class InternalTurtlesParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000C40832L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x000000000C050832L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000C48830L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x000000000C058830L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000010030L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000003000000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000030000000L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000200020L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000002000020L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000600002L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000001800002L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000002000000L});
 
 }

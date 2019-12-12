@@ -264,13 +264,51 @@ public interface TurtlesPackage extends EPackage
   int INT_EXPRESSION = 6;
 
   /**
+   * The number of structural features of the '<em>Int Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_EXPRESSION_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntLiteralImpl <em>Int Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntLiteralImpl
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getIntLiteral()
+   * @generated
+   */
+  int INT_LITERAL = 7;
+
+  /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INT_EXPRESSION__VAL = 0;
+  int INT_LITERAL__VAL = INT_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Int Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_LITERAL_FEATURE_COUNT = INT_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntVarExpressionImpl <em>Int Var Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntVarExpressionImpl
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getIntVarExpression()
+   * @generated
+   */
+  int INT_VAR_EXPRESSION = 8;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' reference.
@@ -279,16 +317,108 @@ public interface TurtlesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INT_EXPRESSION__VAR = 1;
+  int INT_VAR_EXPRESSION__VAR = INT_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Int Expression</em>' class.
+   * The number of structural features of the '<em>Int Var Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INT_EXPRESSION_FEATURE_COUNT = 2;
+  int INT_VAR_EXPRESSION_FEATURE_COUNT = INT_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.AdditionImpl <em>Addition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.AdditionImpl
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getAddition()
+   * @generated
+   */
+  int ADDITION = 9;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION__LEFT = INT_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION__OPERATOR = INT_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION__RIGHT = INT_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Addition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION_FEATURE_COUNT = INT_EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.MultiplicationImpl <em>Multiplication</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.MultiplicationImpl
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getMultiplication()
+   * @generated
+   */
+  int MULTIPLICATION = 10;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULTIPLICATION__LEFT = INT_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULTIPLICATION__OPERATOR = INT_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULTIPLICATION__RIGHT = INT_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Multiplication</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULTIPLICATION_FEATURE_COUNT = INT_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.MoveCommand <em>Move Command</em>}' enum.
@@ -298,7 +428,7 @@ public interface TurtlesPackage extends EPackage
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getMoveCommand()
    * @generated
    */
-  int MOVE_COMMAND = 7;
+  int MOVE_COMMAND = 11;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.TurnCommand <em>Turn Command</em>}' enum.
@@ -308,7 +438,7 @@ public interface TurtlesPackage extends EPackage
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getTurnCommand()
    * @generated
    */
-  int TURN_COMMAND = 8;
+  int TURN_COMMAND = 12;
 
 
   /**
@@ -481,26 +611,132 @@ public interface TurtlesPackage extends EPackage
   EClass getIntExpression();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression#getVal <em>Val</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral <em>Int Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Int Literal</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral
+   * @generated
+   */
+  EClass getIntLiteral();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral#getVal <em>Val</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Val</em>'.
-   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression#getVal()
-   * @see #getIntExpression()
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral#getVal()
+   * @see #getIntLiteral()
    * @generated
    */
-  EAttribute getIntExpression_Val();
+  EAttribute getIntLiteral_Val();
 
   /**
-   * Returns the meta object for the reference '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression#getVar <em>Var</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression <em>Int Var Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Int Var Expression</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression
+   * @generated
+   */
+  EClass getIntVarExpression();
+
+  /**
+   * Returns the meta object for the reference '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression#getVar <em>Var</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Var</em>'.
-   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression#getVar()
-   * @see #getIntExpression()
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression#getVar()
+   * @see #getIntVarExpression()
    * @generated
    */
-  EReference getIntExpression_Var();
+  EReference getIntVarExpression_Var();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.Addition <em>Addition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Addition</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.Addition
+   * @generated
+   */
+  EClass getAddition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.Addition#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.Addition#getLeft()
+   * @see #getAddition()
+   * @generated
+   */
+  EReference getAddition_Left();
+
+  /**
+   * Returns the meta object for the attribute list '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.Addition#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Operator</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.Addition#getOperator()
+   * @see #getAddition()
+   * @generated
+   */
+  EAttribute getAddition_Operator();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.Addition#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Right</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.Addition#getRight()
+   * @see #getAddition()
+   * @generated
+   */
+  EReference getAddition_Right();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication <em>Multiplication</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Multiplication</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication
+   * @generated
+   */
+  EClass getMultiplication();
+
+  /**
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication#getLeft()
+   * @see #getMultiplication()
+   * @generated
+   */
+  EReference getMultiplication_Left();
+
+  /**
+   * Returns the meta object for the attribute list '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Operator</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication#getOperator()
+   * @see #getMultiplication()
+   * @generated
+   */
+  EAttribute getMultiplication_Operator();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Right</em>'.
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication#getRight()
+   * @see #getMultiplication()
+   * @generated
+   */
+  EReference getMultiplication_Right();
 
   /**
    * Returns the meta object for enum '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.MoveCommand <em>Move Command</em>}'.
@@ -688,12 +924,32 @@ public interface TurtlesPackage extends EPackage
     EClass INT_EXPRESSION = eINSTANCE.getIntExpression();
 
     /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntLiteralImpl <em>Int Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntLiteralImpl
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getIntLiteral()
+     * @generated
+     */
+    EClass INT_LITERAL = eINSTANCE.getIntLiteral();
+
+    /**
      * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute INT_EXPRESSION__VAL = eINSTANCE.getIntExpression_Val();
+    EAttribute INT_LITERAL__VAL = eINSTANCE.getIntLiteral_Val();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntVarExpressionImpl <em>Int Var Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntVarExpressionImpl
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getIntVarExpression()
+     * @generated
+     */
+    EClass INT_VAR_EXPRESSION = eINSTANCE.getIntVarExpression();
 
     /**
      * The meta object literal for the '<em><b>Var</b></em>' reference feature.
@@ -701,7 +957,75 @@ public interface TurtlesPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference INT_EXPRESSION__VAR = eINSTANCE.getIntExpression_Var();
+    EReference INT_VAR_EXPRESSION__VAR = eINSTANCE.getIntVarExpression_Var();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.AdditionImpl <em>Addition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.AdditionImpl
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getAddition()
+     * @generated
+     */
+    EClass ADDITION = eINSTANCE.getAddition();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ADDITION__LEFT = eINSTANCE.getAddition_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADDITION__OPERATOR = eINSTANCE.getAddition_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ADDITION__RIGHT = eINSTANCE.getAddition_Right();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.MultiplicationImpl <em>Multiplication</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.MultiplicationImpl
+     * @see uk.ac.kcl.inf.szschaler.turtles.turtles.impl.TurtlesPackageImpl#getMultiplication()
+     * @generated
+     */
+    EClass MULTIPLICATION = eINSTANCE.getMultiplication();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MULTIPLICATION__LEFT = eINSTANCE.getMultiplication_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MULTIPLICATION__OPERATOR = eINSTANCE.getMultiplication_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MULTIPLICATION__RIGHT = eINSTANCE.getMultiplication_Right();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.MoveCommand <em>Move Command</em>}' enum.

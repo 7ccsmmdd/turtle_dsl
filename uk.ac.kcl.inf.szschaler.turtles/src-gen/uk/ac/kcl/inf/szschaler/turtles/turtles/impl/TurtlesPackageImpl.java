@@ -11,10 +11,14 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Addition;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveCommand;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnCommand;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement;
@@ -79,6 +83,34 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   private EClass intExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intVarExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass additionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass multiplicationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -339,9 +371,9 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   @Override
-  public EAttribute getIntExpression_Val()
+  public EClass getIntLiteral()
   {
-    return (EAttribute)intExpressionEClass.getEStructuralFeatures().get(0);
+    return intLiteralEClass;
   }
 
   /**
@@ -350,9 +382,119 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
    * @generated
    */
   @Override
-  public EReference getIntExpression_Var()
+  public EAttribute getIntLiteral_Val()
   {
-    return (EReference)intExpressionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)intLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIntVarExpression()
+  {
+    return intVarExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getIntVarExpression_Var()
+  {
+    return (EReference)intVarExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAddition()
+  {
+    return additionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAddition_Left()
+  {
+    return (EReference)additionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAddition_Operator()
+  {
+    return (EAttribute)additionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAddition_Right()
+  {
+    return (EReference)additionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMultiplication()
+  {
+    return multiplicationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMultiplication_Left()
+  {
+    return (EReference)multiplicationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMultiplication_Operator()
+  {
+    return (EAttribute)multiplicationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMultiplication_Right()
+  {
+    return (EReference)multiplicationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -430,8 +572,22 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
     createEAttribute(turnStatementEClass, TURN_STATEMENT__DEGREES);
 
     intExpressionEClass = createEClass(INT_EXPRESSION);
-    createEAttribute(intExpressionEClass, INT_EXPRESSION__VAL);
-    createEReference(intExpressionEClass, INT_EXPRESSION__VAR);
+
+    intLiteralEClass = createEClass(INT_LITERAL);
+    createEAttribute(intLiteralEClass, INT_LITERAL__VAL);
+
+    intVarExpressionEClass = createEClass(INT_VAR_EXPRESSION);
+    createEReference(intVarExpressionEClass, INT_VAR_EXPRESSION__VAR);
+
+    additionEClass = createEClass(ADDITION);
+    createEReference(additionEClass, ADDITION__LEFT);
+    createEAttribute(additionEClass, ADDITION__OPERATOR);
+    createEReference(additionEClass, ADDITION__RIGHT);
+
+    multiplicationEClass = createEClass(MULTIPLICATION);
+    createEReference(multiplicationEClass, MULTIPLICATION__LEFT);
+    createEAttribute(multiplicationEClass, MULTIPLICATION__OPERATOR);
+    createEReference(multiplicationEClass, MULTIPLICATION__RIGHT);
 
     // Create enums
     moveCommandEEnum = createEEnum(MOVE_COMMAND);
@@ -471,6 +627,10 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
     loopStatementEClass.getESuperTypes().add(this.getStatement());
     moveStatementEClass.getESuperTypes().add(this.getStatement());
     turnStatementEClass.getESuperTypes().add(this.getStatement());
+    intLiteralEClass.getESuperTypes().add(this.getIntExpression());
+    intVarExpressionEClass.getESuperTypes().add(this.getIntExpression());
+    additionEClass.getESuperTypes().add(this.getIntExpression());
+    multiplicationEClass.getESuperTypes().add(this.getIntExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(turtleProgramEClass, TurtleProgram.class, "TurtleProgram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -495,8 +655,22 @@ public class TurtlesPackageImpl extends EPackageImpl implements TurtlesPackage
     initEAttribute(getTurnStatement_Degrees(), ecorePackage.getEFloat(), "degrees", null, 0, 1, TurnStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intExpressionEClass, IntExpression.class, "IntExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getIntExpression_Val(), ecorePackage.getEInt(), "val", null, 0, 1, IntExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getIntExpression_Var(), this.getVariableDeclaration(), null, "var", null, 0, 1, IntExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(intLiteralEClass, IntLiteral.class, "IntLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIntLiteral_Val(), ecorePackage.getEInt(), "val", null, 0, 1, IntLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(intVarExpressionEClass, IntVarExpression.class, "IntVarExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIntVarExpression_Var(), this.getVariableDeclaration(), null, "var", null, 0, 1, IntVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(additionEClass, Addition.class, "Addition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAddition_Left(), this.getIntExpression(), null, "left", null, 0, 1, Addition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAddition_Operator(), ecorePackage.getEString(), "operator", null, 0, -1, Addition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAddition_Right(), this.getIntExpression(), null, "right", null, 0, -1, Addition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(multiplicationEClass, Multiplication.class, "Multiplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMultiplication_Left(), this.getIntExpression(), null, "left", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMultiplication_Operator(), ecorePackage.getEString(), "operator", null, 0, -1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMultiplication_Right(), this.getIntExpression(), null, "right", null, 0, -1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(moveCommandEEnum, MoveCommand.class, "MoveCommand");

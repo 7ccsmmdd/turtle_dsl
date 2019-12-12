@@ -87,6 +87,42 @@ public interface TurtlesFactory extends EFactory
   IntExpression createIntExpression();
 
   /**
+   * Returns a new object of class '<em>Int Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Literal</em>'.
+   * @generated
+   */
+  IntLiteral createIntLiteral();
+
+  /**
+   * Returns a new object of class '<em>Int Var Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Var Expression</em>'.
+   * @generated
+   */
+  IntVarExpression createIntVarExpression();
+
+  /**
+   * Returns a new object of class '<em>Addition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Addition</em>'.
+   * @generated
+   */
+  Addition createAddition();
+
+  /**
+   * Returns a new object of class '<em>Multiplication</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multiplication</em>'.
+   * @generated
+   */
+  Multiplication createMultiplication();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

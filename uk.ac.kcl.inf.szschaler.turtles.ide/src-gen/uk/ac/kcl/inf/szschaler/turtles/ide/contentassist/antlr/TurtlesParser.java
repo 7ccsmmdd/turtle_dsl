@@ -32,13 +32,20 @@ public class TurtlesParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, TurtlesGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
-			builder.put(grammarAccess.getIntExpressionAccess().getAlternatives(), "rule__IntExpression__Alternatives");
+			builder.put(grammarAccess.getAdditionAccess().getOperatorAlternatives_1_1_0(), "rule__Addition__OperatorAlternatives_1_1_0");
+			builder.put(grammarAccess.getMultiplicationAccess().getOperatorAlternatives_1_1_0(), "rule__Multiplication__OperatorAlternatives_1_1_0");
+			builder.put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
 			builder.put(grammarAccess.getMoveCommandAccess().getAlternatives(), "rule__MoveCommand__Alternatives");
 			builder.put(grammarAccess.getTurnCommandAccess().getAlternatives(), "rule__TurnCommand__Alternatives");
 			builder.put(grammarAccess.getVariableDeclarationAccess().getGroup(), "rule__VariableDeclaration__Group__0");
 			builder.put(grammarAccess.getLoopStatementAccess().getGroup(), "rule__LoopStatement__Group__0");
 			builder.put(grammarAccess.getMoveStatementAccess().getGroup(), "rule__MoveStatement__Group__0");
 			builder.put(grammarAccess.getTurnStatementAccess().getGroup(), "rule__TurnStatement__Group__0");
+			builder.put(grammarAccess.getAdditionAccess().getGroup(), "rule__Addition__Group__0");
+			builder.put(grammarAccess.getAdditionAccess().getGroup_1(), "rule__Addition__Group_1__0");
+			builder.put(grammarAccess.getMultiplicationAccess().getGroup(), "rule__Multiplication__Group__0");
+			builder.put(grammarAccess.getMultiplicationAccess().getGroup_1(), "rule__Multiplication__Group_1__0");
+			builder.put(grammarAccess.getPrimaryAccess().getGroup_2(), "rule__Primary__Group_2__0");
 			builder.put(grammarAccess.getREALAccess().getGroup(), "rule__REAL__Group__0");
 			builder.put(grammarAccess.getTurtleProgramAccess().getStatementsAssignment(), "rule__TurtleProgram__StatementsAssignment");
 			builder.put(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1(), "rule__VariableDeclaration__NameAssignment_1");
@@ -49,8 +56,12 @@ public class TurtlesParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMoveStatementAccess().getStepsAssignment_2(), "rule__MoveStatement__StepsAssignment_2");
 			builder.put(grammarAccess.getTurnStatementAccess().getCommandAssignment_1(), "rule__TurnStatement__CommandAssignment_1");
 			builder.put(grammarAccess.getTurnStatementAccess().getDegreesAssignment_3(), "rule__TurnStatement__DegreesAssignment_3");
-			builder.put(grammarAccess.getIntExpressionAccess().getValAssignment_0(), "rule__IntExpression__ValAssignment_0");
-			builder.put(grammarAccess.getIntExpressionAccess().getVarAssignment_1(), "rule__IntExpression__VarAssignment_1");
+			builder.put(grammarAccess.getAdditionAccess().getOperatorAssignment_1_1(), "rule__Addition__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_2(), "rule__Addition__RightAssignment_1_2");
+			builder.put(grammarAccess.getMultiplicationAccess().getOperatorAssignment_1_1(), "rule__Multiplication__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getMultiplicationAccess().getRightAssignment_1_2(), "rule__Multiplication__RightAssignment_1_2");
+			builder.put(grammarAccess.getIntLiteralAccess().getValAssignment(), "rule__IntLiteral__ValAssignment");
+			builder.put(grammarAccess.getIntVarExpressionAccess().getVarAssignment(), "rule__IntVarExpression__VarAssignment");
 		}
 	}
 	

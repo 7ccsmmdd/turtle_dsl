@@ -73,6 +73,10 @@ public class TurtlesFactoryImpl extends EFactoryImpl implements TurtlesFactory
       case TurtlesPackage.MOVE_STATEMENT: return createMoveStatement();
       case TurtlesPackage.TURN_STATEMENT: return createTurnStatement();
       case TurtlesPackage.INT_EXPRESSION: return createIntExpression();
+      case TurtlesPackage.INT_LITERAL: return createIntLiteral();
+      case TurtlesPackage.INT_VAR_EXPRESSION: return createIntVarExpression();
+      case TurtlesPackage.ADDITION: return createAddition();
+      case TurtlesPackage.MULTIPLICATION: return createMultiplication();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -198,6 +202,54 @@ public class TurtlesFactoryImpl extends EFactoryImpl implements TurtlesFactory
   {
     IntExpressionImpl intExpression = new IntExpressionImpl();
     return intExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntLiteral createIntLiteral()
+  {
+    IntLiteralImpl intLiteral = new IntLiteralImpl();
+    return intLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntVarExpression createIntVarExpression()
+  {
+    IntVarExpressionImpl intVarExpression = new IntVarExpressionImpl();
+    return intVarExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Addition createAddition()
+  {
+    AdditionImpl addition = new AdditionImpl();
+    return addition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Multiplication createMultiplication()
+  {
+    MultiplicationImpl multiplication = new MultiplicationImpl();
+    return multiplication;
   }
 
   /**
