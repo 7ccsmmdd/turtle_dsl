@@ -1,5 +1,6 @@
 '('=20
 ')'=21
+'.'=25
 '='=16
 'backward'=12
 'by'=23
@@ -13,8 +14,8 @@
 'turn'=22
 'var'=15
 RULE_ANY_OTHER=10
-RULE_ID=4
-RULE_INT=5
+RULE_ID=5
+RULE_INT=4
 RULE_ML_COMMENT=7
 RULE_SL_COMMENT=8
 RULE_STRING=6
@@ -33,3 +34,4 @@ T__21=21
 T__22=22
 T__23=23
 T__24=24
+T__25=25

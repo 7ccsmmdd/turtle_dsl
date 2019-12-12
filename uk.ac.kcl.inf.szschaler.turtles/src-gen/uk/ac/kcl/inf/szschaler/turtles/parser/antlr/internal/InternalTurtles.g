@@ -393,19 +393,20 @@ ruleTurnStatement returns [EObject current=null]
 		}
 		(
 			(
-				lv_degrees_3_0=RULE_INT
 				{
-					newLeafNode(lv_degrees_3_0, grammarAccess.getTurnStatementAccess().getDegreesINTTerminalRuleCall_3_0());
+					newCompositeNode(grammarAccess.getTurnStatementAccess().getDegreesREALParserRuleCall_3_0());
 				}
+				lv_degrees_3_0=ruleREAL
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTurnStatementRule());
+						$current = createModelElementForParent(grammarAccess.getTurnStatementRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
 						"degrees",
 						lv_degrees_3_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"uk.ac.kcl.inf.szschaler.turtles.Turtles.REAL");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -466,6 +467,55 @@ ruleIntExpression returns [EObject current=null]
 		)
 	)
 ;
+
+// Entry rule entryRuleREAL
+entryRuleREAL returns [String current=null]@init {
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+}:
+	{ newCompositeNode(grammarAccess.getREALRule()); }
+	iv_ruleREAL=ruleREAL
+	{ $current=$iv_ruleREAL.current.getText(); }
+	EOF;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule REAL
+ruleREAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			this_INT_0=RULE_INT
+			{
+				$current.merge(this_INT_0);
+			}
+			{
+				newLeafNode(this_INT_0, grammarAccess.getREALAccess().getINTTerminalRuleCall_0());
+			}
+		)?
+		kw='.'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getREALAccess().getFullStopKeyword_1());
+		}
+		this_INT_2=RULE_INT
+		{
+			$current.merge(this_INT_2);
+		}
+		{
+			newLeafNode(this_INT_2, grammarAccess.getREALAccess().getINTTerminalRuleCall_2());
+		}
+	)
+;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule MoveCommand
 ruleMoveCommand returns [Enumerator current=null]

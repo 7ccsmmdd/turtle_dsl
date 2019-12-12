@@ -113,7 +113,7 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     TurnStatement returns TurnStatement
 	 *
 	 * Constraint:
-	 *     (command=TurnCommand degrees=INT)
+	 *     (command=TurnCommand degrees=REAL)
 	 */
 	protected void sequence_TurnStatement(ISerializationContext context, TurnStatement semanticObject) {
 		if (errorAcceptor != null) {
@@ -124,7 +124,7 @@ public class TurtlesSemanticSequencer extends AbstractDelegatingSemanticSequence
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTurnStatementAccess().getCommandTurnCommandEnumRuleCall_1_0(), semanticObject.getCommand());
-		feeder.accept(grammarAccess.getTurnStatementAccess().getDegreesINTTerminalRuleCall_3_0(), semanticObject.getDegrees());
+		feeder.accept(grammarAccess.getTurnStatementAccess().getDegreesREALParserRuleCall_3_0(), semanticObject.getDegrees());
 		feeder.finish();
 	}
 	

@@ -187,14 +187,14 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCommandTurnCommandEnumRuleCall_1_0 = (RuleCall)cCommandAssignment_1.eContents().get(0);
 		private final Keyword cByKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cDegreesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDegreesINTTerminalRuleCall_3_0 = (RuleCall)cDegreesAssignment_3.eContents().get(0);
+		private final RuleCall cDegreesREALParserRuleCall_3_0 = (RuleCall)cDegreesAssignment_3.eContents().get(0);
 		private final Keyword cDegreesKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//TurnStatement:
-		//	"turn" command=TurnCommand "by" degrees=INT "degrees";
+		//	"turn" command=TurnCommand "by" degrees=REAL "degrees";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"turn" command=TurnCommand "by" degrees=INT "degrees"
+		//"turn" command=TurnCommand "by" degrees=REAL "degrees"
 		public Group getGroup() { return cGroup; }
 		
 		//"turn"
@@ -209,11 +209,11 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		//"by"
 		public Keyword getByKeyword_2() { return cByKeyword_2; }
 		
-		//degrees=INT
+		//degrees=REAL
 		public Assignment getDegreesAssignment_3() { return cDegreesAssignment_3; }
 		
-		//INT
-		public RuleCall getDegreesINTTerminalRuleCall_3_0() { return cDegreesINTTerminalRuleCall_3_0; }
+		//REAL
+		public RuleCall getDegreesREALParserRuleCall_3_0() { return cDegreesREALParserRuleCall_3_0; }
 		
 		//"degrees"
 		public Keyword getDegreesKeyword_4() { return cDegreesKeyword_4; }
@@ -248,6 +248,29 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getVarVariableDeclarationIDTerminalRuleCall_1_0_1() { return cVarVariableDeclarationIDTerminalRuleCall_1_0_1; }
+	}
+	public class REALElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.szschaler.turtles.Turtles.REAL");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//REAL ecore::EFloat hidden():
+		//	INT? "." INT;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//INT? "." INT
+		public Group getGroup() { return cGroup; }
+		
+		//INT?
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+		
+		//"."
+		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
+		
+		//INT
+		public RuleCall getINTTerminalRuleCall_2() { return cINTTerminalRuleCall_2; }
 	}
 	
 	public class MoveCommandElements extends AbstractEnumRuleElementFinder {
@@ -314,6 +337,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	private final TurnStatementElements pTurnStatement;
 	private final TurnCommandElements eTurnCommand;
 	private final IntExpressionElements pIntExpression;
+	private final REALElements pREAL;
 	
 	private final Grammar grammar;
 	
@@ -333,6 +357,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTurnStatement = new TurnStatementElements();
 		this.eTurnCommand = new TurnCommandElements();
 		this.pIntExpression = new IntExpressionElements();
+		this.pREAL = new REALElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -425,7 +450,7 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TurnStatement:
-	//	"turn" command=TurnCommand "by" degrees=INT "degrees";
+	//	"turn" command=TurnCommand "by" degrees=REAL "degrees";
 	public TurnStatementElements getTurnStatementAccess() {
 		return pTurnStatement;
 	}
@@ -452,6 +477,16 @@ public class TurtlesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIntExpressionRule() {
 		return getIntExpressionAccess().getRule();
+	}
+	
+	//REAL ecore::EFloat hidden():
+	//	INT? "." INT;
+	public REALElements getREALAccess() {
+		return pREAL;
+	}
+	
+	public ParserRule getREALRule() {
+		return getREALAccess().getRule();
 	}
 	
 	//terminal ID:

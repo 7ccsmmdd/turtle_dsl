@@ -39,6 +39,7 @@ public class TurtlesParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLoopStatementAccess().getGroup(), "rule__LoopStatement__Group__0");
 			builder.put(grammarAccess.getMoveStatementAccess().getGroup(), "rule__MoveStatement__Group__0");
 			builder.put(grammarAccess.getTurnStatementAccess().getGroup(), "rule__TurnStatement__Group__0");
+			builder.put(grammarAccess.getREALAccess().getGroup(), "rule__REAL__Group__0");
 			builder.put(grammarAccess.getTurtleProgramAccess().getStatementsAssignment(), "rule__TurtleProgram__StatementsAssignment");
 			builder.put(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1(), "rule__VariableDeclaration__NameAssignment_1");
 			builder.put(grammarAccess.getVariableDeclarationAccess().getValueAssignment_3(), "rule__VariableDeclaration__ValueAssignment_3");

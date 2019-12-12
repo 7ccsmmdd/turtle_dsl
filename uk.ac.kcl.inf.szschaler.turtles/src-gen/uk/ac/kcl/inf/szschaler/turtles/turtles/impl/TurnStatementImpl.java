@@ -57,7 +57,7 @@ public class TurnStatementImpl extends StatementImpl implements TurnStatement
    * @generated
    * @ordered
    */
-  protected static final int DEGREES_EDEFAULT = 0;
+  protected static final float DEGREES_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getDegrees() <em>Degrees</em>}' attribute.
@@ -67,7 +67,7 @@ public class TurnStatementImpl extends StatementImpl implements TurnStatement
    * @generated
    * @ordered
    */
-  protected int degrees = DEGREES_EDEFAULT;
+  protected float degrees = DEGREES_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,7 +121,7 @@ public class TurnStatementImpl extends StatementImpl implements TurnStatement
    * @generated
    */
   @Override
-  public int getDegrees()
+  public float getDegrees()
   {
     return degrees;
   }
@@ -132,9 +132,9 @@ public class TurnStatementImpl extends StatementImpl implements TurnStatement
    * @generated
    */
   @Override
-  public void setDegrees(int newDegrees)
+  public void setDegrees(float newDegrees)
   {
-    int oldDegrees = degrees;
+    float oldDegrees = degrees;
     degrees = newDegrees;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.TURN_STATEMENT__DEGREES, oldDegrees, degrees));
@@ -172,7 +172,7 @@ public class TurnStatementImpl extends StatementImpl implements TurnStatement
         setCommand((TurnCommand)newValue);
         return;
       case TurtlesPackage.TURN_STATEMENT__DEGREES:
-        setDegrees((Integer)newValue);
+        setDegrees((Float)newValue);
         return;
     }
     super.eSet(featureID, newValue);

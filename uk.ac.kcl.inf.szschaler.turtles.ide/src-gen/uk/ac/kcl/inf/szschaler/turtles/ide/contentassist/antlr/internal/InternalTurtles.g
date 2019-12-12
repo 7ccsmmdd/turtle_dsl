@@ -224,6 +224,39 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleREAL
+entryRuleREAL
+@init { 
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+}
+:
+{ before(grammarAccess.getREALRule()); }
+	 ruleREAL
+{ after(grammarAccess.getREALRule()); } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule REAL
+ruleREAL 
+	@init {
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getREALAccess().getGroup()); }
+		(rule__REAL__Group__0)
+		{ after(grammarAccess.getREALAccess().getGroup()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+	myHiddenTokenState.restore();
+}
+
 // Rule MoveCommand
 ruleMoveCommand
 	@init {
@@ -845,6 +878,87 @@ finally {
 }
 
 
+rule__REAL__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__REAL__Group__0__Impl
+	rule__REAL__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__REAL__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getREALAccess().getINTTerminalRuleCall_0()); }
+	(RULE_INT)?
+	{ after(grammarAccess.getREALAccess().getINTTerminalRuleCall_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__REAL__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__REAL__Group__1__Impl
+	rule__REAL__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__REAL__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getREALAccess().getFullStopKeyword_1()); }
+	'.'
+	{ after(grammarAccess.getREALAccess().getFullStopKeyword_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__REAL__Group__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__REAL__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__REAL__Group__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getREALAccess().getINTTerminalRuleCall_2()); }
+	RULE_INT
+	{ after(grammarAccess.getREALAccess().getINTTerminalRuleCall_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 rule__TurtleProgram__StatementsAssignment
 	@init {
 		int stackSize = keepStackSize();
@@ -971,9 +1085,9 @@ rule__TurnStatement__DegreesAssignment_3
 	}
 :
 	(
-		{ before(grammarAccess.getTurnStatementAccess().getDegreesINTTerminalRuleCall_3_0()); }
-		RULE_INT
-		{ after(grammarAccess.getTurnStatementAccess().getDegreesINTTerminalRuleCall_3_0()); }
+		{ before(grammarAccess.getTurnStatementAccess().getDegreesREALParserRuleCall_3_0()); }
+		ruleREAL
+		{ after(grammarAccess.getTurnStatementAccess().getDegreesREALParserRuleCall_3_0()); }
 	)
 ;
 finally {

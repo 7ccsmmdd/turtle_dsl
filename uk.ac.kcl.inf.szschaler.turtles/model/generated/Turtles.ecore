@@ -28,7 +28,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TurnStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="command" eType="#//TurnCommand"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="degrees" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="degrees" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TurnCommand">
     <eLiterals name="left" literal="left"/>

@@ -53,12 +53,12 @@ public interface TurnStatement extends Statement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Degrees</em>' attribute.
-   * @see #setDegrees(int)
+   * @see #setDegrees(float)
    * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getTurnStatement_Degrees()
    * @model
    * @generated
    */
-  int getDegrees();
+  float getDegrees();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement#getDegrees <em>Degrees</em>}' attribute.
@@ -68,6 +68,6 @@ public interface TurnStatement extends Statement
    * @see #getDegrees()
    * @generated
    */
-  void setDegrees(int value);
+  void setDegrees(float value);
 
 } // TurnStatement

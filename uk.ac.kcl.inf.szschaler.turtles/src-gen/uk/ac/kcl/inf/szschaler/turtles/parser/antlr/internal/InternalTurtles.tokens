@@ -1,14 +1,15 @@
 '('=16
 ')'=17
+'.'=21
 '='=12
-'backward'=22
+'backward'=23
 'by'=19
 'degrees'=20
 'do'=14
 'end'=15
-'forward'=21
-'left'=23
-'right'=24
+'forward'=22
+'left'=24
+'right'=25
 'times'=13
 'turn'=18
 'var'=11
@@ -33,3 +34,4 @@ T__21=21
 T__22=22
 T__23=23
 T__24=24
+T__25=25
