@@ -227,17 +227,17 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_sJwG8hzCEeqUkMlPpey35w" type="4001" element="_sIrI5hzCEeqUkMlPpey35w" source="_sJMtVBzCEeqUkMlPpey35w" target="_sJK4IBzCEeqUkMlPpey35w">
           <children xmi:type="notation:Node" xmi:id="_sJwuABzCEeqUkMlPpey35w" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sJwuARzCEeqUkMlPpey35w" x="125" y="10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sJwuARzCEeqUkMlPpey35w" x="108" y="10"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_sJwuAhzCEeqUkMlPpey35w" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sJwuAxzCEeqUkMlPpey35w" x="34" y="35"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sJwuAxzCEeqUkMlPpey35w" x="39" y="70"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_sJxVEBzCEeqUkMlPpey35w" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sJxVERzCEeqUkMlPpey35w" x="-34" y="-10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sJxVERzCEeqUkMlPpey35w" x="-39" y="-10"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_sJwG8xzCEeqUkMlPpey35w" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_sJwG9BzCEeqUkMlPpey35w" fontColor="7490599" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sJwG9RzCEeqUkMlPpey35w" points="[0, 0, 345, 7]$[0, -79, 345, -72]$[-287, -79, 58, -72]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sJwG9RzCEeqUkMlPpey35w" points="[-35, 0, 310, 7]$[-35, -80, 310, -73]$[-287, -80, 58, -73]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sJx8IBzCEeqUkMlPpey35w" id="(0.5084745762711864,0.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sJx8IRzCEeqUkMlPpey35w" id="(0.5084745762711864,2.2790697674418605)"/>
         </edges>
