@@ -7,6 +7,10 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +20,19 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class TurtlesGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		val model = resource.contents.head as TurtleProgram
+		fsa.generateFile(deriveTargetFileNameFor(model, resource), model.doGenerate)
 	}
+	
+	def deriveTargetFileNameFor(TurtleProgram program, Resource resource) {
+		resource.URI.appendFileExtension('txt').lastSegment
+	}
+	
+	def String doGenerate(TurtleProgram program) '''
+		Program contains:
+		
+		- «program.eAllContents.filter(TurnStatement).size» turn commands
+		- «program.eAllContents.filter(MoveStatement).size» move commands
+		- «program.statements.filter(LoopStatement).size» top-level loops
+	'''
 }
