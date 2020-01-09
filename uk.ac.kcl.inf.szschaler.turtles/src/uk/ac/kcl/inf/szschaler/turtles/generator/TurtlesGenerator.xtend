@@ -11,6 +11,7 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
+import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
 
 /**
  * Generates code from your model files on save.
@@ -34,5 +35,6 @@ class TurtlesGenerator extends AbstractGenerator {
 		- «program.eAllContents.filter(TurnStatement).size» turn commands
 		- «program.eAllContents.filter(MoveStatement).size» move commands
 		- «program.statements.filter(LoopStatement).size» top-level loops
+		- «program.eAllContents.filter(VariableDeclaration).size» variable declarations
 	'''
 }

@@ -6,6 +6,7 @@ Program contains:
 - 2 turn commands
 - 2 move commands
 - 1 top-level loops
+- 2 variable declarations
 ---
 */
 var loopCounter = 10
