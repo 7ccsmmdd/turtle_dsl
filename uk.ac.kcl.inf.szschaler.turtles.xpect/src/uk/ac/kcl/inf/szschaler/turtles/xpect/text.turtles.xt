@@ -1,4 +1,13 @@
 /* XPECT_SETUP uk.ac.kcl.inf.szschaler.turtles.xpect.XPectTests  END_SETUP */
+/*
+XPECT generated ---
+Program contains:
+
+- 2 turn commands
+- 2 move commands
+- 1 top-level loops
+---
+*/
 var loopCounter = 10
 
 // XPECT scope at loopCounter --> !stepCount, loopCounter, ... 
@@ -12,3 +21,4 @@ var loopCounter = 10
 	backward (stepCount)
 	turn right by 20.0 degrees
 end
+
