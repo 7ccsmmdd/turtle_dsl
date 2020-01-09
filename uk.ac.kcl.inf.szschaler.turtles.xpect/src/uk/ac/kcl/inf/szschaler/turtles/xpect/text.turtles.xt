@@ -1,12 +1,37 @@
 /* XPECT_SETUP uk.ac.kcl.inf.szschaler.turtles.xpect.XPectTests  END_SETUP */
 /*
-XPECT generated ---
+XPECT generated file text.turtles.xt.txt ---
 Program contains:
 
 - 2 turn commands
 - 2 move commands
 - 1 top-level loops
 - 2 variable declarations
+---
+
+XPECT generated file TextTurtle.java ---
+import uk.ac.kcl.inf.szschaler.turtles.library.*
+
+public class TextTurtle {
+
+	public static void main (String[] args) {
+		TurtlesFrame tf = new TurtlesFrame();
+		
+		Turtle t = new Turtle(tf) {
+			@Override
+			protected void run() {
+				for (int i0 = 0; i0 < (10 + 3) * 7; i0++) {
+					moveForward(10);
+					rotate(-90.0);
+					moveBackward(10);
+					rotate(20.0);					
+				}
+			}
+		};
+		
+		t.run();
+	}
+}
 ---
 */
 var loopCounter = 10

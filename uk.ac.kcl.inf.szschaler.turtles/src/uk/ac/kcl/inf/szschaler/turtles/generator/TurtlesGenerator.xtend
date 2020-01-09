@@ -12,6 +12,13 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
 import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnCommand
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Addition
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression
 
 /**
  * Generates code from your model files on save.
@@ -22,14 +29,23 @@ class TurtlesGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val model = resource.contents.head as TurtleProgram
-		fsa.generateFile(deriveTargetFileNameFor(model, resource), model.doGenerate)
+		fsa.generateFile(resource.deriveStatsTargetFileNameFor, model.doGenerateStats)
+		
+		val className = resource.deriveClassNameFor
+		fsa.generateFile(className + '.java', model.doGenerateClass(className))
 	}
 	
-	def deriveTargetFileNameFor(TurtleProgram program, Resource resource) {
+	def deriveStatsTargetFileNameFor(Resource resource) {
 		resource.URI.appendFileExtension('txt').lastSegment
 	}
 	
-	def String doGenerate(TurtleProgram program) '''
+	def deriveClassNameFor(Resource resource) {
+		val origName = resource.URI.lastSegment
+		
+		origName.substring(0, origName.indexOf('.')).toFirstUpper + 'Turtle'
+	}
+	
+	def String doGenerateStats(TurtleProgram program) '''
 		Program contains:
 		
 		- «program.eAllContents.filter(TurnStatement).size» turn commands
@@ -37,4 +53,58 @@ class TurtlesGenerator extends AbstractGenerator {
 		- «program.statements.filter(LoopStatement).size» top-level loops
 		- «program.eAllContents.filter(VariableDeclaration).size» variable declarations
 	'''
+	
+	def String doGenerateClass(TurtleProgram program, String className) '''
+		import uk.ac.kcl.inf.szschaler.turtles.library.*
+		
+		public class «className» {
+
+			public static void main (String[] args) {
+				TurtlesFrame tf = new TurtlesFrame();
+				
+				Turtle t = new Turtle(tf) {
+					@Override
+					protected void run() {
+						«program.statements.map[generateJavaStatement(new Environment)].join('\n')»
+					}
+				};
+				
+				t.run();
+			}
+		}
+	'''
+	
+	private static class Environment {
+		var int counter = 0
+		
+		def getFreshVarName() '''i«counter++»'''
+		
+		def exit() { counter-- }
+	}
+	
+	dispatch def String generateJavaStatement(Statement stmt, Environment env) ''''''
+	dispatch def String generateJavaStatement(MoveStatement stmt, Environment env) '''move«stmt.command.getName.toFirstUpper»(«stmt.steps.generateJavaExpression»);'''
+	dispatch def String generateJavaStatement(TurnStatement stmt, Environment env) '''rotate(«if (stmt.command === TurnCommand.LEFT) {'''-'''}»«stmt.degrees»);'''
+	dispatch def String generateJavaStatement(LoopStatement stmt, Environment env) {
+		val freshVarName = env.getFreshVarName
+		
+		val result = 
+		'''
+			for (int «freshVarName» = 0; «freshVarName» < «stmt.count.generateJavaExpression»; «freshVarName»++) {
+				«stmt.statements.map[generateJavaStatement(env)].join('\n')»
+			}
+		'''
+		
+		env.exit
+		
+		result
+	}
+	
+	dispatch def String generateJavaExpression(IntExpression exp) ''''''
+	dispatch def String generateJavaExpression(Addition exp) '''
+		(«exp.left.generateJavaExpression»«FOR idx: (0..exp.operator.size-1)» «exp.operator.get(idx)» «exp.right.get(idx).generateJavaExpression»«ENDFOR»)'''
+	dispatch def String generateJavaExpression(Multiplication exp) '''
+		«exp.left.generateJavaExpression»«FOR idx: (0..exp.operator.size-1)» «exp.operator.get(idx)» «exp.right.get(idx).generateJavaExpression»«ENDFOR»'''
+	dispatch def String generateJavaExpression(IntLiteral exp) '''«exp.^val»'''
+	dispatch def String generateJavaExpression(IntVarExpression exp) '''«exp.^var.value»'''
 }
