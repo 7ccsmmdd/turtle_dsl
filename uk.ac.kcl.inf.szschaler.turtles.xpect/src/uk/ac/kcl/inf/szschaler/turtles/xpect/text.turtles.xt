@@ -10,7 +10,7 @@ Program contains:
 ---
 
 XPECT generated file TextTurtle.java ---
-import uk.ac.kcl.inf.szschaler.turtles.library.*
+import uk.ac.kcl.inf.szschaler.turtles.library.*;
 
 public class TextTurtle {
 
@@ -19,12 +19,12 @@ public class TextTurtle {
 		
 		Turtle t = new Turtle(tf) {
 			@Override
-			protected void run() {
+			public void run() {
 				for (int i0 = 0; i0 < (10 + 3) * 7; i0++) {
 					moveForward(10);
-					rotate(-90.0);
+					rotate(-90.0f);
 					moveBackward(10);
-					rotate(20.0);					
+					rotate(20.0f);					
 				}
 			}
 		};

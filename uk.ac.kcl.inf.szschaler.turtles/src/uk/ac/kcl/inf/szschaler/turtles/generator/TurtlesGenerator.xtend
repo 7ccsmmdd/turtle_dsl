@@ -55,7 +55,7 @@ class TurtlesGenerator extends AbstractGenerator {
 	'''
 	
 	def String doGenerateClass(TurtleProgram program, String className) '''
-		import uk.ac.kcl.inf.szschaler.turtles.library.*
+		import uk.ac.kcl.inf.szschaler.turtles.library.*;
 		
 		public class «className» {
 
@@ -64,7 +64,7 @@ class TurtlesGenerator extends AbstractGenerator {
 				
 				Turtle t = new Turtle(tf) {
 					@Override
-					protected void run() {
+					public void run() {
 						«program.statements.map[generateJavaStatement(new Environment)].join('\n')»
 					}
 				};
@@ -84,7 +84,7 @@ class TurtlesGenerator extends AbstractGenerator {
 	
 	dispatch def String generateJavaStatement(Statement stmt, Environment env) ''''''
 	dispatch def String generateJavaStatement(MoveStatement stmt, Environment env) '''move«stmt.command.getName.toFirstUpper»(«stmt.steps.generateJavaExpression»);'''
-	dispatch def String generateJavaStatement(TurnStatement stmt, Environment env) '''rotate(«if (stmt.command === TurnCommand.LEFT) {'''-'''}»«stmt.degrees»);'''
+	dispatch def String generateJavaStatement(TurnStatement stmt, Environment env) '''rotate(«if (stmt.command === TurnCommand.LEFT) {'''-'''}»«stmt.degrees»f);'''
 	dispatch def String generateJavaStatement(LoopStatement stmt, Environment env) {
 		val freshVarName = env.getFreshVarName
 		
