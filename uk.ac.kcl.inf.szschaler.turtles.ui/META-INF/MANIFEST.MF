@@ -17,7 +17,9 @@ Require-Bundle: uk.ac.kcl.inf.szschaler.turtles,
  org.eclipse.compare,
  org.eclipse.xtext.builder,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
- org.eclipse.xtend.lib;bundle-version="2.14.0";resolution:=optional
+ org.eclipse.xtend.lib;bundle-version="2.14.0";resolution:=optional,
+ org.eclipse.jdt.core;bundle-version="3.18.0",
+ org.eclipse.jdt.launching;bundle-version="3.14.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: uk.ac.kcl.inf.szschaler.turtles.ui.contentassist,

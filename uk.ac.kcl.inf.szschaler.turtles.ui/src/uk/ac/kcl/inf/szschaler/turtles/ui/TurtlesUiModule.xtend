@@ -4,10 +4,30 @@
 package uk.ac.kcl.inf.szschaler.turtles.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2
+import org.eclipse.xtext.generator.GeneratorDelegate
+import uk.ac.kcl.inf.szschaler.turtles.ui.generator.EclipseResourceFileSystemAccess3
+import uk.ac.kcl.inf.szschaler.turtles.ui.generator.TurtlesGeneratorDelegate
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class TurtlesUiModule extends AbstractTurtlesUiModule {
+	/**
+	 * Replace the generator delegate with our own, so we can add additional behaviour whenever the generator is called.
+	 */
+	def Class<? extends GeneratorDelegate> bindGeneratorDelegate() {
+		TurtlesGeneratorDelegate
+	}
+	
+	/**
+	 * Inject our own subclass of the file-system access so that we can make the project publicly accessible. A little bit
+	 * annoying: this is a workaround for a bug in Xtext where the project is only accessible to subclasses. In particular,
+	 * need to watch out here for cases where Xtext wants to use a different file-system access subclass of
+	 * EclipseResourceFileSystemAccess2 itself. 
+	 */
+	def Class<? extends EclipseResourceFileSystemAccess2> bindEclipseResourceFileSystemAccess2() {
+		EclipseResourceFileSystemAccess3
+	}
 }
