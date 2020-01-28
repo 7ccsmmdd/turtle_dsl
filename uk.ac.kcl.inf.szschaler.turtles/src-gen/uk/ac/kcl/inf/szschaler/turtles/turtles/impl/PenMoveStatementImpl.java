@@ -9,50 +9,51 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.PenMoveStatement;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.PenState;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Int Literal</b></em>'.
+ * An implementation of the model object '<em><b>Pen Move Statement</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntLiteralImpl#getVal <em>Val</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.PenMoveStatementImpl#getState <em>State</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
+public class PenMoveStatementImpl extends StatementImpl implements PenMoveStatement
 {
   /**
-   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * The default value of the '{@link #getState() <em>State</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVal()
+   * @see #getState()
    * @generated
    * @ordered
    */
-  protected static final int VAL_EDEFAULT = 0;
+  protected static final PenState STATE_EDEFAULT = PenState.UP;
 
   /**
-   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * The cached value of the '{@link #getState() <em>State</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVal()
+   * @see #getState()
    * @generated
    * @ordered
    */
-  protected int val = VAL_EDEFAULT;
+  protected PenState state = STATE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IntLiteralImpl()
+  protected PenMoveStatementImpl()
   {
     super();
   }
@@ -65,7 +66,7 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   @Override
   protected EClass eStaticClass()
   {
-    return TurtlesPackage.Literals.INT_LITERAL;
+    return TurtlesPackage.Literals.PEN_MOVE_STATEMENT;
   }
 
   /**
@@ -74,9 +75,9 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
    * @generated
    */
   @Override
-  public int getVal()
+  public PenState getState()
   {
-    return val;
+    return state;
   }
 
   /**
@@ -85,12 +86,12 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
    * @generated
    */
   @Override
-  public void setVal(int newVal)
+  public void setState(PenState newState)
   {
-    int oldVal = val;
-    val = newVal;
+    PenState oldState = state;
+    state = newState == null ? STATE_EDEFAULT : newState;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.INT_LITERAL__VAL, oldVal, val));
+      eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.PEN_MOVE_STATEMENT__STATE, oldState, state));
   }
 
   /**
@@ -103,8 +104,8 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TurtlesPackage.INT_LITERAL__VAL:
-        return getVal();
+      case TurtlesPackage.PEN_MOVE_STATEMENT__STATE:
+        return getState();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -119,8 +120,8 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TurtlesPackage.INT_LITERAL__VAL:
-        setVal((Integer)newValue);
+      case TurtlesPackage.PEN_MOVE_STATEMENT__STATE:
+        setState((PenState)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,8 +137,8 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TurtlesPackage.INT_LITERAL__VAL:
-        setVal(VAL_EDEFAULT);
+      case TurtlesPackage.PEN_MOVE_STATEMENT__STATE:
+        setState(STATE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -153,8 +154,8 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TurtlesPackage.INT_LITERAL__VAL:
-        return val != VAL_EDEFAULT;
+      case TurtlesPackage.PEN_MOVE_STATEMENT__STATE:
+        return state != STATE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -170,10 +171,10 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (val: ");
-    result.append(val);
+    result.append(" (state: ");
+    result.append(state);
     result.append(')');
     return result.toString();
   }
 
-} //IntLiteralImpl
+} //PenMoveStatementImpl

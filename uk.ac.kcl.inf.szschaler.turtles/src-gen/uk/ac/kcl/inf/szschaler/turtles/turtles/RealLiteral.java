@@ -6,42 +6,42 @@ package uk.ac.kcl.inf.szschaler.turtles.turtles;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Int Literal</b></em>'.
+ * A representation of the model object '<em><b>Real Literal</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral#getVal <em>Val</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.szschaler.turtles.turtles.RealLiteral#getVal <em>Val</em>}</li>
  * </ul>
  *
- * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getIntLiteral()
+ * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getRealLiteral()
  * @model
  * @generated
  */
-public interface IntLiteral extends Expression
+public interface RealLiteral extends Expression
 {
   /**
    * Returns the value of the '<em><b>Val</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Val</em>' attribute.
-   * @see #setVal(int)
-   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getIntLiteral_Val()
+   * @see #setVal(float)
+   * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getRealLiteral_Val()
    * @model
    * @generated
    */
-  int getVal();
+  float getVal();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral#getVal <em>Val</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.szschaler.turtles.turtles.RealLiteral#getVal <em>Val</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Val</em>' attribute.
    * @see #getVal()
    * @generated
    */
-  void setVal(int value);
+  void setVal(float value);
 
-} // IntLiteral
+} // RealLiteral

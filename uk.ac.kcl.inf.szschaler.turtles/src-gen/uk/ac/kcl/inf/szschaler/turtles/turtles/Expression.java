@@ -7,14 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Statement</b></em>'.
+ * A representation of the model object '<em><b>Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getStatement()
+ * @see uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage#getExpression()
  * @model
  * @generated
  */
-public interface Statement extends EObject
+public interface Expression extends EObject
 {
-} // Statement
+} // Expression

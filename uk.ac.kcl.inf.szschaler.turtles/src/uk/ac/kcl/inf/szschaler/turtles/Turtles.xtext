@@ -12,7 +12,16 @@ Statement:
 	MoveStatement |
 	TurnStatement |
 	LoopStatement |
+	PenMoveStatement |
 	VariableDeclaration
+;
+
+PenMoveStatement:
+	'pen' state=PenState
+;
+
+enum PenState:
+	up | down
 ;
 
 VariableDeclaration:
@@ -34,29 +43,34 @@ enum MoveCommand:
 ;
 
 TurnStatement:
-	"turn" command = TurnCommand "by" degrees = REAL "degrees"
+	"turn" command = TurnCommand "by" degrees = Addition "degrees"
 ;
 
 enum TurnCommand:
 	left | right
 ;
 
-Addition returns IntExpression:
+Addition returns Expression:
 	Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 ;
 
-Multiplication returns IntExpression:
+Multiplication returns Expression:
 	Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
 ;
 
-Primary returns IntExpression:
+Primary returns Expression:
 	IntLiteral |
 	IntVarExpression |
+	RealLiteral |
 	"(" Addition ")"
 ;
 
 IntLiteral:
 	val = INT
+;
+
+RealLiteral:
+	val = REAL
 ;
 
 IntVarExpression:

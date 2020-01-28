@@ -9,23 +9,23 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral;
+import uk.ac.kcl.inf.szschaler.turtles.turtles.RealLiteral;
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Int Literal</b></em>'.
+ * An implementation of the model object '<em><b>Real Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.IntLiteralImpl#getVal <em>Val</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.szschaler.turtles.turtles.impl.RealLiteralImpl#getVal <em>Val</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
+public class RealLiteralImpl extends ExpressionImpl implements RealLiteral
 {
   /**
    * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
@@ -35,7 +35,7 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
    * @generated
    * @ordered
    */
-  protected static final int VAL_EDEFAULT = 0;
+  protected static final float VAL_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
@@ -45,14 +45,14 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
    * @generated
    * @ordered
    */
-  protected int val = VAL_EDEFAULT;
+  protected float val = VAL_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IntLiteralImpl()
+  protected RealLiteralImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   @Override
   protected EClass eStaticClass()
   {
-    return TurtlesPackage.Literals.INT_LITERAL;
+    return TurtlesPackage.Literals.REAL_LITERAL;
   }
 
   /**
@@ -74,7 +74,7 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
    * @generated
    */
   @Override
-  public int getVal()
+  public float getVal()
   {
     return val;
   }
@@ -85,12 +85,12 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
    * @generated
    */
   @Override
-  public void setVal(int newVal)
+  public void setVal(float newVal)
   {
-    int oldVal = val;
+    float oldVal = val;
     val = newVal;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.INT_LITERAL__VAL, oldVal, val));
+      eNotify(new ENotificationImpl(this, Notification.SET, TurtlesPackage.REAL_LITERAL__VAL, oldVal, val));
   }
 
   /**
@@ -103,7 +103,7 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TurtlesPackage.INT_LITERAL__VAL:
+      case TurtlesPackage.REAL_LITERAL__VAL:
         return getVal();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -119,8 +119,8 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TurtlesPackage.INT_LITERAL__VAL:
-        setVal((Integer)newValue);
+      case TurtlesPackage.REAL_LITERAL__VAL:
+        setVal((Float)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,7 +136,7 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TurtlesPackage.INT_LITERAL__VAL:
+      case TurtlesPackage.REAL_LITERAL__VAL:
         setVal(VAL_EDEFAULT);
         return;
     }
@@ -153,7 +153,7 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TurtlesPackage.INT_LITERAL__VAL:
+      case TurtlesPackage.REAL_LITERAL__VAL:
         return val != VAL_EDEFAULT;
     }
     return super.eIsSet(featureID);
@@ -176,4 +176,4 @@ public class IntLiteralImpl extends ExpressionImpl implements IntLiteral
     return result.toString();
   }
 
-} //IntLiteralImpl
+} //RealLiteralImpl

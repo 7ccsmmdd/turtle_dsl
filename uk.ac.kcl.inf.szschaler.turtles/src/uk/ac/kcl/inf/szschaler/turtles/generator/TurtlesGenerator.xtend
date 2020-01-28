@@ -7,18 +7,21 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Addition
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Expression
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression
 import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication
+import uk.ac.kcl.inf.szschaler.turtles.turtles.PenMoveStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.RealLiteral
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnCommand
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
 import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
-import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement
-import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnCommand
-import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression
-import uk.ac.kcl.inf.szschaler.turtles.turtles.Addition
-import uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication
-import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral
-import uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression
+import uk.ac.kcl.inf.szschaler.turtles.turtles.PenState
 
 /**
  * Generates code from your model files on save.
@@ -84,7 +87,8 @@ class TurtlesGenerator extends AbstractGenerator {
 	
 	dispatch def String generateJavaStatement(Statement stmt, Environment env) ''''''
 	dispatch def String generateJavaStatement(MoveStatement stmt, Environment env) '''move«stmt.command.getName.toFirstUpper»(«stmt.steps.generateJavaExpression»);'''
-	dispatch def String generateJavaStatement(TurnStatement stmt, Environment env) '''rotate(«if (stmt.command === TurnCommand.LEFT) {'''-'''}»«stmt.degrees»f);'''
+	dispatch def String generateJavaStatement(TurnStatement stmt, Environment env) '''rotate(«if (stmt.command === TurnCommand.LEFT) {'''-'''}»«stmt.degrees.generateJavaExpression»);'''	
+	dispatch def String generateJavaStatement(PenMoveStatement stmt, Environment env) '''penUp(«stmt.state === PenState.UP»);'''
 	dispatch def String generateJavaStatement(LoopStatement stmt, Environment env) {
 		val freshVarName = env.getFreshVarName
 		
@@ -100,11 +104,12 @@ class TurtlesGenerator extends AbstractGenerator {
 		result
 	}
 	
-	dispatch def String generateJavaExpression(IntExpression exp) ''''''
+	dispatch def String generateJavaExpression(Expression exp) ''''''
 	dispatch def String generateJavaExpression(Addition exp) '''
 		(«exp.left.generateJavaExpression»«FOR idx: (0..exp.operator.size-1)» «exp.operator.get(idx)» «exp.right.get(idx).generateJavaExpression»«ENDFOR»)'''
 	dispatch def String generateJavaExpression(Multiplication exp) '''
 		«exp.left.generateJavaExpression»«FOR idx: (0..exp.operator.size-1)» «exp.operator.get(idx)» «exp.right.get(idx).generateJavaExpression»«ENDFOR»'''
 	dispatch def String generateJavaExpression(IntLiteral exp) '''«exp.^val»'''
+	dispatch def String generateJavaExpression(RealLiteral exp) '''«exp.^val»f'''
 	dispatch def String generateJavaExpression(IntVarExpression exp) '''«exp.^var.value»'''
 }

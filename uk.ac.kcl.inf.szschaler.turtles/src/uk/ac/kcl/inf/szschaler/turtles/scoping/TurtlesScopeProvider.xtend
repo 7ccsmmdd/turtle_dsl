@@ -6,7 +6,7 @@ package uk.ac.kcl.inf.szschaler.turtles.scoping
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
-import uk.ac.kcl.inf.szschaler.turtles.turtles.IntExpression
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Expression
 import uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression
 import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
@@ -25,7 +25,7 @@ class TurtlesScopeProvider extends AbstractDeclarativeScopeProvider {
 		context.visibleVariablesScope
 	}
 	
-	dispatch def IScope visibleVariablesScope(IntExpression ip) {
+	dispatch def IScope visibleVariablesScope(Expression ip) {
 		ip.eContainer.visibleVariablesScope
 	}
 	
