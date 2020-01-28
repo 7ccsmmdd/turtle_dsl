@@ -3,23 +3,24 @@
  */
 package uk.ac.kcl.inf.szschaler.turtles.validation
 
+import org.eclipse.xtext.validation.Check
+import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage
+import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
 
 /**
  * This class contains custom validation rules. 
- *
+ * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class TurtlesValidator extends AbstractTurtlesValidator {
-	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					TurtlesPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
-	
+
+	public static val INVALID_VARIABLE_NAME = 'uk.ac.kcl.inf.szschaler.turtles.INVALID_VARIABLE_NAME'
+
+	@Check
+	def checkVariableNamesStartWithLowerCase(VariableDeclaration decl) {
+		if (!Character.isLowerCase(decl.name.charAt(0))) {
+			warning('Name should start with a lower-case character', decl,
+				TurtlesPackage.Literals.VARIABLE_DECLARATION__NAME, INVALID_VARIABLE_NAME)
+		}
+	}
 }
