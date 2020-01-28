@@ -3,7 +3,13 @@
  */
 package uk.ac.kcl.inf.szschaler.turtles.validation
 
+import org.eclipse.emf.common.util.EList
 import org.eclipse.xtext.validation.Check
+import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.PenMoveStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.PenState
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage
 import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
 
@@ -15,6 +21,7 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
 class TurtlesValidator extends AbstractTurtlesValidator {
 
 	public static val INVALID_VARIABLE_NAME = 'uk.ac.kcl.inf.szschaler.turtles.INVALID_VARIABLE_NAME'
+	public static val MAY_NOT_PEN_DOWN = 'uk.ac.kcl.inf.szschaler.turtles.MAY_NOT_PEN_DOWN'
 
 	@Check
 	def checkVariableNamesStartWithLowerCase(VariableDeclaration decl) {
@@ -23,4 +30,27 @@ class TurtlesValidator extends AbstractTurtlesValidator {
 				TurtlesPackage.Literals.VARIABLE_DECLARATION__NAME, INVALID_VARIABLE_NAME)
 		}
 	}
+
+	@Check(NORMAL)
+	def checkAlwaysHavePenDown(TurtleProgram program) {
+		if (!(program.statements.checkAlwaysHavePenDown(true))) {
+			warning('This program may not end with the pen down', program,
+				TurtlesPackage.Literals.TURTLE_PROGRAM__STATEMENTS, MAY_NOT_PEN_DOWN)
+		}
+	}
+
+	def boolean checkAlwaysHavePenDown(EList<Statement> statements, boolean startState) {
+		statements.fold(startState, [ previousState, stmt |
+			stmt.predictPenOutcome(previousState)
+		])
+	}
+
+	dispatch def predictPenOutcome(Statement stmt, boolean previousState) { previousState }
+
+	dispatch def predictPenOutcome(PenMoveStatement stmt, boolean previousState) { stmt.state === PenState.DOWN }
+
+	dispatch def predictPenOutcome(LoopStatement stmt, boolean previousState) {
+		stmt.statements.checkAlwaysHavePenDown(previousState)
+	}
+
 }

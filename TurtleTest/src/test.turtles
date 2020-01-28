@@ -8,6 +8,8 @@ pen down
 var loopCounter = 10
 
 (loopCounter + 3) * 7 times do
+//	pen up
+	
 	var stepCount = 10
 
 	forward (stepCount)
