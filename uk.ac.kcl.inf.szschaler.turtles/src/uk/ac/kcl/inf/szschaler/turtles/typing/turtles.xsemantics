@@ -1,0 +1,84 @@
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Addition
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Expression
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral
+import uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression
+import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication
+import uk.ac.kcl.inf.szschaler.turtles.turtles.RealLiteral
+import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement
+import uk.ac.kcl.inf.szschaler.turtles.validation.AbstractTurtlesValidator
+
+system uk.ac.kcl.inf.szschaler.turtles.typing.TurtlesTypeSystem
+
+validatorExtends AbstractTurtlesValidator
+
+auxiliary {
+	typeExpressions(Iterable<Expression> exps) : TurtlesType cached
+}
+
+judgments {
+	type |- Expression exp : output TurtlesType
+		cached
+		error "cannot type " + stringRep(exp)
+	subType |- TurtlesType left <: TurtlesType right
+		error stringRep(left) + " is not a subtype of " + stringRep(right)
+}
+
+auxiliary typeExpressions(Iterable<Expression> exps) {
+	if (exps.forall[exp | 
+			empty |- exp : var TurtlesType exp2Type 
+			exp2Type === TurtlesType.INT]) {
+		return TurtlesType.INT			
+	} else {
+		return TurtlesType.REAL
+	}
+}
+	
+axiom TIntLit
+	G |- IntLiteral exp : TurtlesType.INT
+	
+axiom TRealLit
+	G |- RealLiteral exp : TurtlesType.REAL
+	
+axiom TVarRef
+	G |- IntVarExpression exp : TurtlesType.INT
+
+rule TMultiplication
+	G |- Multiplication exp : TurtlesType t
+from {
+	t = (exp.right + #[exp.left]).typeExpressions
+}
+
+rule TAddition
+	G |- Addition exp : TurtlesType t
+from {
+	t = (exp.right + #[exp.left]).typeExpressions
+}
+
+rule SubTyping
+	G |- TurtlesType left <: TurtlesType right
+from {
+	right === TurtlesType.REAL or left === right
+}
+
+checkrule checkMoveStatement for
+	MoveStatement stmt
+from {
+	empty |- stmt.steps : var TurtlesType stepsType
+	empty |- stepsType <: TurtlesType.INT
+}
+
+checkrule checkLoopStatement for
+	LoopStatement stmt
+from {
+	empty |- stmt.count : var TurtlesType countType
+	empty |- countType <: TurtlesType.INT
+}
+
+checkrule checkTurnStatement for 
+	TurnStatement stmt
+from {
+	empty |- stmt.degrees : var TurtlesType degreesType
+	empty |- degreesType <: TurtlesType.REAL
+}

@@ -12,13 +12,14 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage
 import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
+import uk.ac.kcl.inf.szschaler.turtles.typing.validation.TurtlesTypeSystemValidator
 
 /**
  * This class contains custom validation rules. 
  * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-class TurtlesValidator extends AbstractTurtlesValidator {
+class TurtlesValidator extends TurtlesTypeSystemValidator {
 
 	public static val INVALID_VARIABLE_NAME = 'uk.ac.kcl.inf.szschaler.turtles.INVALID_VARIABLE_NAME'
 	public static val MAY_NOT_PEN_DOWN = 'uk.ac.kcl.inf.szschaler.turtles.MAY_NOT_PEN_DOWN'
