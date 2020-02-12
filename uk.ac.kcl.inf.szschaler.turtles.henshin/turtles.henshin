@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_r7iLIE2eEeqPQ8XikGjxLQ">
+  <imports href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_s6UuoE2eEeqPQ8XikGjxLQ" name="foldIntAdditionRight">
+    <parameters xmi:id="_GSf30E2fEeqPQ8XikGjxLQ" name="n" kind="VAR">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </parameters>
+    <parameters xmi:id="_a6cMME2fEeqPQ8XikGjxLQ" name="aVal" kind="VAR">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </parameters>
+    <parameters xmi:id="_a6cMMU2fEeqPQ8XikGjxLQ" name="bVal" kind="VAR">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </parameters>
+    <parameters xmi:id="_SK9eIE2gEeqPQ8XikGjxLQ" name="op" kind="VAR"/>
+    <lhs xmi:id="_s67LkE2eEeqPQ8XikGjxLQ" name="Lhs">
+      <nodes xmi:id="_wCgnkE2eEeqPQ8XikGjxLQ" name="add" outgoing="__jawsE2eEeqPQ8XikGjxLQ __5rUkE2eEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition"/>
+        <attributes xmi:id="_M-5B4E2gEeqPQ8XikGjxLQ" value="op">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/operator"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_xZQYEE2eEeqPQ8XikGjxLQ" name="a" incoming="__jawsE2eEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral"/>
+        <attributes xmi:id="_ULKQwE2fEeqPQ8XikGjxLQ" value="aVal">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral/val"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_xqfSAE2eEeqPQ8XikGjxLQ" name="b" incoming="__5rUkE2eEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral"/>
+        <attributes xmi:id="_WELA0E2fEeqPQ8XikGjxLQ" value="bVal">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral/val"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="__jawsE2eEeqPQ8XikGjxLQ" source="_wCgnkE2eEeqPQ8XikGjxLQ" target="_xZQYEE2eEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/right"/>
+      </edges>
+      <edges xmi:id="__5rUkE2eEeqPQ8XikGjxLQ" source="_wCgnkE2eEeqPQ8XikGjxLQ" target="_xqfSAE2eEeqPQ8XikGjxLQ" index="n">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/right"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_s67LkU2eEeqPQ8XikGjxLQ" name="Rhs">
+      <nodes xmi:id="_wCgnkU2eEeqPQ8XikGjxLQ" name="add" outgoing="__jawsU2eEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition"/>
+        <attributes xmi:id="_M-5B4U2gEeqPQ8XikGjxLQ" value="op.remove(n)">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/operator"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_xZQYEU2eEeqPQ8XikGjxLQ" name="a" incoming="__jawsU2eEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral"/>
+        <attributes xmi:id="_ULKQwU2fEeqPQ8XikGjxLQ" value="aVal + bVal">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral/val"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="__jawsU2eEeqPQ8XikGjxLQ" source="_wCgnkU2eEeqPQ8XikGjxLQ" target="_xZQYEU2eEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/right"/>
+      </edges>
+    </rhs>
+    <attributeConditions xmi:id="_J-g2kE2fEeqPQ8XikGjxLQ" name="FindOperator" conditionText="add.operator[n] == '+'"/>
+    <mappings xmi:id="_wCgnkk2eEeqPQ8XikGjxLQ" origin="_wCgnkE2eEeqPQ8XikGjxLQ" image="_wCgnkU2eEeqPQ8XikGjxLQ"/>
+    <mappings xmi:id="_xZQYEk2eEeqPQ8XikGjxLQ" origin="_xZQYEE2eEeqPQ8XikGjxLQ" image="_xZQYEU2eEeqPQ8XikGjxLQ"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_gP3YwE2fEeqPQ8XikGjxLQ" name="foldVariableInAddLeft">
+    <parameters xmi:id="_0DTuEE2fEeqPQ8XikGjxLQ" name="val" kind="VAR">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </parameters>
+    <lhs xmi:id="_gP3YxU2fEeqPQ8XikGjxLQ" name="Lhs">
+      <nodes xmi:id="_kfD9EE2fEeqPQ8XikGjxLQ" incoming="_6EEWoE2fEeqPQ8XikGjxLQ" outgoing="_qoag8E2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntVarExpression"/>
+      </nodes>
+      <nodes xmi:id="_lvXHUE2fEeqPQ8XikGjxLQ" incoming="_qoag8E2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//VariableDeclaration"/>
+        <attributes xmi:id="_xfK9YE2fEeqPQ8XikGjxLQ" value="val">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//VariableDeclaration/value"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_4fBrcE2fEeqPQ8XikGjxLQ" outgoing="_6EEWoE2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition"/>
+      </nodes>
+      <edges xmi:id="_qoag8E2fEeqPQ8XikGjxLQ" source="_kfD9EE2fEeqPQ8XikGjxLQ" target="_lvXHUE2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntVarExpression/var"/>
+      </edges>
+      <edges xmi:id="_6EEWoE2fEeqPQ8XikGjxLQ" source="_4fBrcE2fEeqPQ8XikGjxLQ" target="_kfD9EE2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/left"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_gP3Yxk2fEeqPQ8XikGjxLQ" name="Rhs">
+      <nodes xmi:id="_lvXHUU2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//VariableDeclaration"/>
+        <attributes xmi:id="_xfK9YU2fEeqPQ8XikGjxLQ" value="val">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//VariableDeclaration/value"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_mO-bgE2fEeqPQ8XikGjxLQ" incoming="_6cQNIE2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral"/>
+        <attributes xmi:id="_yY2-cE2fEeqPQ8XikGjxLQ" value="val">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral/val"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_5Q5NQE2fEeqPQ8XikGjxLQ" outgoing="_6cQNIE2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition"/>
+      </nodes>
+      <edges xmi:id="_6cQNIE2fEeqPQ8XikGjxLQ" source="_5Q5NQE2fEeqPQ8XikGjxLQ" target="_mO-bgE2fEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/left"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_lvXHUk2fEeqPQ8XikGjxLQ" origin="_lvXHUE2fEeqPQ8XikGjxLQ" image="_lvXHUU2fEeqPQ8XikGjxLQ"/>
+    <mappings xmi:id="_5Q5NQU2fEeqPQ8XikGjxLQ" origin="_4fBrcE2fEeqPQ8XikGjxLQ" image="_5Q5NQE2fEeqPQ8XikGjxLQ"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_AhtvgE2gEeqPQ8XikGjxLQ" name="foldVariableInAddRight">
+    <parameters xmi:id="_AhtvgU2gEeqPQ8XikGjxLQ" name="val" kind="VAR">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </parameters>
+    <parameters xmi:id="_D_EnME2gEeqPQ8XikGjxLQ" name="idx" kind="VAR">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </parameters>
+    <lhs xmi:id="_Ahtvgk2gEeqPQ8XikGjxLQ" name="Lhs">
+      <nodes xmi:id="_Ahtvg02gEeqPQ8XikGjxLQ" incoming="_AhtviE2gEeqPQ8XikGjxLQ" outgoing="_Ahtvh02gEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntVarExpression"/>
+      </nodes>
+      <nodes xmi:id="_AhtvhE2gEeqPQ8XikGjxLQ" incoming="_Ahtvh02gEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//VariableDeclaration"/>
+        <attributes xmi:id="_AhtvhU2gEeqPQ8XikGjxLQ" value="val">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//VariableDeclaration/value"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_Ahtvhk2gEeqPQ8XikGjxLQ" outgoing="_AhtviE2gEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition"/>
+      </nodes>
+      <edges xmi:id="_Ahtvh02gEeqPQ8XikGjxLQ" source="_Ahtvg02gEeqPQ8XikGjxLQ" target="_AhtvhE2gEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntVarExpression/var"/>
+      </edges>
+      <edges xmi:id="_AhtviE2gEeqPQ8XikGjxLQ" source="_Ahtvhk2gEeqPQ8XikGjxLQ" target="_Ahtvg02gEeqPQ8XikGjxLQ" index="idx">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/right"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_AhtviU2gEeqPQ8XikGjxLQ" name="Rhs">
+      <nodes xmi:id="_Ahtvik2gEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//VariableDeclaration"/>
+        <attributes xmi:id="_Ahtvi02gEeqPQ8XikGjxLQ" value="val">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//VariableDeclaration/value"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_AhtvjE2gEeqPQ8XikGjxLQ" incoming="_Ahtvj02gEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral"/>
+        <attributes xmi:id="_AhtvjU2gEeqPQ8XikGjxLQ" value="val">
+          <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//IntLiteral/val"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_Ahtvjk2gEeqPQ8XikGjxLQ" outgoing="_Ahtvj02gEeqPQ8XikGjxLQ">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition"/>
+      </nodes>
+      <edges xmi:id="_Ahtvj02gEeqPQ8XikGjxLQ" source="_Ahtvjk2gEeqPQ8XikGjxLQ" target="_AhtvjE2gEeqPQ8XikGjxLQ" index="idx">
+        <type href="http://www.ac.uk/kcl/inf/szschaler/turtles/Turtles#//Addition/right"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_AhtvkE2gEeqPQ8XikGjxLQ" origin="_AhtvhE2gEeqPQ8XikGjxLQ" image="_Ahtvik2gEeqPQ8XikGjxLQ"/>
+    <mappings xmi:id="_AhtvkU2gEeqPQ8XikGjxLQ" origin="_Ahtvhk2gEeqPQ8XikGjxLQ" image="_Ahtvjk2gEeqPQ8XikGjxLQ"/>
+  </units>
+</henshin:Module>
