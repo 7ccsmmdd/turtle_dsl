@@ -3,25 +3,24 @@
  */
 package uk.ac.kcl.inf.szschaler.turtles.generator
 
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import uk.ac.kcl.inf.szschaler.turtles.turtles.Addition
 import uk.ac.kcl.inf.szschaler.turtles.turtles.Expression
 import uk.ac.kcl.inf.szschaler.turtles.turtles.IntLiteral
-import uk.ac.kcl.inf.szschaler.turtles.turtles.IntVarExpression
 import uk.ac.kcl.inf.szschaler.turtles.turtles.LoopStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.MoveStatement
-import uk.ac.kcl.inf.szschaler.turtles.turtles.Multiplication
 import uk.ac.kcl.inf.szschaler.turtles.turtles.PenMoveStatement
+import uk.ac.kcl.inf.szschaler.turtles.turtles.PenState
 import uk.ac.kcl.inf.szschaler.turtles.turtles.RealLiteral
 import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnCommand
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
+import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage
 import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
-import uk.ac.kcl.inf.szschaler.turtles.turtles.PenState
 
 /**
  * Generates code from your model files on save.
@@ -30,24 +29,49 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.PenState
  */
 class TurtlesGenerator extends AbstractGenerator {
 
+	private static class ConstantFolder extends ETLRunner {
+
+		val Resource inModel
+
+		new(Resource inModel) {
+			this.inModel = inModel
+		}
+
+		override protected getSource() {
+			"constant_fold.etl"
+		}
+
+		override protected getModels() throws Exception {
+			#[
+				inModel.createInMemoryEmfModel("Source", TurtlesPackage.eNS_URI, false),
+				inModel.resourceSet.createResource(URI.createFileURI("synthetic.turtles")).
+					createInMemoryEmfModel("Target", TurtlesPackage.eNS_URI, false)
+			]
+		}
+
+	}
+
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val model = resource.contents.head as TurtleProgram
 		fsa.generateFile(resource.deriveStatsTargetFileNameFor, model.doGenerateStats)
-		
+
 		val className = resource.deriveClassNameFor
-		fsa.generateFile(className + '.java', model.doGenerateClass(className))
+
+		val interimModel = new ConstantFolder(resource).execute as TurtleProgram 
+		
+		fsa.generateFile(className + '.java', interimModel.doGenerateClass(className))
 	}
-	
+
 	def deriveStatsTargetFileNameFor(Resource resource) {
 		resource.URI.appendFileExtension('txt').lastSegment
 	}
-	
+
 	def deriveClassNameFor(Resource resource) {
 		val origName = resource.URI.lastSegment
-		
+
 		origName.substring(0, origName.indexOf('.')).toFirstUpper + 'Turtle'
 	}
-	
+
 	def String doGenerateStats(TurtleProgram program) '''
 		Program contains:
 		
@@ -56,12 +80,12 @@ class TurtlesGenerator extends AbstractGenerator {
 		- «program.statements.filter(LoopStatement).size» top-level loops
 		- «program.eAllContents.filter(VariableDeclaration).size» variable declarations
 	'''
-	
+
 	def String doGenerateClass(TurtleProgram program, String className) '''
 		import uk.ac.kcl.inf.szschaler.turtles.library.*;
 		
 		public class «className» {
-
+		
 			public static void main (String[] args) {
 				TurtlesFrame tf = new TurtlesFrame();
 				
@@ -76,147 +100,43 @@ class TurtlesGenerator extends AbstractGenerator {
 			}
 		}
 	'''
-	
+
 	private static class Environment {
 		var int counter = 0
-		
+
 		def getFreshVarName() '''i«counter++»'''
-		
+
 		def exit() { counter-- }
 	}
-	
+
 	dispatch def String generateJavaStatement(Statement stmt, Environment env) ''''''
-	dispatch def String generateJavaStatement(MoveStatement stmt, Environment env) '''move«stmt.command.getName.toFirstUpper»(«stmt.steps.generateJavaExpression»);'''
-	dispatch def String generateJavaStatement(TurnStatement stmt, Environment env) '''rotate(«if (stmt.command === TurnCommand.LEFT) {'''-'''}»«stmt.degrees.generateJavaExpression»);'''	
-	dispatch def String generateJavaStatement(PenMoveStatement stmt, Environment env) '''penUp(«stmt.state === PenState.UP»);'''
+
+	dispatch def String generateJavaStatement(MoveStatement stmt,
+		Environment env) '''move«stmt.command.getName.toFirstUpper»(«stmt.steps.generateJavaExpression»);'''
+
+	dispatch def String generateJavaStatement(TurnStatement stmt,
+		Environment env) '''rotate(«if (stmt.command === TurnCommand.LEFT) {'''-'''}»«stmt.degrees.generateJavaExpression»);'''
+
+	dispatch def String generateJavaStatement(PenMoveStatement stmt,
+		Environment env) '''penUp(«stmt.state === PenState.UP»);'''
+
 	dispatch def String generateJavaStatement(LoopStatement stmt, Environment env) {
 		val freshVarName = env.getFreshVarName
-		
-		val result = 
-		'''
+
+		val result = '''
 			for (int «freshVarName» = 0; «freshVarName» < «stmt.count.generateJavaExpression»; «freshVarName»++) {
 				«stmt.statements.map[generateJavaStatement(env)].join('\n')»
 			}
 		'''
-		
+
 		env.exit
-		
+
 		result
 	}
-	
-	def String generateJavaExpression(Expression exp) {
-		exp.evaluate.translateToJavaString
-	}
-	
-	dispatch def Number evaluate(Expression exp) { null }
-	dispatch def Number evaluate(Addition exp) {
-		val evaluatedChildren = #[exp.left.evaluate] + exp.right.map[evaluate]
-		
-		val Number[] result = #[null]
-		
-		evaluatedChildren.forEach[ec, idx |
-			result.set(0, 
-				if (idx > 0) {
-					if (exp.operator.get(idx - 1) == '+') {
-						result.get(0).add(ec)
-					} else {
-						result.get(0).subtract(ec)						
-					}
-				} else {
-					ec
-				})
-		]
-		
-		result.get(0)
-	}
-	
-	dispatch def Number evaluate(Multiplication exp) {
-		val evaluatedChildren = #[exp.left.evaluate] + exp.right.map[evaluate]
-		
-		val Number[] result = #[null]
-		
-		evaluatedChildren.forEach[ec, idx |
-			result.set(0, 
-				if (idx > 0) {
-					if (exp.operator.get(idx - 1) == '*') {
-						result.get(0).multiply(ec)
-					} else {
-						result.get(0).divide(ec)						
-					}
-				} else {
-					ec
-				})
-		]
-		
-		result.get(0)
-	}
-	
-	dispatch def Number evaluate(IntLiteral exp) { exp.^val }
-	
-	dispatch def Number evaluate(RealLiteral exp) { exp.^val }
-	
-	dispatch def Number evaluate(IntVarExpression exp) { exp.^var.value }
-	
-	dispatch def Number add(Integer a, Number b) {
-		if (b instanceof Integer) {
-			Integer.valueOf(a.intValue + b.intValue)
-		} else {
-			a.floatValue + (b as Float).floatValue		
-		}
-	}
-	dispatch def Number add(Float a, Number b) {
-		if (b instanceof Integer) {
-			a.floatValue + b.floatValue
-		} else {
-			a.floatValue + (b as Float).floatValue			
-		}
-	}
-	
-	dispatch def Number subtract(Integer a, Number b) {
-		if (b instanceof Integer) {
-			Integer.valueOf(a.intValue - b.intValue)
-		} else {
-			a.floatValue - (b as Float).floatValue		
-		}
-	}
-	dispatch def Number subtract(Float a, Number b) {
-		if (b instanceof Integer) {
-			a.floatValue - b.floatValue
-		} else {
-			a.floatValue - (b as Float).floatValue			
-		}
-	}
-	
-	dispatch def Number multiply(Integer a, Number b) {
-		if (b instanceof Integer) {
-			Integer.valueOf(a.intValue * b.intValue)
-		} else {
-			a.floatValue * (b as Float).floatValue		
-		}
-	}
-	dispatch def Number multiply(Float a, Number b) {
-		if (b instanceof Integer) {
-			a.floatValue * b.floatValue
-		} else {
-			a.floatValue * (b as Float).floatValue			
-		}
-	}
-	
-	dispatch def Number divide(Integer a, Number b) {
-		if (b instanceof Integer) {
-			Integer.valueOf(a.intValue / b.intValue)
-		} else {
-			a.floatValue / (b as Float).floatValue		
-		}
-	}
-	dispatch def Number divide(Float a, Number b) {
-		if (b instanceof Integer) {
-			a.floatValue / b.floatValue
-		} else {
-			a.floatValue / (b as Float).floatValue			
-		}
-	}
 
-	dispatch def String translateToJavaString(Number n) { n.toString }
-	dispatch def String translateToJavaString(Float f) '''«f.toString»f'''
+	dispatch def String generateJavaExpression(Expression exp) {}
+
+	dispatch def String generateJavaExpression(IntLiteral exp) '''«exp.^val»'''
+
+	dispatch def String generateJavaExpression(RealLiteral exp) '''«exp.^val»f'''
 }
