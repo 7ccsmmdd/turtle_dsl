@@ -1,0 +1,100 @@
+rule CopyProgram 
+	transform s : Source!TurtleProgram
+	to t : Target!TurtleProgram {
+	
+	t.statements ::= s.statements;
+}
+
+rule CopyPenMoveStatement 
+	transform s : Source!PenMoveStatement
+	to t : Target!PenMoveStatement {
+	t.state = s.state;
+}
+
+rule CopyLoopStatement 
+	transform s : Source!LoopStatement
+	to t : Target!LoopStatement {
+	t.count ::= s.count;
+	t.statements ::= s.statements;
+}
+
+rule CopyMoveStatement 
+	transform s : Source!MoveStatement
+	to t : Target!MoveStatement {
+	t.command = s.command;
+	t.steps ::= s.steps;
+}
+
+rule CopyTurnStatement 
+	transform s : Source!TurnStatement
+	to t : Target!TurnStatement {
+	t.command = s.command;
+	t.degrees ::= s.degrees;
+}
+
+// All rules below must be @lazy so that we can reference their outputs from the guard conditions
+ 
+@lazy
+rule FoldIntLiteral 
+	transform s : Source!IntLiteral
+	to t : Target!IntLiteral {
+	t.val = s.val;
+}
+
+@lazy
+rule FoldRealLiteral
+	transform s : Source!RealLiteral
+	to t : Target!RealLiteral {
+	t.val = s.val;
+}
+
+@lazy
+rule FoldIntVarExpression 
+	transform s : Source!IntVarExpression
+	to t : Target!IntLiteral {
+	t.val = s.`var`.value;
+}
+
+@lazy
+rule FoldIntAddition
+	transform s : Source!Addition
+	to t : Target!IntLiteral {
+	guard : s.left.equivalent().isKindOf(Target!IntLiteral) and 
+			s.right.equivalent().forAll (it | it.isKindOf(Target!IntLiteral))
+
+	t.val = s.left.equivalent().val.asInteger() + 
+	        s.right.equivalent().collect(it | it.val.asInteger()).sum(); 
+}
+
+@lazy
+rule FoldRealAddition
+	transform s : Source!Addition
+	to t : Target!RealLiteral {
+	guard : not (s.left.equivalent().isKindOf(Target!IntLiteral) and
+	             s.right.equivalent().forAll (it | it.isKindOf(Target!IntLiteral)))
+
+	t.val = s.left.equivalent().val.asFloat() + 
+	        s.right.equivalent().collect(it | it.val.asFloat()).sum();
+}
+
+@lazy
+rule FoldIntMultiplication
+	transform s : Source!Multiplication
+	to t : Target!IntLiteral {
+	guard : s.left.equivalent().isKindOf(Target!IntLiteral) and
+	        s.right.equivalent().forAll (it | it.isKindOf(Target!IntLiteral))
+
+	t.val = s.left.equivalent().val.asInteger() + 
+	        s.right.equivalent().collect(it | it.val.asInteger()).sum(); 
+}
+
+@lazy
+rule FoldRealMultiplication
+	transform s : Source!Multiplication
+	to t : Target!RealLiteral {
+	guard : not (s.left.equivalent().isKindOf(Target!IntLiteral) and
+	             s.right.equivalent().forAll (it | it.isKindOf(Target!IntLiteral)))
+
+	t.val = s.left.equivalent().val.asFloat() + 
+	        s.right.equivalent().collect(it | it.val.asFloat()).sum();
+}
