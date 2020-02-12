@@ -1,0 +1,76 @@
+rule CopyProgram 
+	transform s : Source!TurtleProgram
+	to t : Target!TurtleProgram {
+	
+	t.statements ::= s.statements;
+}
+
+rule CopyPenMoveStatement 
+	transform s : Source!PenMoveStatement
+	to t : Target!PenMoveStatement {
+	t.state = s.state;
+}
+
+rule CopyVariableDeclaration 
+	transform s : Source!VariableDeclaration
+	to t : Target!VariableDeclaration {
+	t.name = s.name;
+	t.value = s.value;
+}
+
+rule CopyLoopStatement 
+	transform s : Source!LoopStatement
+	to t : Target!LoopStatement {
+	t.count ::= s.count;
+	t.statements ::= s.statements;
+}
+
+rule CopyMoveStatement 
+	transform s : Source!MoveStatement
+	to t : Target!MoveStatement {
+	t.command = s.command;
+	t.steps ::= s.steps;
+}
+
+rule CopyTurnStatement 
+	transform s : Source!TurnStatement
+	to t : Target!TurnStatement {
+	t.command = s.command;
+	t.degrees ::= s.degrees;
+}
+
+rule CopyIntLiteral 
+	transform s : Source!IntLiteral
+	to t : Target!IntLiteral {
+	t.val = s.val;
+}
+
+rule CopyRealLiteral
+	transform s : Source!RealLiteral
+	to t : Target!RealLiteral {
+	t.val = s.val;
+}
+
+rule CopyIntVarExpression 
+	transform s : Source!IntVarExpression
+	to t : Target!IntVarExpression {
+	t.`var` ::= s.`var`;
+}
+
+rule CopyAddition
+	transform s : Source!Addition
+	to t : Target!Addition {
+	
+	t.left ::= s.left;
+	t.operator = s.operator;
+	t.right ::= s.right;
+}
+
+rule CopyMultiplication
+	transform s : Source!Multiplication
+	to t : Target!Multiplication {
+	
+	t.left ::= s.left;
+	t.operator = s.operator;
+	t.right ::= s.right;
+}
