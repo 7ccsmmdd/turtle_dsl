@@ -20,7 +20,7 @@ public class TextTurtle {
 		Turtle t = new Turtle(tf) {
 			@Override
 			public void run() {
-				for (int i0 = 0; i0 < (10 + 3) * 7; i0++) {
+				for (int i0 = 0; i0 < 91; i0++) {
 					moveForward(10);
 					rotate(-90.0f);
 					moveBackward(10);
