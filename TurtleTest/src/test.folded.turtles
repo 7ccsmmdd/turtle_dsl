@@ -1,11 +1,14 @@
 pen up forward ( 15 ) 
+
 turn right by 90.0 degrees 
+
 forward ( 5 ) 
+
 pen down 
 
-20 times do 
+91 times do 
 	forward ( 19 ) 
-	turn left by 105.0 degrees 
+	turn left by 95.0 degrees 
 	backward ( 10 ) 
 	turn right by 20.0 degrees 
 end

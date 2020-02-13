@@ -62,8 +62,9 @@ rule FoldIntAddition
 	guard : s.left.equivalent().isKindOf(Target!IntLiteral) and 
 			s.right.equivalent().forAll (it | it.isKindOf(Target!IntLiteral))
 
-	t.val = s.left.equivalent().val.asInteger() + 
-	        s.right.equivalent().collect(it | it.val.asInteger()).sum(); 
+	t.val = s.foldAsInteger();
+	//t.val = s.left.equivalent().val.asInteger() + 
+	//        s.right.equivalent().collect(it | it.val.asInteger()).sum(); 
 }
 
 @lazy
@@ -73,8 +74,9 @@ rule FoldRealAddition
 	guard : not (s.left.equivalent().isKindOf(Target!IntLiteral) and
 	             s.right.equivalent().forAll (it | it.isKindOf(Target!IntLiteral)))
 
-	t.val = s.left.equivalent().val.asFloat() + 
-	        s.right.equivalent().collect(it | it.val.asFloat()).sum();
+	t.val = s.foldAsReal();
+//	t.val = s.left.equivalent().val.asFloat() + 
+//	        s.right.equivalent().collect(it | it.val.asFloat()).sum();
 }
 
 @lazy
@@ -84,8 +86,9 @@ rule FoldIntMultiplication
 	guard : s.left.equivalent().isKindOf(Target!IntLiteral) and
 	        s.right.equivalent().forAll (it | it.isKindOf(Target!IntLiteral))
 
-	t.val = s.left.equivalent().val.asInteger() + 
-	        s.right.equivalent().collect(it | it.val.asInteger()).sum(); 
+	t.val = s.foldAsInteger();
+//	t.val = s.left.equivalent().val.asInteger() + 
+//	        s.right.equivalent().collect(it | it.val.asInteger()).sum(); 
 }
 
 @lazy
@@ -95,6 +98,43 @@ rule FoldRealMultiplication
 	guard : not (s.left.equivalent().isKindOf(Target!IntLiteral) and
 	             s.right.equivalent().forAll (it | it.isKindOf(Target!IntLiteral)))
 
-	t.val = s.left.equivalent().val.asFloat() + 
-	        s.right.equivalent().collect(it | it.val.asFloat()).sum();
+	t.val = s.foldAsReal();
+//	t.val = s.left.equivalent().val.asFloat() + 
+//	        s.right.equivalent().collect(it | it.val.asFloat()).sum();
+}
+
+operation Source!Expression foldAsInteger () : Integer {
+	var result = self.left.equivalent().val.asInteger();
+	
+	for (idx in 0.`to`(self.right.size()-1)) {
+		if (self.operator.at(idx) == '+') {
+		  result = result + self.right.at(idx).val.asInteger();
+		} else if (self.operator.at(idx) == '-') {
+		  result = result - self.right.at(idx).val.asInteger();
+		} else if (self.operator.at(idx) == '*') {
+		  result = result * self.right.at(idx).val.asInteger();
+		} else if (self.operator.at(idx) == '/') {
+		  result = result / self.right.at(idx).val.asInteger();
+		} 
+	}
+
+	return result;
+}
+
+operation Source!Expression foldAsReal () : Real {
+	var result = self.left.equivalent().val.asFloat();
+	
+	for (idx in 0.`to`(self.right.size()-1)) {
+		if (self.operator.at(idx) == '+') {
+		  result = result + self.right.at(idx).val.asFloat();
+		} else if (self.operator.at(idx) == '-') {
+		  result = result - self.right.at(idx).val.asFloat();
+		} else if (self.operator.at(idx) == '*') {
+		  result = result * self.right.at(idx).val.asFloat();
+		} else if (self.operator.at(idx) == '/') {
+		  result = result / self.right.at(idx).val.asFloat();
+		} 
+	}
+	
+	return result;
 }
