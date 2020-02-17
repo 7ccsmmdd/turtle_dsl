@@ -3,7 +3,6 @@
  */
 package uk.ac.kcl.inf.szschaler.turtles.generator
 
-import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
@@ -19,7 +18,6 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.Statement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnCommand
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurnStatement
 import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
-import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtlesPackage
 import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
 
 /**
@@ -29,37 +27,13 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
  */
 class TurtlesGenerator extends AbstractGenerator {
 
-	private static class ConstantFolder extends ETLRunner {
-
-		val Resource inModel
-
-		new(Resource inModel) {
-			this.inModel = inModel
-		}
-
-		override protected getSource() {
-			"constant_fold.etl"
-		}
-
-		override protected getModels() throws Exception {
-			#[
-				inModel.createInMemoryEmfModel("Source", TurtlesPackage.eNS_URI, false),
-				inModel.resourceSet.createResource(URI.createFileURI("synthetic.turtles")).
-					createInMemoryEmfModel("Target", TurtlesPackage.eNS_URI, false)
-			]
-		}
-
-	}
-
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val model = resource.contents.head as TurtleProgram
 		fsa.generateFile(resource.deriveStatsTargetFileNameFor, model.doGenerateStats)
 
 		val className = resource.deriveClassNameFor
 
-		val interimModel = new ConstantFolder(resource).execute as TurtleProgram 
-		
-		fsa.generateFile(className + '.java', interimModel.doGenerateClass(className))
+		fsa.generateFile(className + '.java', model.doGenerateClass(className))
 	}
 
 	def deriveStatsTargetFileNameFor(Resource resource) {
