@@ -3,6 +3,7 @@
  */
 package uk.ac.kcl.inf.szschaler.turtles.scoping
 
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
@@ -13,6 +14,8 @@ import uk.ac.kcl.inf.szschaler.turtles.turtles.TurtleProgram
 import uk.ac.kcl.inf.szschaler.turtles.turtles.VariableDeclaration
 
 import static org.eclipse.xtext.scoping.Scopes.*
+
+import static extension org.eclipse.xtext.EcoreUtil2.*
 
 /**
  * This class contains custom scoping description.
@@ -25,24 +28,32 @@ class TurtlesScopeProvider extends AbstractDeclarativeScopeProvider {
 		context.visibleVariablesScope
 	}
 	
-	dispatch def IScope visibleVariablesScope(IntExpression ip) {
-		ip.eContainer.visibleVariablesScope
+	private def IScope visibleVariablesScope (IntExpression ie) {
+		val loopStatementContainer = ie.getContainerOfType(LoopStatement)
+		
+		if (loopStatementContainer !== null) {
+			loopStatementContainer.visibleVariablesScope
+		} else {
+			val program = ie.getContainerOfType(TurtleProgram)
+			program.visibleVariablesScope
+		}
 	}
 	
-	dispatch def IScope visibleVariablesScope(TurtleProgram tp) {
+	private def IScope visibleVariablesScope(TurtleProgram tp) {
 		scopeFor(tp.statements.filter(VariableDeclaration))
 	}
 	
-	dispatch def IScope visibleVariablesScope(LoopStatement ls) {
+	private def IScope visibleVariablesScope(LoopStatement ls) {
 		ls.eContainer.internalVisibleVariablesScope
 	}
 
-	dispatch def IScope internalVisibleVariablesScope(TurtleProgram tp) {
-		scopeFor(tp.statements.filter(VariableDeclaration))
+	private def IScope internalVisibleVariablesScope(EObject eo) {
+		if (eo instanceof TurtleProgram) {
+			scopeFor(eo.statements.filter(VariableDeclaration))			
+		} else if (eo instanceof LoopStatement) {
+			scopeFor(eo.statements.filter(VariableDeclaration), eo.eContainer.internalVisibleVariablesScope)			
+		} else {
+			scopeFor(emptySet)
+		}
 	}
-	
-	dispatch def IScope internalVisibleVariablesScope(LoopStatement ls) {
-		scopeFor(ls.statements.filter(VariableDeclaration), ls.eContainer.internalVisibleVariablesScope)
-	}
-
 }
