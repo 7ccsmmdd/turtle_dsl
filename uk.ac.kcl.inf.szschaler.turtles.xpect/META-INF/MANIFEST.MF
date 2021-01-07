@@ -7,4 +7,4 @@ Automatic-Module-Name: uk.ac.kcl.inf.szschaler.turtles.xpect
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: uk.ac.kcl.inf.szschaler.turtles;bundle-version="1.0.0",
  uk.ac.kcl.inf.szschaler.turtles.ui;bundle-version="1.0.0",
- org.xpect.xtext.lib;bundle-version="0.2.0"
+  org.eclipse.xpect.xtext.lib;bundle-version="0.2.0"
