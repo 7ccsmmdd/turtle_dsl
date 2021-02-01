@@ -42,10 +42,20 @@ class TurtlesGenerator extends AbstractGenerator {
 		}
 
 		override protected getModels() throws Exception {
+			val srcModel = inModel.createInMemoryEmfModel("Source", TurtlesPackage.eNS_URI)
+			val resourceSet = inModel.resourceSet
+			val tgtResourceURI = URI.createFileURI("synthetic.turtles")
+			var tgtResource = resourceSet.getResource(tgtResourceURI, false)
+			if (tgtResource != null) {
+				tgtResource.contents.clear			
+			} else {
+				tgtResource = resourceSet.createResource(tgtResourceURI)
+			}
+			val tgtModel = tgtResource.createInMemoryEmfModel("Target", TurtlesPackage.eNS_URI)
+			
 			#[
-				inModel.createInMemoryEmfModel("Source", TurtlesPackage.eNS_URI),
-				inModel.resourceSet.createResource(URI.createFileURI("synthetic.turtles")).
-					createInMemoryEmfModel("Target", TurtlesPackage.eNS_URI)
+				srcModel,
+				tgtModel
 			]
 		}
 
